@@ -1,11 +1,12 @@
 package com.sunshine.dao;
 
 import com.sunshine.entity.Item;
+import com.sunshine.entity.ItemIntroduce;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface ItemMapperEx {
 
-    Item getItemById(@Param("Id") Integer Id);
+    ItemIntroduce getItemById(@Param("Id") Integer Id);
 }

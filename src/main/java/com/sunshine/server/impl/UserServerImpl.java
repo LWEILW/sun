@@ -5,7 +5,7 @@ import com.sunshine.server.UserServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("UserService")
+@Service("UserServer")
 public class UserServerImpl implements UserServer {
 
     @Autowired
