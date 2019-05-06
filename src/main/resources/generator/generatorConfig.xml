@@ -67,7 +67,7 @@
 
 
 
-        <table tableName="userIntroduce" domainObjectName="UserIntroduce" >
+        <table tableName="itemintroduce" domainObjectName="ItemIntroduce" >
             <property name="useActualColumnNames" value="true" />
         </table>
 

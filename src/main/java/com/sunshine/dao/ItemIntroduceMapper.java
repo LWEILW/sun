@@ -13,13 +13,21 @@ public interface ItemIntroduceMapper {
 
     int deleteByExample(ItemIntroduceExample example);
 
+    int deleteByPrimaryKey(Integer id);
+
     int insert(ItemIntroduce record);
 
     int insertSelective(ItemIntroduce record);
 
     List<ItemIntroduce> selectByExample(ItemIntroduceExample example);
 
+    ItemIntroduce selectByPrimaryKey(Integer id);
+
     int updateByExampleSelective(@Param("record") ItemIntroduce record, @Param("example") ItemIntroduceExample example);
 
     int updateByExample(@Param("record") ItemIntroduce record, @Param("example") ItemIntroduceExample example);
+
+    int updateByPrimaryKeySelective(ItemIntroduce record);
+
+    int updateByPrimaryKey(ItemIntroduce record);
 }
