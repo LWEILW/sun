@@ -13,7 +13,7 @@ public class UserServerImpl implements UserServer {
 
 
     @Override
-    public String userName(Integer Id) {
+    public String userName(int Id) {
         return userMapperEx.userName(Id);
     }
 }

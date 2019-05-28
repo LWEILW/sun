@@ -20,4 +20,6 @@ public class SunApplication {
 		SpringApplication.run(SunApplication.class, args);
 	}
 
+
+
 }

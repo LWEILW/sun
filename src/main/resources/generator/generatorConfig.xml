@@ -67,13 +67,12 @@
 
 
 
-        <table tableName="itemintroduce" domainObjectName="ItemIntroduce" >
-            <property name="useActualColumnNames" value="true" />
-        </table>
-
-        <!--<table tableName="itemIntroduce" domainObjectName="ItemIntroduce" >-->
+       <!--<table tableName="news" domainObjectName="News" >-->
             <!--<property name="useActualColumnNames" value="true" />-->
         <!--</table>-->
 
+        <table tableName="user" domainObjectName="User" >
+            <property name="useActualColumnNames" value="true" />
+        </table>
     </context>
 </generatorConfiguration>

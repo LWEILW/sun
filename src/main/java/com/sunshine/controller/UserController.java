@@ -1,11 +1,17 @@
 package com.sunshine.controller;
 
-import com.sunshine.entity.ItemIntroduce;
-import com.sunshine.server.ItemServer;
+import com.alibaba.fastjson.JSONObject;
+import com.sunshine.entity.News;
+import com.sunshine.entity.User;
+import com.sunshine.server.NewsServer;
+import com.sunshine.server.UserServer;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Api(value = "[APP-测试接口]-FrontExaminationReportController")
 @RestController
@@ -13,7 +19,10 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    private ItemServer itemServer;
+    private UserServer userServer;
+
+    @Autowired
+    private NewsServer newsServer;
 
 //    //首页跳转类
 //    @RequestMapping("/index")
@@ -44,13 +53,42 @@ public class UserController {
 //        return "/login";
 //    }
 
-    @ApiOperation(value="获取用户详细信息", notes="根据url的id来获取用户详细信息")
+//    @ApiOperation(value = "获取用户详细信息", notes = "根据url的id来获取用户详细信息")
+////    @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "Integer", paramType = "path")
+//    @GetMapping("/userDetail")
+//    public void userDetail(@PathVariable("Id") int id) {
+//        // Map map= JSONObject.parseObject(data, Map.class);
+//
+//        ItemIntroduce name = itemServer.getItemById(id);
+//        System.out.println(name);
+//        System.out.println("I can write codeaa!");
+////        return "I can write codeaa!";
+//    }
+
+    @ApiOperation(value = "获取用户详细信息", notes = "根据url的id来获取用户详细信息")
 //    @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "Integer", paramType = "path")
-    @GetMapping("/userDetail")
-    public void userDetail() {
-        ItemIntroduce name = itemServer.getItemById(1);
-        System.out.println(name);
-        System.out.println("I can write code!");
+    @GetMapping("/userDetaill")
+    public String userDetaill() {
+        String name = userServer.userName(1);
+        System.out.println("String");
+        return name;
     }
 
+
+    @GetMapping("/newsList")
+    public List<News> newsList() {
+//        JSONObject js = JSONObject.parseObject(data, JSONObject.class);
+        News news = new News();
+        List<News> newsList = newsServer.newsList();
+
+        System.out.println("newsList");
+        return newsList;
+    }
+
+    @GetMapping("/getNews/{id}")
+    public String getNews(@PathVariable("id") int id) {
+        String name = userServer.userName(id);
+        System.out.println(name);
+        return name;
+    }
 }

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.sunshine.dao.ItemIntroduceMapper" >
-  <resultMap id="BaseResultMap" type="com.sunshine.entity.ItemIntroduce" >
+<mapper namespace="com.sunshine.dao.NewsMapper" >
+  <resultMap id="BaseResultMap" type="com.sunshine.entity.News" >
     <constructor >
-      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="content" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="type" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -66,15 +68,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name
+    id, title, content, type
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sunshine.entity.ItemIntroduceExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sunshine.entity.NewsExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from itemintroduce
+    from news
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -82,59 +84,69 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from itemintroduce
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from itemintroduce
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.sunshine.entity.ItemIntroduceExample" >
-    delete from itemintroduce
+  <delete id="deleteByExample" parameterType="com.sunshine.entity.NewsExample" >
+    delete from news
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.sunshine.entity.ItemIntroduce" >
-    insert into itemintroduce (id, name)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.sunshine.entity.News" >
+    insert into news (id, title, content, 
+      type)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.sunshine.entity.ItemIntroduce" >
-    insert into itemintroduce
+  <insert id="insertSelective" parameterType="com.sunshine.entity.News" >
+    insert into news
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="name != null" >
-        name,
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="type != null" >
+        type,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.sunshine.entity.ItemIntroduceExample" resultType="java.lang.Integer" >
-    select count(*) from itemintroduce
+  <select id="countByExample" parameterType="com.sunshine.entity.NewsExample" resultType="java.lang.Integer" >
+    select count(*) from news
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update itemintroduce
+    update news
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.name != null" >
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -142,25 +154,13 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update itemintroduce
+    update news
     set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR}
+      title = #{record.title,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.sunshine.entity.ItemIntroduce" >
-    update itemintroduce
-    <set >
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.sunshine.entity.ItemIntroduce" >
-    update itemintroduce
-    set name = #{name,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

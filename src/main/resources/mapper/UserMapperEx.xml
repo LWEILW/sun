@@ -3,6 +3,6 @@
 <mapper namespace="com.sunshine.dao.UserMapperEx">
 
     <select id="userName" parameterType="java.lang.Integer" resultType="java.lang.String">
-        select name from userIntroduce where id = #{Id}
+        select name from user where id = #{Id}
     </select>
 </mapper>
