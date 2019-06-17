@@ -16,10 +16,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SunApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SunApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(SunApplication.class, args);
+    }
 
 
 }

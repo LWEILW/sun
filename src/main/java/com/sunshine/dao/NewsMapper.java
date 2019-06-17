@@ -3,13 +3,10 @@ package com.sunshine.dao;
 import com.sunshine.entity.News;
 import com.sunshine.entity.NewsExample;
 import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-@Mapper
 public interface NewsMapper {
-    int countByExample(NewsExample example);
+    long countByExample(NewsExample example);
 
     int deleteByExample(NewsExample example);
 

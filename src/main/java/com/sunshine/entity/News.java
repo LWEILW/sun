@@ -1,7 +1,7 @@
 package com.sunshine.entity;
 
 public class News {
-    private Integer id;
+    private String id;
 
     private String title;
 
@@ -9,7 +9,7 @@ public class News {
 
     private String type;
 
-    public News(Integer id, String title, String content, String type) {
+    public News(String id, String title, String content, String type) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -20,12 +20,12 @@ public class News {
         super();
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
     }
 
     public String getTitle() {

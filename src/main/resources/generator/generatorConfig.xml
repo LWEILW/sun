@@ -7,9 +7,6 @@
     <!--导入属性配置-->
     <properties resource="application-dev.properties"></properties>
 
-    <!--指定特定数据库的jdbc驱动jar包的位置-->
-    <!--<classPathEntry location="${db.driverLocation}"/>-->
-
     <context id="default" targetRuntime="MyBatis3">
 
         <!-- optional，旨在创建class时，对注释进行控制 -->
@@ -62,17 +59,27 @@
         <!-- targetPackage：mapper接口dao生成的位置 -->
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.sunshine.dao" targetProject="./src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
-            <property name="enableSubPackages" value="false" />
+            <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
-
-
-       <!--<table tableName="news" domainObjectName="News" >-->
-            <!--<property name="useActualColumnNames" value="true" />-->
+        <!--<table tableName="user" domainObjectName="User">-->
+            <!--<property name="nullCatalogMeansCurrent" value="true"/>-->
         <!--</table>-->
 
-        <table tableName="user" domainObjectName="User" >
-            <property name="useActualColumnNames" value="true" />
+        <table tableName="news" domainObjectName="News" >
+        <property name="useActualColumnNames" value="true" />
+        </table>
+
+        <table tableName="games" domainObjectName="Games">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="mood" domainObjectName="Mood">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="blogger" domainObjectName="Blogger">
+            <property name="useActualColumnNames" value="true"/>
         </table>
     </context>
 </generatorConfiguration>
