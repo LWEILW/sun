@@ -148,10 +148,15 @@ export default {
 
 
 <style scoped>
+.navigationMoudle {
+  height: 100%;
+}
+
 /* 导航栏收缩样式 */
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-   width: 200px;
+  width: 200px;
   min-width: 140px;
   /* height: 100vh;  */
+  height: 100%;
 }
 </style>

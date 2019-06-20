@@ -58,5 +58,4 @@ public class BloggerController {
         return bloggerList;
     }
 
-
 }

@@ -1,5 +1,7 @@
 <template>
   <div class="BloggerMoudle">
+    <!-- <el-page-header @back="goBack" content="详情页面"></el-page-header> -->
+
     <!-- Form弹出框 -->
     <el-dialog title="创建" :visible.sync="dialogFormVisible">
       <el-form
@@ -9,18 +11,6 @@
         label-width="100px"
         class="demo-ruleForm"
       >
-        <el-form-item label="标题名" prop="title">
-          <el-input v-model="ruleForm.title"></el-input>
-        </el-form-item>
-
-        <el-form-item label="内容" prop="content">
-          <el-input type="textarea" v-model="ruleForm.content"></el-input>
-        </el-form-item>
-
-        <el-form-item label="作者" prop="author">
-          <el-input v-model="ruleForm.author"></el-input>
-        </el-form-item>
-
         <el-form-item label="创建时间" required>
           <el-col :span="11">
             <el-form-item prop="date1">
@@ -39,6 +29,23 @@
             </el-form-item>
           </el-col>
         </el-form-item>
+
+        <el-form-item label="标题名" prop="title">
+          <el-input v-model="ruleForm.title"></el-input>
+        </el-form-item>
+
+        <el-form-item label="作者" prop="author">
+          <el-input v-model="ruleForm.author"></el-input>
+        </el-form-item>
+
+        <el-form-item label="内容" prop="content">
+          <el-input type="textarea" v-model="ruleForm.content"></el-input>
+          <!-- <TinymceMoudle/> -->
+        </el-form-item>
+
+        <!-- <el-form-item label="内容" prop="content">
+          <el-input type="textarea" v-model="ruleForm.content"></el-input>
+        </el-form-item>-->
 
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
@@ -110,11 +117,10 @@
     <!--  1.data:显示的数据, 2.stripe:是否为斑马纹, 3.border:是否带有纵向边框, 4.selection-change:当选择项发生变化时会触发该事件 -->
     <div class="blogger-table">
       <el-table
-        :data="items"
+        :data="items.slice((currentPage-1)*pagesize,currentPage*pagesize)"
         stripe
         border
-        height="550px"
-        max-height="850px"
+        max-height="800px"
         style="width: 100%"
         @selection-change="handleSelectionChange"
         ref="multipleTable"
@@ -139,15 +145,33 @@
         </el-table-column>
         <el-table-column prop="createTime" label="阅读数" width="200" sortable></el-table-column>
         <el-table-column prop="createTime" label="状态" width="200" sortable></el-table-column>
-        <el-table-column fixed="right" label="操作" >
+        <el-table-column fixed="right" label="操作">
           <template slot-scope="scope">
-            <button type="button"  @click="handleEdit(scope.row)" class="el-button el-button--primary el-button--mini"><span>编辑</span></button>
-            <button type="button" @click="handleUploading(scope.row)" class="el-button el-button--success el-button--mini"><span>发布</span></button>
-            <button type="button" @click="handleDelete(scope.row)" class="el-button el-button--danger el-button--mini"><span>删除</span></button>
+            <button
+              type="button"
+              @click="handleEdit(scope.row)"
+              class="el-button el-button--primary el-button--mini"
+            >
+              <span>编辑</span>
+            </button>
+            <button
+              type="button"
+              @click="handleUploading(scope.row)"
+              class="el-button el-button--success el-button--mini"
+            >
+              <span>发布</span>
+            </button>
+            <button
+              type="button"
+              @click="handleDelete(scope.row)"
+              class="el-button el-button--danger el-button--mini"
+            >
+              <span>删除</span>
+            </button>
 
             <!-- <el-button @click="handleEdit(scope.row)" type="text" size="small">编辑</el-button>
             <el-button @click="handleUploading(scope.row)" type="text" size="small">发布</el-button>
-            <el-button @click="handleDelete(scope.row)" type="text" size="small">删除</el-button> -->
+            <el-button @click="handleDelete(scope.row)" type="text" size="small">删除</el-button>-->
 
             <!-- <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button> -->
             <!-- <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
@@ -156,8 +180,21 @@
         </el-table-column>
       </el-table>
     </div>
-
     <br>
+
+    <!-- 分页 total:总数,hide-on-single-page:一页是否隐藏,page-size: -->
+    <div class="block">
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="currentPage"
+        :page-sizes="[10, 50, 100, 200]"
+        :page-size="pagesize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="totalCount"
+        :hide-on-single-page="true"
+      ></el-pagination>
+    </div>
   </div>
 </template>
 
@@ -211,7 +248,13 @@ export default {
       // 查询输入框数据
       input: "",
       // 表格初始化信息
-      items: []
+      items: [],
+      // 初始选中页码
+      currentPage: 1,
+      // 显示每页的数据
+      pagesize: 10,
+      // 显示总共有多少数据
+      totalCount: 40
     };
   },
   // 初始化加载
@@ -331,6 +374,15 @@ export default {
     // 重置方法
     resetForm(formName) {
       this.$refs[formName].resetFields();
+    },
+    /** 分页方法 handleSizeChange:切换每页显示的数量,handleCurrentChange:切换页码  */
+    handleSizeChange(size) {
+      this.pagesize = size;
+      console.log(`每页 ${size} 条`); //每页下拉显示数据
+    },
+    handleCurrentChange(currentPage) {
+      this.currentPage = currentPage;
+      console.log(`当前页: ${currentPage}`); //点击第几页
     }
   }
 };

@@ -38,4 +38,7 @@ export default {
 </script>
 
 <style scoped>
+.homePage{
+  height: 100vh;
+}
 </style>
