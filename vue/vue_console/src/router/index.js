@@ -8,6 +8,11 @@ import BloggerCreatePage from '@/view/Blogger/BloggerCreatePage'
 import BloggerEditPage from '@/view/Blogger/BloggerEditPage'
 import BloggerDetailPage from '@/view/Blogger/BloggerDetailPage'
 
+import UserListPage from '@/view/User/UserListPage'
+
+import skip from '@/view/Login/skip'
+
+
 
 
 Vue.use(Router)
@@ -54,6 +59,18 @@ export default new Router({
       name: 'BloggerDetailPage',
       component: BloggerDetailPage,
       children: [{ path: ':id', name: 'id', component: BloggerDetailPage }]
+    },
+    // 用户一览
+    {
+      path: '/UserListPage',
+      name: 'UserListPage',
+      component: UserListPage
+    },
+    // 地图处理
+    {
+      path: '/skip',
+      name: 'skip',
+      component: skip
     }
   ]
 })

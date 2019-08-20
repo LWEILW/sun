@@ -10,10 +10,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
 /**
- * @author zh
- * @ClassName cn.saytime.Swgger2
- * @Description
- * @date 2017-07-10 22:12:31
+ * API接口文档
  */
 @Configuration
 public class SwaggerConfig {

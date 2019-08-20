@@ -1,76 +1,95 @@
 package com.sunshine.entity;
 
+import java.util.Date;
+import java.util.List;
+
 public class User {
-    private Integer id;
+    private int id;
 
-    private String name;
+    private String nickname;
 
-    private Integer age;
+    private String email;
 
-    private String phone;
+    private String pswd;
 
-    private String address;
+    private Date create_time;
 
-    private String work;
+    private Date last_login_time;
 
-    public User(Integer id, String name, Integer age, String phone, String address, String work) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.phone = phone;
-        this.address = address;
-        this.work = work;
-    }
+    private  int status;
 
-    public User() {
-        super();
-    }
+    List<String> roleStrlist;
+    List<String> perminsStrlist;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
-    public Integer getAge() {
-        return age;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPswd() {
+        return pswd;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
+    public void setPswd(String pswd) {
+        this.pswd = pswd;
     }
 
-    public String getAddress() {
-        return address;
+    public Date getCreate_time() {
+        return create_time;
     }
 
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
+    public void setCreate_time(Date create_time) {
+        this.create_time = create_time;
     }
 
-    public String getWork() {
-        return work;
+    public Date getLast_login_time() {
+        return last_login_time;
     }
 
-    public void setWork(String work) {
-        this.work = work == null ? null : work.trim();
+    public void setLast_login_time(Date last_login_time) {
+        this.last_login_time = last_login_time;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public List<String> getRoleStrlist() {
+        return roleStrlist;
+    }
+
+    public void setRoleStrlist(List<String> roleStrlist) {
+        this.roleStrlist = roleStrlist;
+    }
+
+    public List<String> getPerminsStrlist() {
+        return perminsStrlist;
+    }
+
+    public void setPerminsStrlist(List<String> perminsStrlist) {
+        this.perminsStrlist = perminsStrlist;
     }
 }

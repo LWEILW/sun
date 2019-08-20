@@ -3,6 +3,7 @@ package com.sunshine.util;
 import java.util.UUID;
 
 public class Utils {
+
     // 自动生成UUID
     public static String getUUID() {
         UUID uuid = UUID.randomUUID();
@@ -10,5 +11,4 @@ public class Utils {
         String uuidStr = str.replace("-", "");
         return uuidStr;
     }
-
 }

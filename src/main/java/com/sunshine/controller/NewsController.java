@@ -19,7 +19,6 @@ public class NewsController {
     @GetMapping("/newsList")
     public List<News> newsList() {
         List<News> newsList = newsService.newsList();
-        System.out.println("newsList");
         return newsList;
     }
 }

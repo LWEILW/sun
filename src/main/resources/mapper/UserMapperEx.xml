@@ -2,7 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sunshine.dao.UserMapperEx">
 
-    <select id="userName" parameterType="java.lang.Integer" resultType="java.lang.String">
-        select name from user where id = #{Id}
+    <select id="userList" resultType="com.sunshine.entity.User">
+        select * from  u_user
     </select>
+
+    <select id="usersLogin" parameterType="java.lang.String" resultType="com.sunshine.entity.User">
+        select * from user where account=#{account}
+    </select>
+
+    <insert id="createUser" parameterType="com.sunshine.entity.User">
+    insert into user (id,account,password) values (#{user.id},#{user.accont},#{user.password})
+    </insert>
+
+    <update id="updateUser" parameterType="com.sunshine.entity.User">
+        update  user set name=#{user.name}
+        wherer id=#{user.id}
+    </update>
+
+    <delete id="deleteUser" parameterType="java.lang.String">
+        delete * from  user where id=#{id}
+    </delete>
+
+    <select id="detailUser" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select * from user where id = #{Id}
+    </select>
+
+    <select id="selectAllByName" parameterType="java.lang.String" resultType="com.sunshine.entity.User">
+        select * from u_user where nickname=#{userName}
+    </select>
+
 </mapper>

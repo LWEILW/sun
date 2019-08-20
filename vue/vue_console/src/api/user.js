@@ -1,38 +1,29 @@
 import request from '@/utils/request'
 
 export default {
-  /* 博客接口 */
-  bloggerList() {
+  /* 用户接口 */
+  userList() {
     return request({
-      url: '/blogger/bloggerList',
+      url: '/user/userList',
       method: 'get'
     })
   },
-  createBlogger(data) {
+  updateUser(data) {
     return request({
-      url: '/blogger/createBlogger',
+      url: '/user/updateUser',
       method: 'post',
       data
-
     })
   },
-  deleteBlogger(id) {
+  deleteUser(id) {
     return request({
-      url: `/blogger/deleteBlogger/${id} `,
+      url: `/user/deleteUser/${id} `,
       method: 'get',
     })
   },
-  updateBlogger(data) {
+  detailUser(id) {
     return request({
-      url: '/blogger/updateBlogger',
-      method: 'post',
-      data
-
-    })
-  },
-  getBlogger(id) {
-    return request({
-      url: `/blogger/getBlogger/${id} `,
+      url: `/user/detailUser/${id} `,
       method: 'get',
     })
   }

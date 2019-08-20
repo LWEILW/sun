@@ -7,7 +7,7 @@
     <properties resource="application-dev.properties"/>
 
     <!-- 指定数据连接驱动jar地址 -->
-    <!--<classPathEntry location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar" />-->
+    <!--<classPathEntry location="C:\User\Administrator\.m2\repository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar" />-->
 
     <!-- 一个数据库一个context -->
     <context id="DB2Tables" targetRuntime="MyBatis3">

@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+  <!-- Scroll down to see the bottom-right button.
+  <el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop> -->
+
     <!--<router-view></router-view>是用来渲染通过路由映射过来的组件,当路由更改时,<router-view>的内容也会发生更改.-->
     <router-view :key="key"></router-view>
   </div>

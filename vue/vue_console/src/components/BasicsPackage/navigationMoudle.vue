@@ -87,6 +87,24 @@
           </el-menu-item>
         </el-menu-item-group>
       </el-submenu>
+
+      <!-- 用户 -->
+      <el-submenu index="UserListPage">
+        <template slot="title">
+          <i class="el-icon-location"></i>
+          <span>用户</span>
+        </template>
+        <el-menu-item-group>
+          <el-menu-item index="UserListPage">
+            <i class="el-icon-location"></i>
+            <span>用户一览</span>
+          </el-menu-item>
+          <el-menu-item index="UserListPage">
+            <i class="el-icon-location"></i>
+            <span>用户创建</span>
+          </el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
     </el-menu>
   </div>
 </template>
@@ -140,6 +158,13 @@ export default {
         case "BloggerCreatePage":
           this.$router.push("/BloggerCreatePage");
           break;
+
+        case "UserListPage":
+          this.$router.push("/UserListPage");
+          break;
+        case "BloggerCreatePage":
+          this.$router.push("/BloggerCreatePage");
+          break;
       }
     }
   }
@@ -156,7 +181,6 @@ export default {
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-width: 140px;
-  /* height: 100vh;  */
-  height: 100%;
+  /* height: 100%; */
 }
 </style>

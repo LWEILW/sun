@@ -1,5 +1,10 @@
 import axios from 'axios'
 import store from '@/utils/store'
+
+//前端的axios添加withCredentials属性
+axios.defaults.withCredentials=true;
+// Vue.prototype.$axios = axios;
+
  // 创建axios实例
 const service = axios.create({
   baseURL: process.env.BASE_API, // api的base_url

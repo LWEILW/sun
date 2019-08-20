@@ -7,6 +7,7 @@ import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
+
 // 导入组件
 import NavigationMoudle from './components/BasicsPackage/navigationMoudle'
 import HeaderMoudle from './components/BasicsPackage/headerMoudle'

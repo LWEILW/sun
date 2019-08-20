@@ -5,6 +5,15 @@
       <el-col :span="10" class="logo">
         <div v-on:click="shrinkNav">logoBIG12345</div>
       </el-col>
+      <el-col :span="3" >
+        <div><span>账户</span>{{account}}</div>
+      </el-col>
+      <el-col :span="3" >
+         <div><span>角色</span>{{password}}</div>
+      </el-col>
+      <el-col :span="4" >
+        <div><el-image style="width: 100px; height: 60px"  :src="url"></el-image></div>
+      </el-col>
     </el-col>
   </div>
 </template>
@@ -14,7 +23,11 @@ export default {
   name: "headerMoudle",
   // 存储数据
   data() {
-    return {};
+    return {
+      account:123456,
+      password:1234522,
+        url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+    };
   },
   // 初始化加载
   created() {},

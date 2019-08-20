@@ -188,7 +188,7 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="currentPage"
-        :page-sizes="[10, 50, 100, 200]"
+        :page-sizes="[5, 10, 20, 50]"
         :page-size="pagesize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="totalCount"
@@ -252,7 +252,7 @@ export default {
       // 初始选中页码
       currentPage: 1,
       // 显示每页的数据
-      pagesize: 10,
+      pagesize: 5,
       // 显示总共有多少数据
       totalCount: 40
     };
@@ -268,6 +268,7 @@ export default {
       api.bloggerList().then(res => {
         var that = this;
         that.items = res.data;
+         this.totalCount=res.data.length;
         console.log(that.items);
       });
     },
