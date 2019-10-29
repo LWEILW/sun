@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blogger.dao.">
+
+    <!--  用户台账  -->
+    <select id="getUserList" resultType="com.blogger.entity.UserEntity.User">
+        select * from  user
+    </select>
+
+    <!--  用户创建  -->
+    <insert id="createUser" parameterType="com.blogger.entity.UserEntity.User">
+    insert into user (
+    userId,
+    userAccount,
+    userName,
+    userSex,
+    userPhone,
+    userEmail,
+    userPassword,
+    createPerson,
+    createDate
+    ) values (
+    #{user.userId},
+    #{user.userAccount},
+    #{user.userName},
+    #{user.userSex},
+    #{user.userPhone},
+    #{user.userEmail},
+    #{user.userPassword},
+    #{user.createPerson},
+    SysDate
+    )
+    </insert>
+
+    <!--  用户更新  -->
+    <update id="updateUser" parameterType="com.blogger.entity.UserEntity.User">
+        update user
+        <set>
+            <if test="user.getUserAccount!=null and user.getUserAccount!=''">
+                userAccount=#{user.userAccount},
+            </if>
+            <if test="user.getUserName!=null and user.getUserName!=''">
+                userName=#{user.userName},
+            </if>
+            <if test="user.getUserSex!=null and user.getUserName!=''">
+                userSex=#{user.userSex},
+            </if>
+            <if test="user.getUserPhone!=null and user.getUserPhone!=''">
+                userPhone=#{user.userPhone},
+            </if>
+            <if test="user.getUserEmail!=null and user.getUserEmail!=''">
+                userEmail=#{user.userEmail},
+            </if>
+            <if test="user.getUserPassword!=null and user.getUserPassword!=''">
+                userPassword=#{user.userPassword},
+            </if>
+            updateDate=SysDate
+        </set>
+        wherer userId=#{user.userId}
+    </update>
+
+    <!--  用户删除  -->
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+        delete * from  user where id=#{id}
+    </delete>
+
+    <!--  用户详情  -->
+    <select id="detailsUser" parameterType="java.lang.Integer" resultType="com.blogger.entity.UserEntity.User">
+        select * from user where id = #{Id}
+    </select>
+
+
+    <select id="usersLogin" parameterType="java.lang.String" resultType="com.blogger.entity.UserEntity.User">
+        select * from user where account=#{account}
+    </select>
+
+
+    <select id="selectAllByName" parameterType="java.lang.String" resultType="com.blogger.entity.UserEntity.User">
+        select * from u_user where nickname=#{userName}
+    </select>
+
+</mapper>

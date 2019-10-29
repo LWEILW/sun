@@ -38,7 +38,8 @@ export default {
   },
   methods: {
     go() {
-      this.$router.push("/skip");
+      // this.$router.push("/skip");
+      this.$router.push("/PointOvelay");
     },
     // // 方法一
     // // 添加图标的方法

@@ -11,6 +11,7 @@ import BloggerDetailPage from '@/view/Blogger/BloggerDetailPage'
 import UserListPage from '@/view/User/UserListPage'
 
 import skip from '@/view/Login/skip'
+import PointOvelay from '@/view/Login/PointOvelay'
 
 
 
@@ -71,6 +72,13 @@ export default new Router({
       path: '/skip',
       name: 'skip',
       component: skip
+    },
+    // 地图处理
+    {
+      path: '/PointOvelay',
+      name: 'PointOvelay',
+      component: PointOvelay
     }
+  
   ]
 })
