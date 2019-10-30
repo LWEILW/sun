@@ -3,12 +3,12 @@ package com.blogger.server.impl.RoleServiceImpl;
 import com.blogger.dao.RoleMapper.RoleMapperEx;
 import com.blogger.entity.RoleEntity.Role;
 import com.blogger.server.RoleService.RoleService;
-import org.mapstruct.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Mapper
+@Service("RoleService")
 public class RoleServiceImpl implements RoleService {
 
     @Autowired

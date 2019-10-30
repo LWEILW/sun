@@ -1,10 +1,12 @@
 package com.blogger.dao.ArticleMapper;
 
 import com.blogger.entity.ArticleEntity.Article;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+@Mapper
 public interface ArticleMapper {
     // 文章台账
     List<Article> getArticleList();

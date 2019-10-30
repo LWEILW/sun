@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.blogger</groupId>
-    <artifactId>sun</artifactId>
+    <artifactId>blogger</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>sun</name>
+    <name>blogger</name>
     <description>Demo project for Spring Boot</description>
     <!--默认为jar方式-->
     <packaging>jar</packaging>

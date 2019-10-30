@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.blogger.entity.UserEntity.User;
 import com.blogger.server.UserService.UserService;
+import com.blogger.util.Result;
 import io.swagger.annotations.Api;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,9 +77,9 @@ public class UserController {
 
     // 用户台账
     @PostMapping("getUserList")
-    public List<User> getUserList() {
+    public Result getUserList(@RequestBody String data) {
         List<User> userList = userService.getUserList();
-        return userList;
+        return Result.success(userList);
     }
 
     // 用户保存

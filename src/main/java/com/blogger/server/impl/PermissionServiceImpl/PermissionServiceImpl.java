@@ -5,10 +5,11 @@ import com.blogger.entity.PermissionEntity.Permission;
 import com.blogger.server.PermissionService.PermissionService;
 import org.mapstruct.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Mapper
+@Service("PermissionService")
 public class PermissionServiceImpl implements PermissionService {
 
     @Autowired
