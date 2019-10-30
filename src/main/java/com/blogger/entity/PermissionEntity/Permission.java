@@ -1,31 +1,44 @@
 package com.blogger.entity.PermissionEntity;
 
 public class Permission {
-    private int id;
-    private String url;
-    private String name;
+    // 权限ID
+    private String permissionId;
+    // 模块目录
+    private String modName;
+    // 功能名称
+    private String funName;
+    // 创建时间
+    private String createDate;
 
-    public int getId() {
-        return id;
+    public String getPermissionId() {
+        return permissionId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPermissionId(String permissionId) {
+        this.permissionId = permissionId;
     }
 
-    public String getUrl() {
-        return url;
+    public String getModName() {
+        return modName;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setModName(String modName) {
+        this.modName = modName;
     }
 
-    public String getName() {
-        return name;
+    public String getFunName() {
+        return funName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFunName(String funName) {
+        this.funName = funName;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
 }

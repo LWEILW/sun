@@ -1,7 +1,6 @@
 package com.blogger.dao.ArticleMapper;
 
 import com.blogger.entity.ArticleEntity.Article;
-import io.swagger.models.auth.In;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

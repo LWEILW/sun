@@ -2,8 +2,54 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.blogger.dao.PermissionMapper.PermissionMapperEx">
 
-    <select id="findPermissionByUid" parameterType="java.lang.Integer" resultType="com.blogger.entity.PermissionEntity.Permission">
-        select * from u_permission where id=#{id}
+
+    <!--  权限台账  -->
+    <select id="getPermissionList" resultType="com.blogger.entity.PermissionEntity.Permission">
+        select * from  permission
     </select>
+
+    <!--  权限创建  -->
+    <insert id="createPermission" parameterType="com.blogger.entity.PermissionEntity.Permission">
+        insert into permission (
+        permissionId,
+        modName,
+        funName,
+        createDate
+        ) values (
+        #{permission.permissionId},
+        #{permission.modName},
+        #{permission.funName},
+        SysDate
+        )
+    </insert>
+
+    <!--  权限更新  -->
+    <update id="updatePermission" parameterType="com.blogger.entity.PermissionEntity.Permission">
+        update permission
+        <set>
+            <if test="permission.getRoleName!=null and permission.getRoleName!=''">
+                modName=#{role.modName},
+            </if>
+            <if test="permission.getRoleDescribe!=null and permission.getRoleDescribe!=''">
+                funName=#{permission.funName},
+            </if>
+            <if test="permission.getCreatePerson!=null and permission.getCreatePerson!=''">
+                createPerson=#{permission.createPerson},
+            </if>
+            updateDate=SysDate
+        </set>
+        wherer permissionId=#{permission.permissionId}
+    </update>
+
+    <!--  权限删除  -->
+    <delete id="deletePermission" parameterType="java.lang.Integer">
+        delete * from  permission where permissionId=#{permissionId}
+    </delete>
+
+    <!--  权限详情  -->
+    <select id="detailsPermission" parameterType="java.lang.Integer" resultType="com.blogger.entity.PermissionEntity.Permission">
+        select * from permission where permissionId = #{permissionId}
+    </select>
+
 
 </mapper>

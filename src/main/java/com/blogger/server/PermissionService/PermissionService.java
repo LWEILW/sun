@@ -1,11 +1,21 @@
 package com.blogger.server.PermissionService;
 
 import com.blogger.entity.PermissionEntity.Permission;
-import com.blogger.entity.UserEntity.User;
 
 import java.util.List;
 
 public interface PermissionService {
 
-     List<Permission> findByUser(User user);
+    // 权限台账
+    List<Permission> getPermissionList();
+
+    // 权限保存
+    boolean savePermission(Permission permission);
+
+
+    // 权限删除
+    int deletePermission(int permissionId);
+
+    // 权限详情
+    Permission detailsPermission(int permissionId);
 }

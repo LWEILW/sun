@@ -61,12 +61,12 @@
 
     <!--  用户删除  -->
     <delete id="deleteUser" parameterType="java.lang.Integer">
-        delete * from  user where id=#{id}
+        delete * from  user where userId=#{userId}
     </delete>
 
     <!--  用户详情  -->
     <select id="detailsUser" parameterType="java.lang.Integer" resultType="com.blogger.entity.UserEntity.User">
-        select * from user where id = #{Id}
+        select * from user where userId = #{userId}
     </select>
 
 

@@ -9,5 +9,18 @@ import java.util.List;
 @Mapper
 public interface RoleMapperEx {
 
-    List<Role> findRoleByUid(@Param("id") int id);
+    // 角色台账
+    List<Role> getRoleList();
+
+    // 角色创建
+    int createRole(@Param("role")  Role role);
+
+    // 角色更新
+    int updateRole(@Param("role")  Role role);
+
+    // 角色删除
+    int deleteRole(@Param("roleId")  int roleId);
+
+    // 角色详情
+    Role detailsRole(@Param("roleId")  int roleId);
 }

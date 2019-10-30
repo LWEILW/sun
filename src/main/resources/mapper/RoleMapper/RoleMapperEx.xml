@@ -1,9 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.blogger.dao.">
+<mapper namespace="com.blogger.dao.RoleMapper.RoleMapperEx">
 
-<select id="findRoleByUid" parameterType="java.lang.Integer" resultType="com.blogger.entity.RoleEntity.Role">
-    select * from u_role where id=#{id}
-</select>
+    <!--  角色台账  -->
+    <select id="getRoleList" resultType="com.blogger.entity.RoleEntity.Role">
+        select * from  role
+    </select>
+
+    <!--  角色创建  -->
+    <insert id="createRole" parameterType="com.blogger.entity.RoleEntity.Role">
+        insert into role (
+        roleId,
+        roleName,
+        roleDescribe,
+        createPerson,
+        createDate
+        ) values (
+        #{role.roleId},
+        #{role.roleName},
+        #{role.roleDescribe},
+        #{role.createPerson},
+        SysDate
+        )
+    </insert>
+
+    <!--  角色更新  -->
+    <update id="updateRole" parameterType="com.blogger.entity.RoleEntity.Role">
+        update role
+        <set>
+            <if test="role.getRoleName!=null and role.getRoleName!=''">
+                roleName=#{role.roleName},
+            </if>
+            <if test="role.getRoleDescribe!=null and role.getRoleDescribe!=''">
+                roleDescribe=#{role.roleDescribe},
+            </if>
+            <if test="role.getCreatePerson!=null and role.getCreatePerson!=''">
+                createPerson=#{role.createPerson},
+            </if>
+            updateDate=SysDate
+        </set>
+        wherer roleId=#{role.roleId}
+    </update>
+
+    <!--  角色删除  -->
+    <delete id="deleteRole" parameterType="java.lang.Integer">
+        delete * from  role where roleId=#{roleId}
+    </delete>
+
+    <!--  角色详情  -->
+    <select id="detailsRole" parameterType="java.lang.Integer" resultType="com.blogger.entity.RoleEntity.Role">
+        select * from role where roleId = #{roleId}
+    </select>
+
 
 </mapper>

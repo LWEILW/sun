@@ -26,6 +26,8 @@ public interface UserMapperEx {
     User detailsUser(@Param("userId") int Id);
 
 
+
+
     User usersLogin(@Param("account") String account);
 
     //shiro

@@ -1,4 +1,4 @@
-package com.blogger.server.impl;
+package com.blogger.server.impl.UserServiceImpl;
 
 import com.blogger.dao.UserMapper.UserMapperEx;
 import com.blogger.entity.UserEntity.User;
