@@ -2,10 +2,11 @@ import request from '@/utils/request'
 
 export default {
   /* 用户接口 */
-  userList() {
+  getUserList(data) {
     return request({
-      url: '/user/userList',
-      method: 'get'
+      url: '/user/getUserList',
+      method: 'post',
+      data
     })
   },
   updateUser(data) {

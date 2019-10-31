@@ -16,10 +16,10 @@ public class InterceptorConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LogCostInterceptor()).addPathPatterns("/**");
 
-        //例子:添加自定义拦截器和拦截路径，此处对所有请求进行拦截，除了登录界面和登录接口
-        //registry.addInterceptor(new LogCostInterceptor()).addPathPatterns("/**").excludePathPatterns("/login", "/user/login");
+        // 例子: 添加自定义拦截器和拦截路径，此处对所有请求进行拦截，
+        // 除了登录界面和登录接口,/#/user/**拦截的是Url路径
+        registry.addInterceptor(new LogCostInterceptor()).addPathPatterns("/**").excludePathPatterns("/#/user/**", "/login");
         super.addInterceptors(registry);
     }
 }

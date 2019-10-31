@@ -1,23 +1,23 @@
-import Vue from 'vue' 
+import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
 const state = {
-    httpError:{
-        hasError:false,
-        status:'',
-        statusText:''
-    }
+  httpError: {
+    hasError: false,
+    status: '',
+    statusText: ''
+  }
 }
 
 const mutations = {
-    ON_HTTP_ERROR(state,payload){
-        state.httpError = payload
-    }
+  ON_HTTP_ERROR(state, payload) {
+    state.httpError = payload
+  }
 }
 
 export default new Vuex.Store({
-    state,
-    mutations
+  state,
+  mutations
 })
