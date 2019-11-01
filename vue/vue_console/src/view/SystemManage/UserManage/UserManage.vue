@@ -19,7 +19,8 @@
       </button>
 
 
-      <el-button type="text" @click="centerDialogVisible = true">点击打开 Dialog</el-button>
+      <el-button type="text" @click="createUserDialog = true,updateTitle='用户新建'">新建</el-button>
+      <el-button type="text" @click="createUserDialog = true,updateTitle='用户编辑'">编辑</el-button>
 
       <!-- 添加按钮 -->
       <button type="button" class="el-button filter-item el-button--primary el-button--medium"
@@ -99,7 +100,7 @@
 
     <el-dialog :title="updateTitle" :visible.sync="createUserDialog" width="700px" center>
 
-      <el-form :model="formData" ref="form"  label-width="120px">
+      <el-form :model="formData" ref="form" label-width="120px">
         <el-row>
           <el-col :span="12">
             <el-form-item label="用户工号" prop="userAccount">
@@ -131,12 +132,9 @@
           </el-col>
         </el-row>
 
-
-
-
         <el-form-item>
-          <el-button type="primary" @click="onSubmit">立即创建</el-button>
-          <el-button @click="centerDialogVisible = false">取消</el-button>
+          <el-button type="primary" @click="submitForm">立即创建</el-button>
+          <el-button @click="createUserDialog = false">取消</el-button>
         </el-form-item>
 
       </el-form>

@@ -30,42 +30,6 @@ export default {
         resource: '',
         desc: ''
       },
-      // 表单默认值
-      ruleForm: {
-        title: "",
-        content: "",
-        author: "",
-        date1: "",
-        date2: ""
-      },
-      // 验证方法
-      rules: {
-        title: [
-          {required: true, message: "请输入标题名", trigger: "blur"},
-          {min: 3, max: 8, message: "长度在 3 到 8 个字符", trigger: "blur"}
-        ],
-
-        content: [{required: true, message: "请输入内容", trigger: "blur"}],
-
-        author: [{required: true, message: "请输入作者名", trigger: "blur"}],
-
-        date1: [
-          {
-            type: "date",
-            required: true,
-            message: "请选择日期",
-            trigger: "change"
-          }
-        ],
-        date2: [
-          {
-            type: "date",
-            required: true,
-            message: "请选择时间",
-            trigger: "change"
-          }
-        ]
-      }
     };
   },
   created() {
@@ -105,6 +69,8 @@ export default {
     },
     // 提交方法
     submitForm(formName) {
+      this.createUserDialog = false;
+      console.log('submit!');
       this.$refs[formName].validate(valid => {
         if (valid) {
           if (this.fromStatus == "create") {
@@ -153,10 +119,7 @@ export default {
           });
         });
     },
-    onSubmit() {
-      this.centerDialogVisible = false;
-      console.log('submit!');
-    },
+
 
     // 序列方法
     indexMethod(index) {
