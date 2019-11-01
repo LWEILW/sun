@@ -7,10 +7,14 @@ import Login from '@/view/Login/Login'
 import HomePage from '@/view/Home/HomePage'
 // 管理员模块
 // 用户模块
-import UserManage from '@/view/SystemManage/UserManage/UserManage'
-import RoleManage from '@/view/SystemManage/RoleManage/RoleManage'
+import UserManage from '@/view/SystemManage/UserManage/UserManage.vue'
+import RoleManage from '@/view/SystemManage/RoleManage/RoleManage.vue'
 
-import BloggerListPage from '@/view/BloggerListPage/BloggerListPage'
+import ArticleManage from '@/view/ArticleManage/ArticleManage'
+
+
+// import BloggerListPage from '@/view/BloggerListPage/BloggerListPage'
+
 
 // import skip from '@/view/Login/skip'
 // import PointOvelay from '@/view/Login/PointOvelay'
@@ -29,32 +33,35 @@ export default new Router({
       path: '/Login',
       name: 'Login',
       component: Login
-    },
-    {
+    }, {
       // 首页
       path: '/HomePage',
       name: 'HomePage',
       component: HomePage
-    },
-    {
+    }, {
       // 用户管理
       path: '/UserManage',
       name: 'UserManage',
       component: UserManage
-    },
-   
-    {
+    }, {
       // 角色管理
       path: '/RoleManage',
       name: 'RoleManage',
       component: RoleManage
+    }, {
+      // 文章模块
+      path: '/ArticleManage',
+      name: 'ArticleManage',
+      component: ArticleManage
     },
-    {
-      // 博客详情
-      path: '/BloggerListPage',
-      name: 'BloggerListPage',
-      component: BloggerListPage
-    },
+    // {
+    //   // 博客详情
+    //   path: '/BloggerListPage',
+    //   name: 'BloggerListPage',
+    //   component: BloggerListPage
+    // },
+
+
     // {
     //   // 博客创建
     //   path: '/BloggerCreatePage',
