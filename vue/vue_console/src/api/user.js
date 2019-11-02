@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 export default {
-  /* 用户接口 */
+  // 用户台账
   getUserList(data) {
     return request({
       url: '/user/getUserList',
@@ -9,22 +9,25 @@ export default {
       data
     })
   },
-  updateUser(data) {
+ // 用户保存
+  saveUser(data) {
     return request({
-      url: '/user/updateUser',
+      url: '/user/saveUser',
       method: 'post',
       data
     })
   },
-  deleteUser(id) {
+  // 用户删除
+  deleteUser(userId) {
     return request({
-      url: `/user/deleteUser/${id} `,
+      url: `/user/deleteUser/${userId} `,
       method: 'get',
     })
   },
-  detailUser(id) {
+  // 用户详情
+  detailsUser(userId) {
     return request({
-      url: `/user/detailUser/${id} `,
+      url: `/user/detailsUser/${userId} `,
       method: 'get',
     })
   }

@@ -4,22 +4,6 @@ export default {
   name: "userManage",
   data() {
     return {
-      updateTitle: '',
-      // 模态框初始化隐藏
-      createUserDialog: false,
-      // 表格初始化信息
-      formData: {},
-      user: [],
-      // 初始选中页码
-      currentPage: 1,
-      // 显示每页的数据
-      pagesize: 5,
-      // 显示总共有多少数据
-      totalCount: 40,
-      // 按钮判断 (创建:create 编辑:edit)
-      fromStatus: "",
-      // 查询输入框数据
-      input: "",
       form: {
         name: '',
         region: '',
@@ -30,70 +14,87 @@ export default {
         resource: '',
         desc: ''
       },
+      params: {
+        userAccount: '',
+        userName: '',
+        userSex: ''
+      },
+
+      // 按钮判断 (创建:create 编辑:edit)
+      fromStatus: "create",
+      // 查询输入框数据
+      input: "",
+      // 表格初始化信息
+      formData: {},
+      user: [],
+
+      // 模态框初始化隐藏
+      createUserDialog: false,
+      // 模态框标题名称
+      updateTitle: '',
+      // 初始选中页码
+      currentPage: 1,
+      // 显示每页的数据
+      pagesize: 5,
+      // 显示总共有多少数据
+      totalCount: 40,
+
+
     };
   },
+  // 初始化加载
   created() {
     this.getUserList();
   },
   methods: {
-    // 显示台账数据
+    // 显示用户台账
     getUserList() {
-      const params = {
-        userAccount: '',
-        userName: '',
-        userSex: ''
-      }
-      api.getUserList(params).then(res => {
+      api.getUserList(this.params).then(res => {
         this.user = res.data.data;
         console.log(this.user);
-        this.totalCount = res.data.data.length;
+        // this.totalCount = res.data.data.length;
       });
     },
-    // 创建方法
-    handleCreate() {
-
-      // this.$refs["ruleForm"].resetFields();
-      // ruleForm.resetFields();
-      this.dialogFormVisible = true;
-      this.fromStatus = "create";
-    },
-    // 编辑方法
-    handleEdit(row) {
-      this.dialogFormVisible = true;
-      this.fromStatus = "edit";
-      api.getBlogger(row.id).then(res => {
-        var that = this;
-        that.ruleForm = res.data;
-        console.log(that.ruleForm);
-      });
-    },
-    // 提交方法
+    // // 创建方法
+    // handleCreate() {
+    //
+    //   // this.$refs["ruleForm"].resetFields();
+    //   // ruleForm.resetFields();
+    //   this.dialogFormVisible = true;
+    //   this.fromStatus = "create";
+    // },
+    // // 编辑方法
+    // handleEdit(row) {
+    //   this.dialogFormVisible = true;
+    //   this.fromStatus = "edit";
+    //   api.getBlogger(row.id).then(res => {
+    //     var that = this;
+    //     that.ruleForm = res.data;
+    //     console.log(that.ruleForm);
+    //   });
+    // },
+    // 用户保存
     submitForm(formName) {
+      // 关闭模态框
       this.createUserDialog = false;
-      console.log('submit!');
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          if (this.fromStatus == "create") {
-            api.createBlogger({blogger: this.ruleForm}).then(res => {
-              this.dialogFormVisible = false;
-              this.$message.success("创建成功");
-              // 刷新页面
-              this.getBloggerList();
-            });
-          } else if (this.fromStatus == "edit") {
-            api.updateBlogger({blogger: this.ruleForm}).then(res => {
-              this.dialogFormVisible = false;
-              this.$message.success("更新成功");
-              // 刷新页面
-              this.getBloggerList();
-            });
-          }
-        } else {
+
+
+      if (this.fromStatus == "create") {
+        api.saveUser({user: this.formData}).then(res => {
+          this.$message.success("创建成功");
+          // 刷新页面
+          this.getUserList(this.params);
+        });
+      } else if (this.fromStatus == "edit") {
+        api.updateBlogger({blogger: this.formData}).then(res => {
           this.dialogFormVisible = false;
-          console.log("error submit!!");
-          return false;
-        }
-      });
+          this.$message.success("更新成功");
+          // 刷新页面
+          this.getBloggerList();
+        });
+      }
+
+
     },
     // 删除方法
     handleDelete(row) {

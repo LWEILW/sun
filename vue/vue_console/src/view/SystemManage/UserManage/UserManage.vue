@@ -20,6 +20,7 @@
 
 
       <el-button type="text" @click="createUserDialog = true,updateTitle='用户新建'">新建</el-button>
+
       <el-button type="text" @click="createUserDialog = true,updateTitle='用户编辑'">编辑</el-button>
 
       <!-- 添加按钮 -->
@@ -28,6 +29,7 @@
         <i class="el-icon-edit"></i>
         <span>添加</span>
       </button>
+
       <!-- 删除按钮 -->
       <button type="button" class="el-button filter-item el-button--primary el-button--medium"
               style="margin-left: 10px;" @click="handleDeleteAll()">
@@ -104,15 +106,15 @@
         <el-row>
           <el-col :span="12">
             <el-form-item label="用户工号" prop="userAccount">
-              <el-input v-model="formData.name"></el-input>
+              <el-input v-model="formData.userAccount"></el-input>
             </el-form-item>
 
             <el-form-item label="用户姓名" prop="userName">
-              <el-input v-model="formData.name"></el-input>
+              <el-input v-model="formData.userName"></el-input>
             </el-form-item>
 
             <el-form-item label="性别" prop="userSex">
-              <el-radio-group v-model="formData.resource">
+              <el-radio-group v-model="formData.userSex">
                 <el-radio label="男"></el-radio>
                 <el-radio label="女"></el-radio>
               </el-radio-group>
@@ -121,11 +123,11 @@
           </el-col>
           <el-col :span="12">
             <el-form-item label="手机号" prop="userPhone">
-              <el-input v-model="formData.name"></el-input>
+              <el-input v-model="formData.userPhone"></el-input>
             </el-form-item>
 
             <el-form-item label="邮箱" prop="userEmail">
-              <el-input v-model="formData.name"></el-input>
+              <el-input v-model="formData.userEmail"></el-input>
             </el-form-item>
 
 

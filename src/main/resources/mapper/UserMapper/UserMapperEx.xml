@@ -28,7 +28,7 @@
     #{user.userEmail},
     #{user.userPassword},
     #{user.createPerson},
-    SysDate
+    now()
     )
     </insert>
 
@@ -54,7 +54,7 @@
             <if test="user.getUserPassword!=null and user.getUserPassword!=''">
                 userPassword=#{user.userPassword},
             </if>
-            updateDate=SysDate
+            updateDate=now()
         </set>
         wherer userId=#{user.userId}
     </update>
