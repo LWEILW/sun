@@ -3,6 +3,12 @@
     <div v-if="active === '1'">
       <div>
         <el-button @click="createArticle">createArticle</el-button>
+<!--        <el-breadcrumb separator-class="el-icon-arrow-right">-->
+<!--          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>-->
+<!--          <el-breadcrumb-item>活动管理</el-breadcrumb-item>-->
+<!--          <el-breadcrumb-item>活动列表</el-breadcrumb-item>-->
+<!--          <el-breadcrumb-item>活动详情</el-breadcrumb-item>-->
+<!--        </el-breadcrumb>-->
       </div>
       <!--  表格数据及操作 -->
       <!--  1.data:显示的数据, 2.stripe:是否为斑马纹, 3.border:是否带有纵向边框, 4.row-click:表格添加行点击事件 5.ref:返回值清空 -->

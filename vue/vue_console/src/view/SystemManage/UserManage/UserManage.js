@@ -29,16 +29,17 @@ export default {
       user: [],
 
       // 模态框初始化隐藏
-      createUserDialog: false,
+      UserDialog: false,
       // 模态框标题名称
       updateTitle: '',
-
       // 初始选中页码
       currentPage: 1,
       // 显示每页的数据
       pagesize: 5,
       // 显示总共有多少数据
       totalCount: 40,
+
+
     };
   },
   // 初始化加载
@@ -62,24 +63,24 @@ export default {
     //   this.dialogFormVisible = true;
     //   this.fromStatus = "create";
     // },
-    // // 编辑方法
-    // handleEdit(row) {
-    //   this.dialogFormVisible = true;
-    //   this.fromStatus = "edit";
-    //   api.getBlogger(row.id).then(res => {
-    //     var that = this;
-    //     that.ruleForm = res.data;
-    //     console.log(that.ruleForm);
-    //   });
-    // },
+    // 编辑-显示详情
+    handleEdit(row) {
+      this.UserDialog = true;
+      this.updateTitle = '用户编辑';
+      api.detailsUser(row.id).then(res => {
+        var that = this;
+        that.ruleForm = res.data;
+        console.log(that.ruleForm);
+      });
+    },
     // 用户保存
     submitForm(formName) {
       // 关闭模态框
-      this.createUserDialog = false;
+      this.UserDialog = false;
 
 
       if (this.fromStatus == "create") {
-        api.saveUser({user: this.formData}).then(res => {
+        api.saveUser(this.formData).then(res => {
           this.$message.success("创建成功");
           // 刷新页面
           this.getUserList(this.params);
