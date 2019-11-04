@@ -10,7 +10,7 @@ import HomePage from '@/view/Home/HomePage'
 import UserManage from '@/view/SystemManage/UserManage/UserManage.vue'
 import RoleManage from '@/view/SystemManage/RoleManage/RoleManage.vue'
 
-import ArticleManage from '@/view/ArticleManage/ArticleManage'
+import ArticleManage from '@/view/ArticleManage/ArticleManage.vue'
 
 
 // import BloggerListPage from '@/view/BloggerListPage/BloggerListPage'

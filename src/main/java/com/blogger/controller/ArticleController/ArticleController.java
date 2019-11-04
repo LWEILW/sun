@@ -4,6 +4,7 @@ package com.blogger.controller.ArticleController;
 import com.alibaba.fastjson.JSONObject;
 import com.blogger.entity.ArticleEntity.Article;
 import com.blogger.server.ArticleService.ArticleService;
+import com.blogger.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,10 +19,10 @@ public class ArticleController {
 
     // 文章台账
     @PostMapping("getArticleList")
-    public List<Article> getArticleList(@RequestBody String data) {
+    public Result getArticleList(@RequestBody String data) {
         JSONObject obj = JSONObject.parseObject(data);
         List<Article> articleList = articleService.getArticleList();
-        return articleList;
+        return Result.success(articleList);
     }
 
     // 文章保存

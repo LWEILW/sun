@@ -2,10 +2,11 @@ import request from '@/utils/request'
 
 export default {
   /* 博客接口 */
-  bloggerList() {
+  getArticleList(data) {
     return request({
-      url: '/blogger/bloggerList',
-      method: 'get'
+      url: '/article/getArticleList',
+      method: 'post',
+      data
     })
   },
   createBlogger(data) {
@@ -30,9 +31,9 @@ export default {
 
     })
   },
-  getBlogger(id) {
+  detailsArticle(id) {
     return request({
-      url: `/blogger/getBlogger/${id} `,
+      url: `/article/detailsArticle/${id} `,
       method: 'get',
     })
   }

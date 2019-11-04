@@ -32,14 +32,13 @@ export default {
       createUserDialog: false,
       // 模态框标题名称
       updateTitle: '',
+
       // 初始选中页码
       currentPage: 1,
       // 显示每页的数据
       pagesize: 5,
       // 显示总共有多少数据
       totalCount: 40,
-
-
     };
   },
   // 初始化加载
