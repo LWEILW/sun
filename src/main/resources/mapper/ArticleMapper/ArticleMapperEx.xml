@@ -26,7 +26,7 @@
             #{article.articleContent},
             #{article.articleStatus},
             #{article.createPerson},
-            SysDate
+            now()
             )
         </insert>
 
@@ -37,7 +37,7 @@
          articleType =  #{article.articleType} ,
          articleContent =  #{article.articleContent},
          articleStatus = #{article.articleStatus},
-         updateDate =  SysDate
+         updateDate =  now()
          where articleId = #{article.articleId}
         </update>
 

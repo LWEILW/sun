@@ -15,6 +15,7 @@
         <el-image styl="width: 100px; height: 60pxe" :src="url"></el-image>
       </el-col>
     </el-row>
+
   </div>
 </template>
 
@@ -26,7 +27,7 @@
       return {
         account: 123456,
         password: 1234522,
-        url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+        url: ''
       };
     },
     // 初始化加载
@@ -45,7 +46,7 @@
 <style scoped>
   .headerMoudle {
     line-height: 60px;
-    color: #fff;
+    color: #000000;
   }
 
   .logo {

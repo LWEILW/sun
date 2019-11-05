@@ -1,47 +1,55 @@
 <template>
   <div class="ArticleManage">
-    <div v-if="active === '1'">
-      <div>
-        <el-button @click="createArticle">createArticle</el-button>
-<!--        <el-breadcrumb separator-class="el-icon-arrow-right">-->
-<!--          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>-->
-<!--          <el-breadcrumb-item>活动管理</el-breadcrumb-item>-->
-<!--          <el-breadcrumb-item>活动列表</el-breadcrumb-item>-->
-<!--          <el-breadcrumb-item>活动详情</el-breadcrumb-item>-->
-<!--        </el-breadcrumb>-->
+    <div class='articleTable' v-if="active === '1'">
+      <!-- 靠右显示css样式：text-align:right     -->
+      <div style="text-align:right">
+        <el-button @click="handleCreate">添加文章</el-button>
       </div>
-      <!--  表格数据及操作 -->
-      <!--  1.data:显示的数据, 2.stripe:是否为斑马纹, 3.border:是否带有纵向边框, 4.row-click:表格添加行点击事件 5.ref:返回值清空 -->
+      <!--      &lt;!&ndash;搜索框&ndash;&gt;-->
+      <!--      <div class="blogger-operation">-->
+      <!--        <el-row :gutter="5">-->
+      <!--          <el-col :span="3">-->
+      <!--            <el-input v-model="input" placeholder="请输入内容" size="mini"></el-input>-->
+      <!--          </el-col>-->
+      <!--          <el-col :span="2">-->
+      <!--            <el-button type="success" icon="el-icon-search" size="mini">搜索</el-button>-->
+      <!--          </el-col>-->
+
+      <!--          <el-col :span="2" :offset="16" style="display:flex;">-->
+      <!--            &lt;!&ndash;新增按钮&ndash;&gt;-->
+      <!--            <el-button type="success" icon="el-icon-circle-plus-outline" size="mini" round>新增</el-button>-->
+      <!--            &lt;!&ndash;全删按钮&ndash;&gt;-->
+      <!--            <el-button type="danger" icon="el-icon-delete" size="mini" round>全删</el-button>-->
+      <!--          </el-col>-->
+      <!--        </el-row>-->
+      <!--      </div>-->
+      <!--      <br>-->
+
+
+      <!--  1.data:显示的数据, 2.stripe:是否为斑马纹, 3.border:是否带有纵向边框,
+      4.row-click:表格添加行点击事件 5.ref:显示元素身份 -->
       <div class="ArticleTable">
-        <el-table
-          :data="article.slice((currentPage-1)*pagesize,currentPage*pagesize)"
-          stripe
-          border
-          @row-click="articleDetails"
-          max-height="800px"
-          ref="multipleTable"
-        >
-          <el-table-column prop="articleNum" label="博客编号" sortable></el-table-column>
-          <el-table-column prop="articleName" label="博客名称"></el-table-column>
-          <el-table-column prop="articleType" label="博客类型"></el-table-column>
-          <el-table-column prop="articleContent" label="博客内容"></el-table-column>
-          <el-table-column prop="articleStatus" label="博客状态"></el-table-column>
+        <el-table :data="articleTable.slice((currentPage-1)*pagesize,currentPage*pagesize)" stripe border
+                  @row-click="handleDetails" max-height="800px" ref="multipleTable">
+          <el-table-column prop="articleNum" label="文章编号" sortable></el-table-column>
+          <el-table-column prop="articleName" label="文章名称"></el-table-column>
+          <el-table-column prop="articleType" label="文章类型"></el-table-column>
+          <el-table-column prop="articleContent" label="文章内容"></el-table-column>
+          <el-table-column prop="articleStatus" label="文章状态"></el-table-column>
           <el-table-column prop="createPerson" label="创建人" sortable></el-table-column>
           <el-table-column prop="createDate" label="创建时间" sortable></el-table-column>
           <el-table-column prop="updateDate" label="更新时间" sortable></el-table-column>
 
           <el-table-column fixed="right" label="操作">
             <template slot-scope="scope">
-              <el-button @click.stop="handleClick(scope.row)" type="text" size="small">查看</el-button>
-              <el-button size="mini" @click.stop="handleClick( scope.row)">编辑</el-button>
-              <el-button size="mini" type="danger" @click.stop="handleDelete(scope.$index, scope.row)">删除</el-button>
+              <el-button size="mini" @click.stop="handleEdit( scope.row)">编辑</el-button>
+              <el-button size="mini" type="danger" @click.stop="handleDelete(scope.row)">删除</el-button>
             </template>
           </el-table-column>
-
         </el-table>
       </div>
 
-      <!--  分页  -->
+      <!--  分页  hide-on-single-page:一页是否隐藏 -->
       <div class="block">
         <el-pagination
           @size-change="handleSizeChange"
@@ -50,54 +58,48 @@
           :page-sizes="[5, 10, 20, 100]"
           :page-size="pagesize"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="totalCount">
+          :total="totalCount"
+          :hide-on-single-page="true">
         </el-pagination>
       </div>
     </div>
 
-    <div v-if="active === '2'">
-      <el-form :model="articleData" ref="form" label-width="120px">
+    <div class='articleOperate' v-if="active === '2'">
+      <el-form :model="articleData" ref="articleFrom" label-width="120px">
         <el-row>
-          <el-col :span="12">
-            <el-form-item label="博客编号" prop="articleNum">
-              <el-input v-model="articleData.articleNum"></el-input>
+          <el-col :span="8">
+            <el-form-item label="文章编号" prop="articleNum">
+              <el-input v-model="articleData.articleNum" :disabled="true"></el-input>
             </el-form-item>
-            <el-form-item label="用户工号" prop="articleName">
+            <el-form-item label="文章名称" prop="articleName">
               <el-input v-model="articleData.articleName"></el-input>
             </el-form-item>
-            <el-form-item label="博客类型" prop="articleType">
+          </el-col>
+
+          <el-col :span="8">
+            <el-form-item label="文章类型" prop="articleType">
               <el-input v-model="articleData.articleType"></el-input>
             </el-form-item>
-            <el-form-item label="博客内容" prop="articleContent">
-              <el-input v-model="articleData.articleContent"></el-input>
-            </el-form-item>
-            <el-form-item label="博客状态" prop="articleStatus">
+            <el-form-item label="文章状态" prop="articleStatus">
               <el-input v-model="articleData.articleStatus"></el-input>
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
-            <el-form-item label="博客编号" prop="articleNum">
-              <el-input v-model="articleData.articleNum"></el-input>
+          <el-col :span="8">
+            <el-form-item label="创建人" prop="createPerson">
+              <el-input v-model="articleData.createPerson" :disabled="true"></el-input>
             </el-form-item>
-            <el-form-item label="用户工号" prop="articleName">
-              <el-input v-model="articleData.articleName"></el-input>
+            <el-form-item label="创建时间" prop="createDate">
+              <el-input v-model="articleData.createDate" :disabled="true"></el-input>
             </el-form-item>
-            <el-form-item label="博客类型" prop="articleType">
-              <el-input v-model="articleData.articleType"></el-input>
-            </el-form-item>
-            <el-form-item label="博客内容" prop="articleContent">
-              <el-input v-model="articleData.articleContent"></el-input>
-            </el-form-item>
-            <el-form-item label="博客状态" prop="articleStatus">
-              <el-input v-model="articleData.articleStatus"></el-input>
-            </el-form-item>
-
           </el-col>
         </el-row>
         <el-row>
+          <TinymceMoudle></TinymceMoudle>
+        </el-row>
+        <el-row>
           <el-button @click="submitForm">保存</el-button>
-          <el-button @click="fanhuia">取消</el-button>
+          <el-button @click="handleBack">取消</el-button>
         </el-row>
       </el-form>
     </div>

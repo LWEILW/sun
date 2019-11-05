@@ -55,7 +55,7 @@ public class ArticleController {
 //    }
 
     // 文章删除 单独删除
-    @PostMapping("deleteArticle/{articleId}")
+    @GetMapping("deleteArticle/{articleId}")
     public String deleteArticle(@PathVariable("articleId") int articleId) {
         int succ = articleService.deleteArticle(articleId);
         if (succ == 1) {

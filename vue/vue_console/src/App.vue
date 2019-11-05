@@ -3,18 +3,17 @@
     <el-row :gutter="10">
       <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
         <el-container>
-          <!-- Navigation组件 -->
-          <el-aside style="width:auto; ">
-            <NavigationMoudle></NavigationMoudle>
-          </el-aside>
+          <!-- header组件 -->
+          <el-header style="background-color: antiquewhite;">
+            <HeaderMoudle></HeaderMoudle>
+          </el-header>
           <el-container>
-            <!-- header组件 -->
-            <el-header style="background-color: antiquewhite;">
-              <HeaderMoudle></HeaderMoudle>
-            </el-header>
+            <!-- Navigation组件 -->
+            <el-aside style="width:auto; ">
+              <NavigationMoudle></NavigationMoudle>
+            </el-aside>
             <!-- main组件 -->
             <el-main>
-              <!--<router-view></router-view>是用来渲染通过路由映射过来的组件,当路由更改时,<router-view>的内容也会发生更改.-->
               <router-view></router-view>
             </el-main>
           </el-container>
