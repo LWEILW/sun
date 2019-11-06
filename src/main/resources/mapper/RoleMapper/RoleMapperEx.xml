@@ -54,8 +54,10 @@
 
     <!--  人员维护台账  -->
     <select id="getUserListByRoleId" parameterType="java.lang.Integer"
-            resultType="com.blogger.entity.UserEntity.userRole">
-        select * from user_role where roleId = #{roleId}
+            resultType="com.blogger.entity.UserEntity.User">
+        select * from user_role
+        left join  user on user.userId=user_role.userId
+        where roleId = #{roleId}
     </select>
 
 
@@ -68,7 +70,9 @@
     <!--  权限维护台账  -->
     <select id="getPermissionListByRoleId" parameterType="java.lang.Integer"
             resultType="com.blogger.entity.PermissionEntity.permissionRole">
-        select * from permission_role where roleId = #{roleId}
+        select * from permission_role
+         left join  permission on permission.permissionId=permission_role.permissionId
+         where roleId = #{roleId}
     </select>
 
 

@@ -10,12 +10,14 @@ export default {
       roleTable: [],
       // 角色详情数据
       roleData: {},
-      // 模态框初始化隐藏
-      roleDialog: false,
       // 模态框标题名称
       updateTitle: '',
       // 模态框初始化隐藏
+      roleDialog: false,
+      // 模态框初始化隐藏
       userDialog: false,
+      // 模态框初始化隐藏
+      addUserListDialog: false,
       // 模态框初始化隐藏
       permissionDialog: false,
 
@@ -32,23 +34,8 @@ export default {
         children: 'zones',
         isLeaf: 'leaf'
       },
-      tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }]
+      userData: [],
+      permissionData: []
 
     };
   },
@@ -128,21 +115,21 @@ export default {
     handleUserList(row) {
       this.userDialog = true;
       api.getUserListByRoleId(row.roleId).then(res => {
-      this.data=res.data.data;
+        this.userData = res.data.data;
       });
     },
     // 人员维护添加
-    handleUserAdd(row) {
-      this.userDialog = true;
-      api.getUserListByRoleId(row.roleId).then(res => {
-        this.data=res.data.data;
+    handleAddUserList() {
+      this.addUserListDialog = true;
+      api.getUserList("1").then(res => {
+        this.data = res.data.data;
       });
     },
     // 权限维护台账
     handlePermissionList(row) {
       this.permissionDialog = true;
       api.getPermissionListByRoleId(row.roleId).then(res => {
-        this.data=res.data.data;
+        this.permissionData = res.data.data;
       });
     },
     // 权限维护添加
@@ -153,7 +140,7 @@ export default {
 
       }
       api.addPermissionByRoleId(params).then(res => {
-        this.data=res.data.data;
+        this.data = res.data.data;
       });
     },
     loadNode(node, resolve) {

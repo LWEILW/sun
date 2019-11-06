@@ -19,8 +19,8 @@
         <el-table-column fixed="right" label="操作">
           <template slot-scope="scope">
             <el-button type="text" @click="handleEdit(scope.row)">编辑</el-button>
-            <el-button type="text" @click="handleUser(scope.row)">人员维护</el-button>
-            <el-button type="text" @click="handlePermission(scope.row)">权限编辑</el-button>
+            <el-button type="text" @click="handleUserList(scope.row)">人员维护</el-button>
+            <el-button type="text" @click="handlePermissionList(scope.row)">权限编辑</el-button>
             <el-button size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
@@ -61,32 +61,28 @@
       </el-form>
     </el-dialog>
 
-    <!--   人员维护-弹出模态框  -->
-    <el-dialog :title="updateTitle" :visible.sync="userDialog" width="700px" center>
-      <el-table
-        :data="tableData"
-        style="width: 100%">
-        <el-table-column
-          prop="date"
-          label="日期"
-          width="180">
-        </el-table-column>
-        <el-table-column
-          prop="name"
-          label="姓名"
-          width="180">
-        </el-table-column>
-        <el-table-column
-          prop="address"
-          label="地址">
-        </el-table-column>
+    <!--   人员维护台账-弹出模态框  -->
+    <el-dialog title="人员维护" :visible.sync="userDialog" width="700px" center>
+      <el-button @click="handleAddUserList">批量添加人员</el-button>
+      <el-table :data="userData" style="width: 100%">
+        <el-table-column prop="userAccount" label="用户工号"></el-table-column>
+        <el-table-column prop="userName" label="用户名称"></el-table-column>
+        <el-table-column prop="userName" label="用户姓名"></el-table-column>
       </el-table>
-
-
     </el-dialog>
 
-    <!--   权限编辑-弹出模态框  -->
-    <el-dialog :title="updateTitle" :visible.sync="permissionDialog" width="700px" center>
+    <!--   批量添加人员维护-弹出模态框  -->
+    <el-dialog title="批量添加人员维护" :visible.sync="addUserListDialog" width="700px" center>
+      <el-button @click="addUserListToRole">添加人员</el-button>
+      <el-table :data="userData" style="width: 100%">
+        <el-table-column prop="userAccount" label="用户工号"></el-table-column>
+        <el-table-column prop="userName" label="用户名称"></el-table-column>
+        <el-table-column prop="userName" label="用户姓名"></el-table-column>
+      </el-table>
+    </el-dialog>
+
+    <!--   权限编辑台账-弹出模态框  -->
+    <el-dialog title="权限编辑" :visible.sync="permissionDialog" width="700px" center>
       <el-tree
         :props="props"
         :load="loadNode"
