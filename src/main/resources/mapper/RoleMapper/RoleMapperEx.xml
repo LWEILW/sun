@@ -20,7 +20,7 @@
         #{role.roleName},
         #{role.roleDescribe},
         #{role.createPerson},
-        SysDate
+        now()
         )
     </insert>
 
@@ -37,14 +37,14 @@
             <if test="role.getCreatePerson!=null and role.getCreatePerson!=''">
                 createPerson=#{role.createPerson},
             </if>
-            updateDate=SysDate
+            updateDate= now()
         </set>
-        wherer roleId=#{role.roleId}
+        where roleId=#{role.roleId}
     </update>
 
     <!--  角色删除  -->
     <delete id="deleteRole" parameterType="java.lang.Integer">
-        delete * from  role where roleId=#{roleId}
+        delete  from  role where roleId=#{roleId}
     </delete>
 
     <!--  角色详情  -->
@@ -52,5 +52,28 @@
         select * from role where roleId = #{roleId}
     </select>
 
+    <!--  人员维护台账  -->
+    <select id="getUserListByRoleId" parameterType="java.lang.Integer"
+            resultType="com.blogger.entity.UserEntity.userRole">
+        select * from user_role where roleId = #{roleId}
+    </select>
 
+
+    <!--  人员维护添加  -->
+    <insert id="addUserByRoleId" parameterType="java.lang.Integer">
+        insert into user_role (roleId, userId) values (#{roleId},#{userId})
+    </insert>
+
+
+    <!--  权限维护台账  -->
+    <select id="getPermissionListByRoleId" parameterType="java.lang.Integer"
+            resultType="com.blogger.entity.PermissionEntity.permissionRole">
+        select * from permission_role where roleId = #{roleId}
+    </select>
+
+
+    <!--  权限维护添加  -->
+    <insert id="addPermissionByRoleId" parameterType="java.lang.Integer">
+        insert into permission_role (roleId, permissionId) values (#{roleId},#{permissionId})
+    </insert>
 </mapper>

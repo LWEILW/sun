@@ -55,14 +55,16 @@ export default {
         // this.totalCount = res.data.data.length;
       });
     },
-    // // 创建方法
-    // handleCreate() {
-    //
-    //   // this.$refs["ruleForm"].resetFields();
-    //   // ruleForm.resetFields();
-    //   this.dialogFormVisible = true;
-    //   this.fromStatus = "create";
-    // },
+    // 创建方法
+    handleCreate() {
+
+      // this.$refs["ruleForm"].resetFields();
+      // ruleForm.resetFields();
+      this.UserDialog = true;
+      this.updateTitle = '用户新建';
+
+      this.fromStatus = "create";
+    },
     // 编辑-显示详情
     handleEdit(row) {
       this.UserDialog = true;
@@ -108,9 +110,9 @@ export default {
             type: "success",
             message: "删除成功!"
           });
-          api.deleteBlogger(row.id).then(res => {
+          api.deleteUser(row.UserId).then(res => {
             // 刷新页面
-            this.getBloggerList();
+            this.getUserList();
           });
         })
         .catch(() => {

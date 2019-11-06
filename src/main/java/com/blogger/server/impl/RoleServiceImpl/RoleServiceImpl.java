@@ -1,7 +1,10 @@
 package com.blogger.server.impl.RoleServiceImpl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.blogger.dao.RoleMapper.RoleMapperEx;
+import com.blogger.entity.PermissionEntity.Permission;
 import com.blogger.entity.RoleEntity.Role;
+import com.blogger.entity.UserEntity.User;
 import com.blogger.server.RoleService.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,5 +53,44 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role detailsRole(int roleId) {
         return roleMapperEx.detailsRole(roleId);
+    }
+
+    // 人员维护台账
+    @Override
+    public List<User> getUserListByRoleId(int roleId) {
+        return roleMapperEx.getUserListByRoleId(roleId);
+    }
+
+    // 人员维护添加
+    @Override
+    public boolean addUserByRoleId(JSONObject obj) {
+        int roleId = obj.getInteger("roleId");
+        int userId = obj.getInteger("userId");
+
+        int count = roleMapperEx.addUserByRoleId(roleId, userId);
+        if (count != 1) {
+            return false;
+        }
+        return true;
+    }
+
+
+    // 权限维护台账
+    @Override
+    public List<Permission> getPermissionListByRoleId(int roleId) {
+        return roleMapperEx.getPermissionListByRoleId(roleId);
+    }
+
+    // 权限维护添加
+    @Override
+    public boolean addPermissionByRoleId(JSONObject obj) {
+        int roleId = obj.getInteger("roleId");
+        int permissionId = obj.getInteger("permissionId");
+
+        int count = roleMapperEx.addPermissionByRoleId(roleId, permissionId);
+        if (count != 1) {
+            return false;
+        }
+        return true;
     }
 }

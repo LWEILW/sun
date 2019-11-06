@@ -5,15 +5,16 @@ import Router from 'vue-router'
 import Login from '@/view/Login/Login'
 // 首页
 import HomePage from '@/view/Home/HomePage'
-// 管理员模块
+
 // 用户模块
 import UserManage from '@/view/SystemManage/UserManage/UserManage.vue'
+// 角色模块
 import RoleManage from '@/view/SystemManage/RoleManage/RoleManage.vue'
+// 权限模块
+import PermissionManage from '@/view/SystemManage/PremissionManage/PermissionManage.vue'
 
+// 文章模块
 import ArticleManage from '@/view/ArticleManage/ArticleManage.vue'
-
-
-// import BloggerListPage from '@/view/BloggerListPage/BloggerListPage'
 
 
 // import skip from '@/view/Login/skip'
@@ -24,65 +25,53 @@ Vue.use(Router)
 
 export default new Router({
   // history 模式,该模式下没有#前缀
-  mode: 'history',
   // build打包添加的地方
+  mode: 'history',
   // base: '/blogger/',
   routes: [
     {
-      // 登录
       path: '/Login',
       name: 'Login',
-      component: Login
+      component: Login,
+      meta: {
+        title: '登录'
+      },
     }, {
-      // 首页
       path: '/HomePage',
       name: 'HomePage',
-      component: HomePage
+      component: HomePage,
+      meta: {
+        title: '首页'
+      },
     }, {
-      // 用户管理
       path: '/UserManage',
-      name: 'UserManage',
-      component: UserManage
+      name: '用户管理',
+      component: UserManage,
+      meta: {
+        title: 'UserManage'
+      },
     }, {
-      // 角色管理
       path: '/RoleManage',
       name: 'RoleManage',
-      component: RoleManage
+      component: RoleManage,
+      meta: {
+        title: '角色管理'
+      },
     }, {
-      // 文章模块
+      path: '/PermissionManage',
+      name: 'PermissionManage',
+      component: PermissionManage,
+      meta: {
+        title: '权限详情'
+      },
+    }, {
       path: '/ArticleManage',
       name: 'ArticleManage',
-      component: ArticleManage
-    },
-    // {
-    //   // 博客详情
-    //   path: '/BloggerListPage',
-    //   name: 'BloggerListPage',
-    //   component: BloggerListPage
-    // },
-
-
-    // {
-    //   // 博客创建
-    //   path: '/BloggerCreatePage',
-    //   name: 'BloggerCreatePage',
-    //   component: BloggerCreatePage
-    // },
-    // {
-    //   // 博客编辑
-    //   path: '/BloggerEditPage',
-    //   name: 'BloggerEditPage',
-    //   component: BloggerEditPage,
-    //   children: [{path: ':id', name: 'id', component: BloggerEditPage}]
-    // },
-    // {
-    //   // 博客编辑
-    //   path: '/BloggerDetailPage',
-    //   name: 'BloggerDetailPage',
-    //   component: BloggerDetailPage,
-    //   children: [{path: ':id', name: 'id', component: BloggerDetailPage}]
-    // },
-    //
+      component: ArticleManage,
+      meta: {
+        title: '文章模块'
+      },
+    }
     // // 地图处理
     // {
     //   path: '/skip',

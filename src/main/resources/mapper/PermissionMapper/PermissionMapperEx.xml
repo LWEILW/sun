@@ -19,7 +19,7 @@
         #{permission.permissionId},
         #{permission.modName},
         #{permission.funName},
-        SysDate
+         now()
         )
     </insert>
 
@@ -27,27 +27,28 @@
     <update id="updatePermission" parameterType="com.blogger.entity.PermissionEntity.Permission">
         update permission
         <set>
-            <if test="permission.getRoleName!=null and permission.getRoleName!=''">
-                modName=#{role.modName},
+            <if test="permission.getModName!=null and permission.getModName!=''">
+                modName=#{permission.modName},
             </if>
-            <if test="permission.getRoleDescribe!=null and permission.getRoleDescribe!=''">
+            <if test="permission.getFunName!=null and permission.getFunName!=''">
                 funName=#{permission.funName},
             </if>
-            <if test="permission.getCreatePerson!=null and permission.getCreatePerson!=''">
-                createPerson=#{permission.createPerson},
-            </if>
-            updateDate=SysDate
+            <!--            <if test="permission.getCreatePerson!=null and permission.getCreatePerson!=''">-->
+            <!--                createPerson=#{permission.createPerson},-->
+            <!--            </if>-->
+            <!--            updateDate= now()-->
         </set>
-        wherer permissionId=#{permission.permissionId}
+        where permissionId=#{permission.permissionId}
     </update>
 
     <!--  权限删除  -->
     <delete id="deletePermission" parameterType="java.lang.Integer">
-        delete * from  permission where permissionId=#{permissionId}
+        delete  from  permission where permissionId=#{permissionId}
     </delete>
 
     <!--  权限详情  -->
-    <select id="detailsPermission" parameterType="java.lang.Integer" resultType="com.blogger.entity.PermissionEntity.Permission">
+    <select id="detailsPermission" parameterType="java.lang.Integer"
+            resultType="com.blogger.entity.PermissionEntity.Permission">
         select * from permission where permissionId = #{permissionId}
     </select>
 

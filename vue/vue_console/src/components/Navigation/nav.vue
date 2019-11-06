@@ -10,177 +10,114 @@
       background-color="rgb(48, 65, 86)"
       active-text-color="#ffd04b"
     >
-      <!-- 首页 -->
-      <el-menu-item index="HomePage">
-        <i class="el-icon-menu"></i>
-        <span slot="title">首页</span>
-      </el-menu-item>
 
-      <!-- 文章 -->
-      <el-submenu index="2">
+      <el-submenu :index="item.id+''" v-for="(item,k) in menusList" :key="item.id">
+
         <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>文章</span>
+
+          <i :class="'iconfont icon-'+menuicon[k]"></i>
+
+          <span>{{item.authName}}</span>
+
         </template>
-        <el-menu-item-group>
-          <el-menu-item index="2-1">
-            <i class="el-icon-location"></i>
-            <span>文章一览</span>
-          </el-menu-item>
-          <el-menu-item index="2-2">
-            <i class="el-icon-location"></i>
-            <span>文章创建</span>
-          </el-menu-item>
-        </el-menu-item-group>
+
+        <el-menu-item v-for="item2 in item.children" :index="item2.path" :key="item2.id">
+
+          <i class="el-icon-menu"></i>
+
+          <span>{{item2.authName}}</span>
+
+        </el-menu-item>
+
       </el-submenu>
 
-      <!-- 新闻 -->
-      <el-submenu index="3">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>新闻</span>
-        </template>
-        <el-menu-item-group>
-          <el-menu-item index="3-1">
-            <i class="el-icon-location"></i>
-            <span>新闻一览</span>
-          </el-menu-item>
-          <el-menu-item index="3-2">
-            <i class="el-icon-location"></i>
-            <span>新闻创建</span>
-          </el-menu-item>
-        </el-menu-item-group>
-      </el-submenu>
-
-      <!-- 产品 -->
-      <el-submenu index="4">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>产品</span>
-        </template>
-        <el-menu-item-group>
-          <el-menu-item index="4-1">
-            <i class="el-icon-location"></i>
-            <span>产品一览</span>
-          </el-menu-item>
-          <el-menu-item index="4-2">
-            <i class="el-icon-location"></i>
-            <span>产品创建</span>
-          </el-menu-item>
-        </el-menu-item-group>
-      </el-submenu>
-
-      <!-- 博客 -->
-      <el-submenu index="BloggerListPage">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>博客</span>
-        </template>
-        <el-menu-item-group>
-          <el-menu-item index="BloggerListPage">
-            <i class="el-icon-location"></i>
-            <span>博客一览</span>
-          </el-menu-item>
-          <el-menu-item index="BloggerCreatePage">
-            <i class="el-icon-location"></i>
-            <span>博客创建</span>
-          </el-menu-item>
-        </el-menu-item-group>
-      </el-submenu>
-
-      <!-- 用户 -->
-      <el-submenu index="UserListPage">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>用户</span>
-        </template>
-        <el-menu-item-group>
-          <el-menu-item index="UserListPage">
-            <i class="el-icon-location"></i>
-            <span>用户一览</span>
-          </el-menu-item>
-          <el-menu-item index="UserListPage">
-            <i class="el-icon-location"></i>
-            <span>用户创建</span>
-          </el-menu-item>
-        </el-menu-item-group>
-      </el-submenu>
     </el-menu>
   </div>
 </template>
 
 <script>
-export default {
-  name: "navigationMoudle",
-  // 存储数据
-  data() {
-    return {
-      activeIndex: this.$route.name,
-      isCollapse: false
-    };
-  },
-  // 初始化加载
-  created() {},
-  // 方法
-  methods: {
-    // 选择路由方法
-    handleSelect(key, keyPath) {
-      console.log(key, keyPath);
-      switch (key) {
-        case "HomePage":
-          this.$router.push("/HomePage");
-          break;
+  export default {
+    name: "navigationMoudle",
+    // 存储数据
+    data() {
+      return {
+        activeIndex: this.$route.name,
+        isCollapse: false,
+        menusList: {},
+        menuicon: ['users', 'tijikongjian', 'shangpin', 'danju', 'baobiao']
+      };
+    },
+    // 初始化加载
+    created() {
+      this.getmenus()
+    },
+    // 方法
+    methods: {
+      async getmenus() {
+        const {data: res} = await this.$http.get('/menus')
+        if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
+        this.menusList = res.data
+        console.log(res.data)
+      },
 
-        case "2-1":
-          this.$router.push("/BloggerListPage");
-          break;
-        case "2-2":
-          this.$router.push("/BloggerCreatePage");
-          break;
+      // 选择路由方法
+      handleSelect(key, keyPath) {
+        console.log(key, keyPath);
+        switch (key) {
+          case "HomePage":
+            this.$router.push("/HomePage");
+            break;
 
-        case "3-1":
-          this.$router.push("/BloggerListPage");
-          break;
-        case "3-2":
-          this.$router.push("/BloggerCreatePage");
-          break;
+          case "2-1":
+            this.$router.push("/BloggerListPage");
+            break;
+          case "2-2":
+            this.$router.push("/BloggerCreatePage");
+            break;
 
-        case "4-1":
-          this.$router.push("/BloggerListPage");
-          break;
-        case "4-2":
-          this.$router.push("/BloggerCreatePage");
-          break;
+          case "3-1":
+            this.$router.push("/BloggerListPage");
+            break;
+          case "3-2":
+            this.$router.push("/BloggerCreatePage");
+            break;
 
-        case "BloggerListPage":
-          this.$router.push("/BloggerListPage");
-          break;
-        case "BloggerCreatePage":
-          this.$router.push("/BloggerCreatePage");
-          break;
+          case "4-1":
+            this.$router.push("/BloggerListPage");
+            break;
+          case "4-2":
+            this.$router.push("/BloggerCreatePage");
+            break;
 
-        case "UserListPage":
-          this.$router.push("/UserListPage");
-          break;
-        case "BloggerCreatePage":
-          this.$router.push("/BloggerCreatePage");
-          break;
+          case "BloggerListPage":
+            this.$router.push("/BloggerListPage");
+            break;
+          case "BloggerCreatePage":
+            this.$router.push("/BloggerCreatePage");
+            break;
+
+          case "UserListPage":
+            this.$router.push("/UserListPage");
+            break;
+          case "BloggerCreatePage":
+            this.$router.push("/BloggerCreatePage");
+            break;
+        }
       }
     }
-  }
-};
+  };
 </script>
 
 
 <style scoped>
-.navigationMoudle {
-  height: 100%;
-}
+  .navigationMoudle {
+    height: 100%;
+  }
 
-/* 导航栏收缩样式 */
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
-  min-width: 140px;
-  /* height: 100%; */
-}
+  /* 导航栏收缩样式 */
+  .el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 200px;
+    min-width: 140px;
+    /* height: 100%; */
+  }
 </style>

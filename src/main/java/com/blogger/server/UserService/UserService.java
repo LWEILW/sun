@@ -1,5 +1,7 @@
 package com.blogger.server.UserService;
 
+import com.alibaba.fastjson.JSONObject;
+import com.blogger.entity.PermissionEntity.Permission;
 import com.blogger.entity.UserEntity.User;
 
 import java.util.List;
@@ -17,6 +19,7 @@ public interface UserService {
 
     // 用户详情
     User detailsUser(int userId);
+
 
 
     User usersLogin(String account);

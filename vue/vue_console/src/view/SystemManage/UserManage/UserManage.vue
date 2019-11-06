@@ -17,9 +17,9 @@
       <!--        <i class="el-icon-edit"></i>-->
       <!--        <span>取消</span>-->
       <!--      </button>-->
-      <el-button type="text" @click="UserDialog = true,updateTitle='用户新建'">新建</el-button>
+      <el-button type="text" @click="handleCreate">添加用户</el-button>
 
-<!--      <el-button type="text" @click="UserDialog = true,updateTitle='用户编辑'">编辑</el-button>-->
+      <!--      <el-button type="text" @click="UserDialog = true,updateTitle='用户编辑'">编辑</el-button>-->
 
       <!--      &lt;!&ndash; 添加按钮 &ndash;&gt;-->
       <!--      <button type="button" class="el-button filter-item el-button&#45;&#45;primary el-button&#45;&#45;medium"-->
@@ -51,9 +51,9 @@
         <el-table-column prop="updateDate" label="更新时间" sortable></el-table-column>
         <el-table-column fixed="right" label="操作">
           <template slot-scope="scope">
-<!--            @click="handleEdit(scope.$index, scope.row)"-->
-            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"   >编辑</el-button>
-            <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+            <!--            @click="handleEdit(scope.$index, scope.row)"-->
+            <el-button size="mini" @click="handleEdit( scope.row)">编辑</el-button>
+            <el-button size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.blogger.entity.PermissionEntity.Permission;
 import com.blogger.server.PermissionService.PermissionService;
+import com.blogger.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +18,9 @@ public class PermissionController {
 
     // 权限台账
     @PostMapping("getPermissionList")
-    public List<Permission> getPermissionList() {
+    public Result getPermissionList() {
         List<Permission> permissionList = permissionService.getPermissionList();
-        return permissionList;
+        return Result.success(permissionList);
     }
 
     // 权限保存

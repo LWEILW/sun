@@ -2,10 +2,15 @@ package com.blogger.controller.RoleController;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.blogger.entity.PermissionEntity.Permission;
 import com.blogger.entity.RoleEntity.Role;
+import com.blogger.entity.UserEntity.User;
 import com.blogger.server.RoleService.RoleService;
+import com.blogger.util.CodeMsg;
+import com.blogger.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -17,9 +22,9 @@ public class RoleController {
 
     // 角色台账
     @PostMapping("getRoleList")
-    public List<Role> getRoleList() {
+    public Result getRoleList() {
         List<Role> roleList = roleService.getRoleList();
-        return roleList;
+        return Result.success(roleList);
     }
 
     // 角色保存
@@ -49,5 +54,44 @@ public class RoleController {
     public Role detailsRole(@PathVariable("roleId") int roleId) {
         Role role = roleService.detailsRole(roleId);
         return role;
+    }
+
+    // 人员维护台账
+    @GetMapping("getUserListByRoleId/{roleId}")
+    public Result getUserListByRoleId(@PathVariable("roleId") int roleId) {
+        List<User> userList = roleService.getUserListByRoleId(roleId);
+        return Result.success(userList);
+    }
+
+    // 人员维护添加
+    @PostMapping("addUserByRoleId")
+    public Result addUserByRoleId(@RequestBody String data) {
+        JSONObject obj = JSON.parseObject(data);
+        boolean succ = roleService.addUserByRoleId(obj);
+        if (succ) {
+            return Result.success("添加成功");
+        } else {
+            return Result.error(CodeMsg.INTER_ERROR, "添加失败");
+        }
+    }
+
+    // 权限维护台账
+    @GetMapping("getPermissionListByRoleId/{roleId}")
+    public Result getPermissionListByRoleId(@PathVariable("roleId") int roleId) {
+        List<Permission> permissionList = roleService.getPermissionListByRoleId(roleId);
+        return Result.success(permissionList);
+    }
+
+    // 权限维护添加
+    @PostMapping("addPermissionByRoleId")
+    public Result addPermissionByRoleId(@RequestBody String data) {
+        JSONObject obj = JSON.parseObject(data);
+        boolean succ = roleService.addPermissionByRoleId(obj);
+        if (succ) {
+            return Result.success("添加成功");
+        } else {
+            return Result.error(CodeMsg.INTER_ERROR, "添加失败");
+        }
+
     }
 }

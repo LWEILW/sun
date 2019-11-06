@@ -13,6 +13,8 @@ import NavigationMoudle from './components/BasicsPackage/navigationMoudle'
 import HeaderMoudle from './components/BasicsPackage/headerMoudle'
 import TinymceMoudle from './components/TinymcePackage/tinymceMoudle'
 
+// import NavigationMoudle from './components/Navigation/nav'
+
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)

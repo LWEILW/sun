@@ -1,6 +1,7 @@
 package com.blogger.dao.UserMapper;
 
 
+import com.blogger.entity.PermissionEntity.Permission;
 import com.blogger.entity.UserEntity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -24,7 +25,6 @@ public interface UserMapperEx {
 
     // 用户详情
     User detailsUser(@Param("userId") int Id);
-
 
 
 
