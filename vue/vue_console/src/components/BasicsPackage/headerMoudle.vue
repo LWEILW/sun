@@ -12,6 +12,9 @@
         <div><span>角色</span>{{password}}</div>
       </el-col>
       <el-col :span="2">
+
+<!--          <el-avatar  styl="width: 100px; height: 60pxe" :src="url"></el-avatar>-->
+<!--          <el-avatar :size="size" :src="url"></el-avatar>-->
         <el-image styl="width: 100px; height: 60pxe" :src="url"></el-image>
       </el-col>
     </el-row>

@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean saveUser(User user) {
         int succ = 0;
-        if (user.getUserId() != null && user.getUserId() != "") {
+        if (user.getUserId() != 0) {
             // ID不为空，更新操作
             succ = userMapperEx.updateUser(user);
         } else {

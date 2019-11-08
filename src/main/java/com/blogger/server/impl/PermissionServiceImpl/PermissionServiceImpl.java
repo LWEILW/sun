@@ -25,7 +25,7 @@ public class PermissionServiceImpl implements PermissionService {
     @Override
     public boolean savePermission(Permission permission) {
         int succ = 0;
-        if (permission.getPermissionId() != null && permission.getPermissionId() != "") {
+        if (permission.getPermissionId() != 0) {
             // ID不为空，更新操作
             succ = permissionMapperEx.updatePermission(permission);
         } else {

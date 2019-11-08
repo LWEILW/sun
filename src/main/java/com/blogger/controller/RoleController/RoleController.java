@@ -1,6 +1,7 @@
 package com.blogger.controller.RoleController;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.blogger.entity.PermissionEntity.Permission;
 import com.blogger.entity.RoleEntity.Role;
@@ -12,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("role")
@@ -48,7 +52,6 @@ public class RoleController {
         return roleService.deleteRole(roleId);
     }
 
-
     // 角色详情
     @GetMapping("/detailsRole/{roleId}")
     public Role detailsRole(@PathVariable("roleId") int roleId) {
@@ -59,15 +62,25 @@ public class RoleController {
     // 人员维护台账
     @GetMapping("getUserListByRoleId/{roleId}")
     public Result getUserListByRoleId(@PathVariable("roleId") int roleId) {
+
         List<User> userList = roleService.getUserListByRoleId(roleId);
         return Result.success(userList);
     }
 
+    // 人员维护待添加人员台账
+    @GetMapping("getUserOthersByRoleId/{roleId}")
+    public Result getUserOthersByRoleId(@PathVariable("roleId") int roleId) {
+        List<User> userList = roleService.getUserOthersByRoleId(roleId);
+        return Result.success(userList);
+    }
+
     // 人员维护添加
-    @PostMapping("addUserByRoleId")
-    public Result addUserByRoleId(@RequestBody String data) {
-        JSONObject obj = JSON.parseObject(data);
-        boolean succ = roleService.addUserByRoleId(obj);
+    @PostMapping("addUserToRole")
+    public Result addUserToRole(@RequestBody String data) {
+        JSONObject obj = JSONObject.parseObject(data);
+        int roleId = obj.getInteger("changesRoleId");
+        List<JSONObject> jsonObjectList = JSON.parseArray(obj.getString("userList"), JSONObject.class);
+        boolean succ = roleService.addUserByRoleId(jsonObjectList,roleId);
         if (succ) {
             return Result.success("添加成功");
         } else {
@@ -78,8 +91,40 @@ public class RoleController {
     // 权限维护台账
     @GetMapping("getPermissionListByRoleId/{roleId}")
     public Result getPermissionListByRoleId(@PathVariable("roleId") int roleId) {
+
         List<Permission> permissionList = roleService.getPermissionListByRoleId(roleId);
-        return Result.success(permissionList);
+
+        List<JSONObject> jsonObjects = new ArrayList<JSONObject>();
+        for (Permission permission : permissionList) {
+            if (permission.getLevelNo() == 1) {
+                JSONObject obj = new JSONObject();
+                obj.put("PermissionId", permission.getPermissionId());
+                obj.put("label", permission.getFunName());
+                obj.put("LevelNo", permission.getLevelNo());
+                obj.put("ParentId", permission.getParentId());
+                jsonObjects.add(obj);
+            }
+        }
+
+        Map<String, List<JSONObject>> jsonObjectsChildren = new HashMap<>();
+        for (JSONObject jsonObject : jsonObjects) {
+            String FunName = jsonObject.getString("FunName");
+            int PermissionId = jsonObject.getInteger("PermissionId");
+            List<JSONObject> jsonObjects1 = new ArrayList<JSONObject>();
+            for (Permission permission : permissionList) {
+                int parentId = permission.getParentId();
+                if (PermissionId == parentId) {
+                    JSONObject one = new JSONObject();
+                    one.put("label", permission.getFunName());
+                    one.put("PermissionId", permission.getPermissionId());
+                    jsonObjects1.add(one);
+
+                }
+            }
+            jsonObject.put("children", jsonObjects1);
+        }
+
+        return Result.success(jsonObjects);
     }
 
     // 权限维护添加

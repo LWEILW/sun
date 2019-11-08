@@ -56,10 +56,22 @@
     <select id="getUserListByRoleId" parameterType="java.lang.Integer"
             resultType="com.blogger.entity.UserEntity.User">
         select * from user_role
-        left join  user on user.userId=user_role.userId
-        where roleId = #{roleId}
+        left join user on user.userId=user_role.userId
+        where  roleId = #{roleId}
     </select>
 
+    <!--  人员维护待添加人员台账  -->
+    <select id="getUserOthersByRoleId" resultType="com.blogger.entity.UserEntity.User">
+        select * from user
+        <where>
+            <if test="List != null and List.size() > 0">
+                and userId not in
+                <foreach collection="List" item="item" index="index" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
 
     <!--  人员维护添加  -->
     <insert id="addUserByRoleId" parameterType="java.lang.Integer">
@@ -69,8 +81,8 @@
 
     <!--  权限维护台账  -->
     <select id="getPermissionListByRoleId" parameterType="java.lang.Integer"
-            resultType="com.blogger.entity.PermissionEntity.permissionRole">
-        select * from permission_role
+            resultType="com.blogger.entity.PermissionEntity.PermissionRole">
+         select * from permission_role
          left join  permission on permission.permissionId=permission_role.permissionId
          where roleId = #{roleId}
     </select>

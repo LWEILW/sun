@@ -1,8 +1,8 @@
 package com.blogger.entity.UserEntity;
 
-public class userRole {
+public class UserRole extends User {
+
     private int roleId;
-    private int userId;
 
     public int getRoleId() {
         return roleId;
@@ -12,11 +12,4 @@ public class userRole {
         this.roleId = roleId;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 }

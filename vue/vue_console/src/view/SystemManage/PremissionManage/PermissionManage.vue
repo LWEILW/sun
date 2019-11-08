@@ -11,9 +11,12 @@
                 max-height="800px" ref="PermissionTable">
         <el-table-column prop="permissionId" label="权限ID" sortable></el-table-column>
         <el-table-column prop="modName" label="模块目录"></el-table-column>
+        <el-table-column prop="parentId" label="父类ID"></el-table-column>
         <el-table-column prop="funName" label="功能名称"></el-table-column>
+        <el-table-column prop="path" label="功能英文名称"></el-table-column>
+        <el-table-column prop="createPerson" label="创建人"></el-table-column>
         <el-table-column prop="createDate" label="创建时间"></el-table-column>
-
+        <el-table-column prop="updateDate" label="更新时间"></el-table-column>
         <el-table-column fixed="right" label="操作">
           <template slot-scope="scope">
             <el-button type="text" @click="handleEdit(scope.row)">编辑</el-button>
@@ -31,12 +34,42 @@
             <el-form-item label="模块目录" prop="modName">
               <el-input v-model="permissionData.modName"></el-input>
             </el-form-item>
-            <el-form-item label="功能名称" prop="funName">
-              <el-input v-model="permissionData.funName"></el-input>
+
+
+
+            <el-form-item label="父类ID">
+              <el-select v-model="permissionData.parentId" filterable placeholder="请选择" :default-first-option="true"
+                         value-key="VALUE">
+                <el-option
+                  v-for="item in parentId"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </el-form-item>
+
+            <el-form-item label="权限等级" prop="levelNo">
+              <el-select v-model="permissionData.levelNo" filterable placeholder="请选择" :default-first-option="true"
+                         value-key="VALUE">
+                <el-option
+                  v-for="item in levelNo"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
             </el-form-item>
           </el-col>
 
           <el-col :span="12">
+            <el-form-item label="功能名称" prop="funName">
+              <el-input v-model="permissionData.funName"></el-input>
+            </el-form-item>
+            <el-form-item label="功能英文名称" prop="modName">
+              <el-input v-model="permissionData.path"></el-input>
+            </el-form-item>
+
             <el-form-item label="创建时间" prop="createDate">
               <el-input v-model="permissionData.createDate"></el-input>
             </el-form-item>

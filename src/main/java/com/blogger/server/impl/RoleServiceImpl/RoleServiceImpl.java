@@ -1,14 +1,18 @@
 package com.blogger.server.impl.RoleServiceImpl;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.blogger.dao.RoleMapper.RoleMapperEx;
+import com.blogger.dao.UserMapper.UserMapperEx;
 import com.blogger.entity.PermissionEntity.Permission;
 import com.blogger.entity.RoleEntity.Role;
 import com.blogger.entity.UserEntity.User;
 import com.blogger.server.RoleService.RoleService;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("RoleService")
@@ -16,6 +20,9 @@ public class RoleServiceImpl implements RoleService {
 
     @Autowired
     private RoleMapperEx roleMapperEx;
+
+    @Autowired
+    private UserMapperEx userMapperEx;
 
     // 角色台账
     @Override
@@ -27,7 +34,7 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public boolean saveRole(Role role) {
         int succ = 0;
-        if (role.getRoleId() != null && role.getRoleId() != "") {
+        if (role.getRoleId() != 0) {
             // ID不为空，更新操作
             succ = roleMapperEx.updateRole(role);
         } else {
@@ -61,15 +68,28 @@ public class RoleServiceImpl implements RoleService {
         return roleMapperEx.getUserListByRoleId(roleId);
     }
 
+    // 人员维护待添加人员台账
+    @Override
+    public List<User> getUserOthersByRoleId(int roleId) {
+        List<User> userList = roleMapperEx.getUserListByRoleId(roleId);
+        List<Integer> userIdList = new ArrayList<Integer>();
+        for (User user : userList) {
+            userIdList.add(user.getUserId());
+        }
+
+
+        return roleMapperEx.getUserOthersByRoleId(userIdList);
+    }
+
     // 人员维护添加
     @Override
-    public boolean addUserByRoleId(JSONObject obj) {
-        int roleId = obj.getInteger("roleId");
-        int userId = obj.getInteger("userId");
-
-        int count = roleMapperEx.addUserByRoleId(roleId, userId);
-        if (count != 1) {
-            return false;
+    public boolean addUserByRoleId(List<JSONObject> jsonObjectList, int roleId) {
+        for (JSONObject obj : jsonObjectList) {
+            int userId = obj.getInteger("userId");
+            int count = roleMapperEx.addUserByRoleId(roleId, userId);
+            if (count != 1) {
+                return false;
+            }
         }
         return true;
     }

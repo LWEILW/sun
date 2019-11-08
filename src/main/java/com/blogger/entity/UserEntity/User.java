@@ -1,9 +1,11 @@
 package com.blogger.entity.UserEntity;
 
-public class User {
+import com.blogger.entity.RoleEntity.Role;
+
+public class User extends Role {
 
     // 用户ID
-    private String userId;
+    private int userId;
     // 用户工号
     private String userAccount;
     // 用户姓名
@@ -16,21 +18,21 @@ public class User {
     private String userEmail;
     // 密码
     private String userPassword;
+    // 登录验证
+    private String token;
     // 创建人（用户ID）
     private String createPerson;
     // 创建时间
     private String createDate;
     // 更新时间
     private String updateDate;
-    // 登录验证
-    private String token;
 
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

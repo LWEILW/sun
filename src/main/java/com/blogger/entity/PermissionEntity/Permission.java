@@ -1,20 +1,31 @@
 package com.blogger.entity.PermissionEntity;
 
-public class Permission {
+import com.blogger.entity.RoleEntity.Role;
+
+public class Permission extends Role {
     // 权限ID
-    private String permissionId;
+    private int permissionId;
     // 模块目录
     private String modName;
     // 功能名称
     private String funName;
+    // 父类ID
+    private int parentId;
+    // 权限等级
+    private int levelNo;
     // 创建时间
     private String createDate;
+    // 创建人
+    private String createPerson;
+    // 更新时间
+    private String updateDate;
 
-    public String getPermissionId() {
+
+    public int getPermissionId() {
         return permissionId;
     }
 
-    public void setPermissionId(String permissionId) {
+    public void setPermissionId(int permissionId) {
         this.permissionId = permissionId;
     }
 
@@ -40,5 +51,37 @@ public class Permission {
 
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
+    }
+
+    public String getCreatePerson() {
+        return createPerson;
+    }
+
+    public void setCreatePerson(String createPerson) {
+        this.createPerson = createPerson;
+    }
+
+    public String getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(String updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    public int getLevelNo() {
+        return levelNo;
+    }
+
+    public void setLevelNo(int levelNo) {
+        this.levelNo = levelNo;
+    }
+
+    public int getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(int parentId) {
+        this.parentId = parentId;
     }
 }

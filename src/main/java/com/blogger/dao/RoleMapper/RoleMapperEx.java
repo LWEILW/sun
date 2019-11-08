@@ -3,6 +3,7 @@ package com.blogger.dao.RoleMapper;
 import com.blogger.entity.PermissionEntity.Permission;
 import com.blogger.entity.RoleEntity.Role;
 import com.blogger.entity.UserEntity.User;
+import io.swagger.models.auth.In;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -29,8 +30,13 @@ public interface RoleMapperEx {
     // 人员维护台账
     List<User> getUserListByRoleId(@Param("roleId") int roleId);
 
+    // 人员维护待添加人员台账
+    List<User> getUserOthersByRoleId(@Param("List") List<Integer> userIdList);
+
     // 人员维护添加
     int addUserByRoleId(@Param("roleId") int roleId, @Param("userId") int userId);
+
+
 
     // 权限维护台账
     List<Permission> getPermissionListByRoleId(@Param("roleId") int roleId);

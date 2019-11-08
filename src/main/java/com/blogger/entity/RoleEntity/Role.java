@@ -2,7 +2,7 @@ package com.blogger.entity.RoleEntity;
 
 public class Role {
     // 角色ID
-    private String roleId;
+    private int roleId;
     // 角色名称
     private String roleName;
     // 角色描述
@@ -15,11 +15,11 @@ public class Role {
     private String updateDate;
 
 
-    public String getRoleId() {
+    public int getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(String roleId) {
+    public void setRoleId(int roleId) {
         this.roleId = roleId;
     }
 

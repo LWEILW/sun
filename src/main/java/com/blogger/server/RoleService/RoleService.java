@@ -27,8 +27,11 @@ public interface RoleService {
     // 人员维护台账
     List<User> getUserListByRoleId(int roleId);
 
+    // 人员维护待添加人员台账
+    List<User> getUserOthersByRoleId(int roleId);
+
     // 人员维护添加
-    boolean addUserByRoleId(JSONObject obj);
+    boolean addUserByRoleId(List<JSONObject> jsonObjectList,int roleId);
 
     // 权限维护台账
     List<Permission> getPermissionListByRoleId(int roleId);

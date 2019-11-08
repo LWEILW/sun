@@ -69,10 +69,8 @@ export default {
     handleEdit(row) {
       this.UserDialog = true;
       this.updateTitle = '用户编辑';
-      api.detailsUser(row.id).then(res => {
-        var that = this;
-        that.ruleForm = res.data;
-        console.log(that.ruleForm);
+      api.detailsUser(row.userId).then(res => {
+        this.formData = res.data;
       });
     },
     // 用户保存

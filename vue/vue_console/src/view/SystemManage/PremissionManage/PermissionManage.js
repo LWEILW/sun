@@ -22,6 +22,16 @@ export default {
       pagesize: 5,
       // 显示总共有多少数据
       totalCount: 40,
+      parentId: [
+        {value: 1, label: '用户模块'},
+        {value: 2, label: '角色模块'},
+        {value: 3, label: '权限模块'},
+        {value: 4, label: '文章模块'}],
+      levelNo: [
+        {value: 1, label: 1},
+        {value: 2, label: 2},
+        {value: 3, label: 3},
+        {value: 4, label: 4}]
     };
   },
   // 初始化加载

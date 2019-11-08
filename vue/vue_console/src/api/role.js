@@ -9,19 +9,19 @@ export default {
       data
     })
   },
-  // 角色详情
-  detailsRole(id) {
-    return request({
-      url: `/role/detailsRole/${id} `,
-      method: 'get',
-    })
-  },
   // 保存角色
   saveRole(data) {
     return request({
       url: '/role/saveRole',
       method: 'post',
       data
+    })
+  },
+  // 角色详情
+  detailsRole(id) {
+    return request({
+      url: `/role/detailsRole/${id} `,
+      method: 'get',
     })
   },
   // 删除角色
@@ -31,6 +31,7 @@ export default {
       method: 'get'
     })
   },
+
   // 人员维护台账
   getUserListByRoleId(id) {
     return request({
@@ -38,10 +39,17 @@ export default {
       method: 'get'
     })
   },
-// 人员维护添加
-  addUserByRoleId(data) {
+  // 人员维护可添加列表
+  getUserOthersByRoleId(id) {
     return request({
-      url: `/role/addUserByRoleId`,
+      url: `/role/getUserOthersByRoleId/${id}`,
+      method: 'get'
+    })
+  },
+  // 人员维护添加
+  addUserToRole(data) {
+    return request({
+      url: `/role/addUserToRole`,
       method: 'post',
       data
     })

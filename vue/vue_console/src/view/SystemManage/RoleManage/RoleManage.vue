@@ -5,8 +5,11 @@
       <el-button type="text" @click="handleCreate">添加角色</el-button>
     </div>
 
-    <!--  1.data:显示的数据, 2.stripe:是否为斑马纹, 3.border:是否带有纵向边框, 4.selection-change:当选择项发生变化时会触发该事件 -->
-    <div class="user-table">
+    <!--  1.data:显示的数据,
+    2.stripe:是否为斑马纹,
+    3.border:是否带有纵向边框,
+    4.selection-change:当选择项发生变化时会触发该事件 -->
+    <div class="userTable">
       <el-table :data="roleTable.slice((currentPage-1)*pagesize,currentPage*pagesize)" stripe border
                 max-height="800px" ref="RoleTable">
         <el-table-column prop="roleId" label="角色ID" sortable></el-table-column>
@@ -29,26 +32,26 @@
 
     <!--   角色编辑-弹出模态框  -->
     <el-dialog :title="updateTitle" :visible.sync="roleDialog" width="700px" center>
-      <el-form :model="roleData" ref="roleForm" label-width="120px">
+      <el-form :model="roleDetails" ref="roleForm" label-width="120px">
         <el-row>
           <el-col :span="12">
             <el-form-item label="角色名称" prop="roleName">
-              <el-input v-model="roleData.roleName"></el-input>
+              <el-input v-model="roleDetails.roleName"></el-input>
             </el-form-item>
             <el-form-item label="角色描述" prop="roleDescribe">
-              <el-input v-model="roleData.roleDescribe"></el-input>
+              <el-input v-model="roleDetails.roleDescribe"></el-input>
             </el-form-item>
             <el-form-item label="创建人" prop="createPerson">
-              <el-input v-model="roleData.createPerson"></el-input>
+              <el-input v-model="roleDetails.createPerson"></el-input>
             </el-form-item>
           </el-col>
 
           <el-col :span="12">
             <el-form-item label="创建时间" prop="createDate">
-              <el-input v-model="roleData.createDate"></el-input>
+              <el-input v-model="roleDetails.createDate"></el-input>
             </el-form-item>
             <el-form-item label="更新时间" prop="updateDate">
-              <el-input v-model="roleData.updateDate"></el-input>
+              <el-input v-model="roleDetails.updateDate"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -62,19 +65,20 @@
     </el-dialog>
 
     <!--   人员维护台账-弹出模态框  -->
-    <el-dialog title="人员维护" :visible.sync="userDialog" width="700px" center>
+    <el-dialog title="人员维护" :visible.sync="userListDialog" width="700px" center>
       <el-button @click="handleAddUserList">批量添加人员</el-button>
-      <el-table :data="userData" style="width: 100%">
+      <el-table :data="userTable" style="width: 100%">
         <el-table-column prop="userAccount" label="用户工号"></el-table-column>
         <el-table-column prop="userName" label="用户名称"></el-table-column>
         <el-table-column prop="userName" label="用户姓名"></el-table-column>
       </el-table>
     </el-dialog>
 
-    <!--   批量添加人员维护-弹出模态框  -->
+    <!--   人员维护可添加台账-弹出模态框  -->
     <el-dialog title="批量添加人员维护" :visible.sync="addUserListDialog" width="700px" center>
-      <el-button @click="addUserListToRole">添加人员</el-button>
-      <el-table :data="userData" style="width: 100%">
+      <el-button @click="addUserToRole">添加人员</el-button>
+      <el-table :data="userOtherTable" style="width: 100%"  tooltip-effect="dark" @selection-change="handleSelectionChange">
+        <el-table-column type="selection" width="55"></el-table-column>
         <el-table-column prop="userAccount" label="用户工号"></el-table-column>
         <el-table-column prop="userName" label="用户名称"></el-table-column>
         <el-table-column prop="userName" label="用户姓名"></el-table-column>
@@ -83,13 +87,7 @@
 
     <!--   权限编辑台账-弹出模态框  -->
     <el-dialog title="权限编辑" :visible.sync="permissionDialog" width="700px" center>
-      <el-tree
-        :props="props"
-        :load="loadNode"
-        lazy
-        show-checkbox>
-      </el-tree>
-
+      <el-tree :data="permissionData" :props="Props" @node-click="handleNodeClick"></el-tree>
     </el-dialog>
 
     <!-- 分页 total:总数,hide-on-single-page:一页是否隐藏,page-size: -->
@@ -105,6 +103,7 @@
         :hide-on-single-page="true"
       ></el-pagination>
     </div>
+
   </div>
 </template>
 
