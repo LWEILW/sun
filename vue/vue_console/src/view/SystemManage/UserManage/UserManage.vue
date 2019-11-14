@@ -18,7 +18,9 @@
       <!--        <span>取消</span>-->
       <!--      </button>-->
       <el-button type="text" @click="handleCreate">添加用户</el-button>
-
+      <el-button type="text" @click="handleCreate">删除</el-button>
+      <el-button type="text" @click="handleCreate">导入</el-button>
+      <el-button type="text" @click="handleCreate">导出</el-button>
       <!--      <el-button type="text" @click="UserDialog = true,updateTitle='用户编辑'">编辑</el-button>-->
 
       <!--      &lt;!&ndash; 添加按钮 &ndash;&gt;-->
@@ -46,6 +48,7 @@
         <el-table-column prop="userSex" label="性别"></el-table-column>
         <el-table-column prop="userPhone" label="手机话"></el-table-column>
         <el-table-column prop="userEmail" label="邮箱"></el-table-column>
+        <el-table-column prop="createPerson" label="用户状态" sortable></el-table-column>
         <el-table-column prop="createPerson" label="创建人" sortable></el-table-column>
         <el-table-column prop="createDate" label="创建时间" sortable></el-table-column>
         <el-table-column prop="updateDate" label="更新时间" sortable></el-table-column>
@@ -55,6 +58,9 @@
               <i class="iconfont iconbianji" @click="handleEdit( scope.row)" style=" margin-left: 1em;"></i>
             </el-tooltip>
             <el-tooltip effect="dark" content="删除" placement="top-start">
+              <i class="iconfont iconchangyonggoupiaorenshanchu" @click="handleDelete(scope.row)" style=" margin-left: 1em;"></i>
+            </el-tooltip>
+            <el-tooltip effect="dark" content="重置 弹出框显示登陆名和密码" placement="top-start">
               <i class="iconfont iconchangyonggoupiaorenshanchu" @click="handleDelete(scope.row)" style=" margin-left: 1em;"></i>
             </el-tooltip>
           </template>

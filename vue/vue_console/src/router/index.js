@@ -12,14 +12,14 @@ import UserManage from '@/view/SystemManage/UserManage/UserManage.vue'
 import RoleManage from '@/view/SystemManage/RoleManage/RoleManage.vue'
 // 权限模块
 import PermissionManage from '@/view/SystemManage/PremissionManage/PermissionManage.vue'
+// 菜单模块
+import MenusManage from '@/view/SystemManage/MenusManage/MenusManage.vue'
 
 // 文章模块
 import ArticleManage from '@/view/ArticleManage/ArticleManage.vue'
 
-
 import skip from '@/view/Login/skip.vue'
 // import PointOvelay from '@/view/Login/PointOvelay'
-
 
 Vue.use(Router)
 
@@ -35,49 +35,54 @@ export default new Router({
       component: Login,
       meta: {
         title: '登录'
-      },
+      }
     }, {
       path: '/HomePage',
       name: 'HomePage',
       component: HomePage,
       meta: {
         title: '首页'
-      },
+      }
     }, {
       path: '/UserManage',
       name: '用户管理',
       component: UserManage,
       meta: {
         title: 'UserManage'
-      },
+      }
     }, {
       path: '/RoleManage',
       name: 'RoleManage',
       component: RoleManage,
       meta: {
         title: '角色管理'
-      },
+      }
     }, {
       path: '/PermissionManage',
       name: 'PermissionManage',
       component: PermissionManage,
       meta: {
         title: '权限详情'
-      },
+      }
     }, {
       path: '/ArticleManage',
       name: 'ArticleManage',
       component: ArticleManage,
       meta: {
         title: '文章模块'
-      },
+      }
     },
     // 地图处理
     {
       path: '/skip',
       name: 'skip',
       component: skip
-    },
+    }, // 地图处理
+    {
+      path: '/MenusManage',
+      name: 'MenusManage',
+      component: MenusManage
+    }
     // // 地图处理
     // {
     //   path: '/PointOvelay',
