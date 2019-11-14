@@ -3,15 +3,15 @@
     <el-row :gutter="10">
       <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
         <el-container>
-          <!-- header组件 -->
-          <el-header style="background-color: antiquewhite;">
-            <HeaderMoudle></HeaderMoudle>
-          </el-header>
+          <!-- Navigation组件 -->
+          <el-aside style="width:auto; ">
+            <NavigationMoudle></NavigationMoudle>
+          </el-aside>
           <el-container>
-            <!-- Navigation组件 -->
-            <el-aside style="width:auto; ">
-              <NavigationMoudle></NavigationMoudle>
-            </el-aside>
+            <!-- header组件 -->
+            <el-header style="background-color: antiquewhite;">
+              <HeaderMoudle></HeaderMoudle>
+            </el-header>
             <!-- main组件 -->
             <el-main>
               <el-breadcrumb separator="/">

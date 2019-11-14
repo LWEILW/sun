@@ -42,8 +42,13 @@
 
           <el-table-column fixed="right" label="操作">
             <template slot-scope="scope">
-              <el-button size="mini" @click.stop="handleEdit( scope.row)">编辑</el-button>
-              <el-button size="mini" type="danger" @click.stop="handleDelete(scope.row)">删除</el-button>
+              <el-tooltip effect="dark" content="编辑" placement="top-start">
+                <i class="iconfont iconbianji" @click.stop="handleEdit( scope.row)" style=" margin-left: 1em;"></i>
+              </el-tooltip>
+              <el-tooltip effect="dark" content="删除" placement="top-start">
+                <i class="iconfont iconchangyonggoupiaorenshanchu" @click.stop="handleDelete(scope.row)"
+                   style=" margin-left: 1em;"></i>
+              </el-tooltip>
             </template>
           </el-table-column>
         </el-table>

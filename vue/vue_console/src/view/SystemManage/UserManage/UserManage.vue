@@ -51,9 +51,12 @@
         <el-table-column prop="updateDate" label="更新时间" sortable></el-table-column>
         <el-table-column fixed="right" label="操作">
           <template slot-scope="scope">
-            <!--            @click="handleEdit(scope.$index, scope.row)"-->
-            <el-button size="mini" @click="handleEdit( scope.row)">编辑</el-button>
-            <el-button size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
+            <el-tooltip effect="dark" content="编辑" placement="top-start">
+              <i class="iconfont iconbianji" @click="handleEdit( scope.row)" style=" margin-left: 1em;"></i>
+            </el-tooltip>
+            <el-tooltip effect="dark" content="删除" placement="top-start">
+              <i class="iconfont iconchangyonggoupiaorenshanchu" @click="handleDelete(scope.row)" style=" margin-left: 1em;"></i>
+            </el-tooltip>
           </template>
         </el-table-column>
       </el-table>

@@ -1,5 +1,7 @@
 <template>
   <div class="navigationMoudle">
+    <!-- logo样式 -->
+    <div class="logo" v-on:click="shrinkNav" style="   line-height: 60px;">logoBIG12345</div>
     <!--  1.default-active:高亮显示 刷新页面后，对应menu高亮     2.collapse:侧边栏是否收展    3.@select:选中事件
      4.background-color:菜单的背景色  5.active-text-color:当前激活菜单的文字颜色   6.text-color:菜单的文字颜色-->
     <el-menu class="el-menu-vertical-demo" :default-active="activeIndex" :collapse="isCollapse" @select="handleSelect"
@@ -46,59 +48,59 @@
         </el-menu-item-group>
       </el-submenu>
 
-<!--      &lt;!&ndash; 新闻 &ndash;&gt;-->
-<!--      <el-submenu index="3">-->
-<!--        <template slot="title">-->
-<!--          <i class="el-icon-location"></i>-->
-<!--          <span>新闻</span>-->
-<!--        </template>-->
-<!--        <el-menu-item-group>-->
-<!--          <el-menu-item index="3-1">-->
-<!--            <i class="el-icon-location"></i>-->
-<!--            <span>新闻一览</span>-->
-<!--          </el-menu-item>-->
-<!--          <el-menu-item index="3-2">-->
-<!--            <i class="el-icon-location"></i>-->
-<!--            <span>新闻创建</span>-->
-<!--          </el-menu-item>-->
-<!--        </el-menu-item-group>-->
-<!--      </el-submenu>-->
+      <!--      &lt;!&ndash; 新闻 &ndash;&gt;-->
+      <!--      <el-submenu index="3">-->
+      <!--        <template slot="title">-->
+      <!--          <i class="el-icon-location"></i>-->
+      <!--          <span>新闻</span>-->
+      <!--        </template>-->
+      <!--        <el-menu-item-group>-->
+      <!--          <el-menu-item index="3-1">-->
+      <!--            <i class="el-icon-location"></i>-->
+      <!--            <span>新闻一览</span>-->
+      <!--          </el-menu-item>-->
+      <!--          <el-menu-item index="3-2">-->
+      <!--            <i class="el-icon-location"></i>-->
+      <!--            <span>新闻创建</span>-->
+      <!--          </el-menu-item>-->
+      <!--        </el-menu-item-group>-->
+      <!--      </el-submenu>-->
 
-<!--      &lt;!&ndash; 产品 &ndash;&gt;-->
-<!--      <el-submenu index="4">-->
-<!--        <template slot="title">-->
-<!--          <i class="el-icon-location"></i>-->
-<!--          <span>产品</span>-->
-<!--        </template>-->
-<!--        <el-menu-item-group>-->
-<!--          <el-menu-item index="4-1">-->
-<!--            <i class="el-icon-location"></i>-->
-<!--            <span>产品一览</span>-->
-<!--          </el-menu-item>-->
-<!--          <el-menu-item index="4-2">-->
-<!--            <i class="el-icon-location"></i>-->
-<!--            <span>产品创建</span>-->
-<!--          </el-menu-item>-->
-<!--        </el-menu-item-group>-->
-<!--      </el-submenu>-->
+      <!--      &lt;!&ndash; 产品 &ndash;&gt;-->
+      <!--      <el-submenu index="4">-->
+      <!--        <template slot="title">-->
+      <!--          <i class="el-icon-location"></i>-->
+      <!--          <span>产品</span>-->
+      <!--        </template>-->
+      <!--        <el-menu-item-group>-->
+      <!--          <el-menu-item index="4-1">-->
+      <!--            <i class="el-icon-location"></i>-->
+      <!--            <span>产品一览</span>-->
+      <!--          </el-menu-item>-->
+      <!--          <el-menu-item index="4-2">-->
+      <!--            <i class="el-icon-location"></i>-->
+      <!--            <span>产品创建</span>-->
+      <!--          </el-menu-item>-->
+      <!--        </el-menu-item-group>-->
+      <!--      </el-submenu>-->
 
-<!--      &lt;!&ndash; 博客 &ndash;&gt;-->
-<!--      <el-submenu index="BloggerListPage">-->
-<!--        <template slot="title">-->
-<!--          <i class="el-icon-location"></i>-->
-<!--          <span>博客</span>-->
-<!--        </template>-->
-<!--        <el-menu-item-group>-->
-<!--          <el-menu-item index="BloggerListPage">-->
-<!--            <i class="el-icon-location"></i>-->
-<!--            <span>博客一览</span>-->
-<!--          </el-menu-item>-->
-<!--          <el-menu-item index="BloggerCreatePage">-->
-<!--            <i class="el-icon-location"></i>-->
-<!--            <span>博客创建</span>-->
-<!--          </el-menu-item>-->
-<!--        </el-menu-item-group>-->
-<!--      </el-submenu>-->
+      <!--      &lt;!&ndash; 博客 &ndash;&gt;-->
+      <!--      <el-submenu index="BloggerListPage">-->
+      <!--        <template slot="title">-->
+      <!--          <i class="el-icon-location"></i>-->
+      <!--          <span>博客</span>-->
+      <!--        </template>-->
+      <!--        <el-menu-item-group>-->
+      <!--          <el-menu-item index="BloggerListPage">-->
+      <!--            <i class="el-icon-location"></i>-->
+      <!--            <span>博客一览</span>-->
+      <!--          </el-menu-item>-->
+      <!--          <el-menu-item index="BloggerCreatePage">-->
+      <!--            <i class="el-icon-location"></i>-->
+      <!--            <span>博客创建</span>-->
+      <!--          </el-menu-item>-->
+      <!--        </el-menu-item-group>-->
+      <!--      </el-submenu>-->
 
 
     </el-menu>
@@ -191,5 +193,15 @@
     width: 200px;
     min-width: 140px;
     /* height: 100%; */
+  }
+
+  .logo {
+    height: 60px;
+    font-size: 22px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-color: rgba(238, 241, 146, 0.3);
+    border-right-width: 1px;
+    border-right-style: solid;
   }
 </style>

@@ -17,7 +17,7 @@ import PermissionManage from '@/view/SystemManage/PremissionManage/PermissionMan
 import ArticleManage from '@/view/ArticleManage/ArticleManage.vue'
 
 
-// import skip from '@/view/Login/skip'
+import skip from '@/view/Login/skip.vue'
 // import PointOvelay from '@/view/Login/PointOvelay'
 
 
@@ -71,13 +71,13 @@ export default new Router({
       meta: {
         title: '文章模块'
       },
-    }
-    // // 地图处理
-    // {
-    //   path: '/skip',
-    //   name: 'skip',
-    //   component: skip
-    // },
+    },
+    // 地图处理
+    {
+      path: '/skip',
+      name: 'skip',
+      component: skip
+    },
     // // 地图处理
     // {
     //   path: '/PointOvelay',

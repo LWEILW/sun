@@ -1,22 +1,22 @@
 <template>
-  <div class="PermissionManage">
+  <div class="MenusManage">
     <!--搜索框,添加按钮,删除按钮 -->
-    <div class="PermissionOperation">
-      <el-button type="text" @click="handleCreate">添加权限</el-button>
+    <div class="MenusOperation">
+      <el-button type="text" @click="handleCreate">新增</el-button>
+      <el-button type="text" @click="handleEdit">修改</el-button>
+      <el-button type="text" @click="handleSwitch">展开/折叠</el-button>
     </div>
 
     <!--  1.data:显示的数据, 2.stripe:是否为斑马纹, 3.border:是否带有纵向边框, 4.selection-change:当选择项发生变化时会触发该事件 -->
-    <div class="permission-table">
-      <el-table :data="permissionTable.slice((currentPage-1)*pagesize,currentPage*pagesize)" stripe border
-                max-height="800px" ref="PermissionTable">
-        <el-table-column prop="permissionId" label="权限ID" sortable></el-table-column>
-        <el-table-column prop="modName" label="模块目录"></el-table-column>
-        <el-table-column prop="parentId" label="父类ID"></el-table-column>
-        <el-table-column prop="funName" label="功能名称"></el-table-column>
-        <el-table-column prop="path" label="功能英文名称"></el-table-column>
-        <el-table-column prop="createPerson" label="创建人"></el-table-column>
-        <el-table-column prop="createDate" label="创建时间"></el-table-column>
-        <el-table-column prop="updateDate" label="更新时间"></el-table-column>
+    <div class="MenusTable">
+      <el-table :data="menusTable.slice((currentPage-1)*pagesize,currentPage*pagesize)" stripe border max-height="800px"
+                ref="MenusTable">
+        <el-table-column prop="permissionId" label="菜单名称" sortable></el-table-column>
+        <el-table-column prop="modName" label="排序"></el-table-column>
+        <el-table-column prop="parentId" label="请求地址"></el-table-column>
+        <el-table-column prop="funName" label="类型"></el-table-column>
+        <el-table-column prop="path" label="可见"></el-table-column>
+        <el-table-column prop="createPerson" label="权限标识"></el-table-column>
         <el-table-column fixed="right" label="操作">
           <template slot-scope="scope">
 
@@ -24,8 +24,7 @@
               <i class="iconfont iconbianji" @click="handleEdit(scope.row)" style=" margin-left: 1em;"></i>
             </el-tooltip>
             <el-tooltip effect="dark" content="删除" placement="top-start">
-              <i class="iconfont iconchangyonggoupiaorenshanchu" @click="handleDelete(scope.row)"
-                 style=" margin-left: 1em;"></i>
+              <i class="iconfont iconchangyonggoupiaorenshanchu" @click="handleDelete(scope.row)" style=" margin-left: 1em;"></i>
             </el-tooltip>
           </template>
         </el-table-column>
@@ -33,8 +32,8 @@
     </div>
 
     <!--     弹出模态框-->
-    <el-dialog :title="updateTitle" :visible.sync="permissionDialog" width="700px" center>
-      <el-form :model="permissionData" ref="permissionForm" label-width="120px">
+    <el-dialog :title="updateTitle" :visible.sync="menusDialog" width="700px" center>
+      <el-form :model="menusData" ref="menusForm" label-width="120px">
         <el-row>
           <el-col :span="12">
             <el-form-item label="模块目录" prop="modName">
@@ -107,9 +106,9 @@
 </template>
 
 <script>
-  import PermissionManage from './PermissionManage'
+  import MenusManage from './MenusManage'
 
-  export default PermissionManage
+  export default MenusManage
 </script>
 
 <style scoped>

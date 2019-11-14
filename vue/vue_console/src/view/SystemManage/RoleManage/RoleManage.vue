@@ -14,17 +14,27 @@
                 max-height="800px" ref="RoleTable">
         <el-table-column prop="roleId" label="角色ID" sortable></el-table-column>
         <el-table-column prop="roleName" label="角色名称"></el-table-column>
+        <el-table-column prop="roleDescribe" label="权限字符"></el-table-column>
         <el-table-column prop="roleDescribe" label="角色描述"></el-table-column>
+        <el-table-column prop="roleDescribe" label="角色状态"></el-table-column>
         <el-table-column prop="createPerson" label="创建人"></el-table-column>
         <el-table-column prop="createDate" label="创建时间"></el-table-column>
         <el-table-column prop="updateDate" label="更新时间" sortable></el-table-column>
 
         <el-table-column fixed="right" label="操作">
           <template slot-scope="scope">
-            <el-button type="text" @click="handleEdit(scope.row)">编辑</el-button>
-            <el-button type="text" @click="handleUserList(scope.row)">人员维护</el-button>
-            <el-button type="text" @click="handlePermissionList(scope.row)">权限编辑</el-button>
-            <el-button size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
+            <el-tooltip effect="dark" content="编辑" placement="top-start">
+                <i class="iconfont iconbianji" @click="handleEdit(scope.row)" style=" margin-left: 1em;"></i>
+            </el-tooltip>
+            <el-tooltip effect="dark" content="人员维护" placement="top-start">
+                <i class="iconfont iconadd-account" @click="handleUserList(scope.row)" style=" margin-left: 1em;"></i>
+            </el-tooltip>
+            <el-tooltip effect="dark" content="权限编辑" placement="top-start">
+                <i class="iconfont iconshuzhuangtu_o" @click="handlePermissionList(scope.row)" style=" margin-left: 1em;"></i>
+            </el-tooltip>
+            <el-tooltip effect="dark" content="删除" placement="top-start">
+              <i class="iconfont iconchangyonggoupiaorenshanchu" @click="handleDelete(scope.row)" style=" margin-left: 1em;"></i>
+            </el-tooltip>
           </template>
         </el-table-column>
       </el-table>
