@@ -18,17 +18,21 @@ import MenusManage from '@/view/SystemManage/MenusManage/MenusManage.vue'
 // 文章模块
 import ArticleManage from '@/view/ArticleManage/ArticleManage.vue'
 
-import skip from '@/view/Login/skip.vue'
+// import skip from '@/view/Login/skip.vue'
 // import PointOvelay from '@/view/Login/PointOvelay'
 
 Vue.use(Router)
 
 export default new Router({
-  // history 模式,该模式下没有#前缀
   // build打包添加的地方
-  mode: 'history',
   // base: '/blogger/',
+  // history 模式,该模式下没有#前缀
+  mode: 'history',
   routes: [
+    {
+      path: '/',
+      // redirect: '/Login'
+    },
     {
       path: '/Login',
       name: 'Login',
@@ -36,35 +40,40 @@ export default new Router({
       meta: {
         title: '登录'
       }
-    }, {
+    },
+    {
       path: '/HomePage',
       name: 'HomePage',
       component: HomePage,
       meta: {
         title: '首页'
       }
-    }, {
+    },
+    {
       path: '/UserManage',
-      name: '用户管理',
+      name: 'UserManage',
       component: UserManage,
       meta: {
-        title: 'UserManage'
+        title: '用户管理'
       }
-    }, {
+    },
+    {
       path: '/RoleManage',
       name: 'RoleManage',
       component: RoleManage,
       meta: {
         title: '角色管理'
       }
-    }, {
+    },
+    {
       path: '/PermissionManage',
       name: 'PermissionManage',
       component: PermissionManage,
       meta: {
         title: '权限详情'
       }
-    }, {
+    },
+    {
       path: '/ArticleManage',
       name: 'ArticleManage',
       component: ArticleManage,
@@ -72,16 +81,21 @@ export default new Router({
         title: '文章模块'
       }
     },
-    // 地图处理
-    {
-      path: '/skip',
-      name: 'skip',
-      component: skip
-    }, // 地图处理
+    // {
+    //   path: '/skip',
+    //   name: 'skip',
+    //   component: skip,
+    //   meta: {
+    //     title: '地图处理'
+    //   }
+    // },
     {
       path: '/MenusManage',
       name: 'MenusManage',
-      component: MenusManage
+      component: MenusManage,
+      meta: {
+        title: '菜单'
+      }
     }
     // // 地图处理
     // {

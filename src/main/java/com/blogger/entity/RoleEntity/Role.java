@@ -7,10 +7,12 @@ public class Role {
     private String roleName;
     // 角色描述
     private String roleDescribe;
-    // 创建人（用户ID）
+    // 创建者（用户ID）
     private String createPerson;
     // 创建时间
     private String createDate;
+    // 更新者（用户ID）
+    private String updatePerson;
     // 更新时间
     private String updateDate;
 
@@ -61,5 +63,13 @@ public class Role {
 
     public void setUpdateDate(String updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public String getUpdatePerson() {
+        return updatePerson;
+    }
+
+    public void setUpdatePerson(String updatePerson) {
+        this.updatePerson = updatePerson;
     }
 }

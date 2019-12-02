@@ -39,6 +39,7 @@ export default {
       // 显示总共有多少数据
       totalCount: 40,
 
+      value: '100'
 
     };
   },

@@ -5,18 +5,24 @@ import com.blogger.entity.RoleEntity.Role;
 public class Permission extends Role {
     // 权限ID
     private int permissionId;
-    // 模块目录
-    private String modName;
-    // 功能名称
-    private String funName;
+    // 权限名称
+    private String permissionName;
     // 父类ID
     private int parentId;
+    // 父类名称
+    private String parentName;
+    // 功能名称
+    private String functionName;
+    // 功能路径
+    private String functionPath;
     // 权限等级
     private int levelNo;
+    // 创建者（用户ID）
+    private String createPerson;
     // 创建时间
     private String createDate;
-    // 创建人
-    private String createPerson;
+    // 更新者（用户ID）
+    private String updatePerson;
     // 更新时间
     private String updateDate;
 
@@ -29,44 +35,44 @@ public class Permission extends Role {
         this.permissionId = permissionId;
     }
 
-    public String getModName() {
-        return modName;
+    public String getPermissionName() {
+        return permissionName;
     }
 
-    public void setModName(String modName) {
-        this.modName = modName;
+    public void setPermissionName(String permissionName) {
+        this.permissionName = permissionName;
     }
 
-    public String getFunName() {
-        return funName;
+    public int getParentId() {
+        return parentId;
     }
 
-    public void setFunName(String funName) {
-        this.funName = funName;
+    public void setParentId(int parentId) {
+        this.parentId = parentId;
     }
 
-    public String getCreateDate() {
-        return createDate;
+    public String getParentName() {
+        return parentName;
     }
 
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
     }
 
-    public String getCreatePerson() {
-        return createPerson;
+    public String getFunctionName() {
+        return functionName;
     }
 
-    public void setCreatePerson(String createPerson) {
-        this.createPerson = createPerson;
+    public void setFunctionName(String functionName) {
+        this.functionName = functionName;
     }
 
-    public String getUpdateDate() {
-        return updateDate;
+    public String getFunctionPath() {
+        return functionPath;
     }
 
-    public void setUpdateDate(String updateDate) {
-        this.updateDate = updateDate;
+    public void setFunctionPath(String functionPath) {
+        this.functionPath = functionPath;
     }
 
     public int getLevelNo() {
@@ -77,11 +83,41 @@ public class Permission extends Role {
         this.levelNo = levelNo;
     }
 
-    public int getParentId() {
-        return parentId;
+    @Override
+    public String getCreatePerson() {
+        return createPerson;
     }
 
-    public void setParentId(int parentId) {
-        this.parentId = parentId;
+    @Override
+    public void setCreatePerson(String createPerson) {
+        this.createPerson = createPerson;
+    }
+
+    @Override
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    @Override
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getUpdatePerson() {
+        return updatePerson;
+    }
+
+    public void setUpdatePerson(String updatePerson) {
+        this.updatePerson = updatePerson;
+    }
+
+    @Override
+    public String getUpdateDate() {
+        return updateDate;
+    }
+
+    @Override
+    public void setUpdateDate(String updateDate) {
+        this.updateDate = updateDate;
     }
 }

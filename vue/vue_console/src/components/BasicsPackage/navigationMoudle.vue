@@ -1,7 +1,7 @@
 <template>
   <div class="navigationMoudle">
     <!-- logo样式 -->
-    <div class="logo" v-on:click="shrinkNav" style="   line-height: 60px;">logoBIG12345</div>
+    <div class="logo" style="line-height: 60px;">logoBIG12345</div>
     <!--  1.default-active:高亮显示 刷新页面后，对应menu高亮     2.collapse:侧边栏是否收展    3.@select:选中事件
      4.background-color:菜单的背景色  5.active-text-color:当前激活菜单的文字颜色   6.text-color:菜单的文字颜色-->
     <el-menu class="el-menu-vertical-demo" :default-active="activeIndex" :collapse="isCollapse" @select="handleSelect"

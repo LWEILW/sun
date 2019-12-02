@@ -12,13 +12,23 @@
     <insert id="createPermission" parameterType="com.blogger.entity.PermissionEntity.Permission">
         insert into permission (
         permissionId,
-        modName,
-        funName,
+        permissionName,
+        parentId,
+        parentName,
+        functionName,
+        functionPath,
+        levelNo,
+        createPerson,
         createDate
         ) values (
         #{permission.permissionId},
-        #{permission.modName},
-        #{permission.funName},
+        #{permission.permissionName},
+        #{permission.parentId},
+        #{permission.parentName},
+        #{permission.functionName},
+        #{permission.functionPath},
+        #{permission.levelNo},
+        #{permission.createPerson},
          now()
         )
     </insert>
@@ -27,16 +37,28 @@
     <update id="updatePermission" parameterType="com.blogger.entity.PermissionEntity.Permission">
         update permission
         <set>
-            <if test="permission.getModName!=null and permission.getModName!=''">
-                modName=#{permission.modName},
+            <if test="permission.getPermissionName() !=null and permission.getPermissionName() !=''">
+                permissionName=#{permission.permissionName},
             </if>
-            <if test="permission.getFunName!=null and permission.getFunName!=''">
-                funName=#{permission.funName},
+            <if test="permission.getParentId() !=null and permission.getParentId() !=''">
+                parentId=#{permission.parentId},
             </if>
-            <!--            <if test="permission.getCreatePerson!=null and permission.getCreatePerson!=''">-->
-            <!--                createPerson=#{permission.createPerson},-->
-            <!--            </if>-->
-            <!--            updateDate= now()-->
+            <if test="permission.getParentName() !=null and permission.getParentName() !=''">
+                parentName=#{permission.parentName},
+            </if>
+            <if test="permission.getFunctionName() !=null and permission.getFunctionName() !=''">
+                functionName=#{permission.functionName},
+            </if>
+            <if test="permission.getFunctionPath() !=null and permission.getFunctionPath() !=''">
+                functionPath=#{permission.functionPath},
+            </if>
+            <if test="permission.getLevelNo() !=null and permission.getLevelNo() !=''">
+                levelNo=#{permission.levelNo},
+            </if>
+            <if test="permission.getUpdatePerson() !=null and permission.getUpdatePerson() !=''">
+                updatePerson=#{permission.updatePerson},
+            </if>
+            updateDate= now()
         </set>
         where permissionId=#{permission.permissionId}
     </update>

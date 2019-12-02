@@ -48,7 +48,15 @@
         <el-table-column prop="userSex" label="性别"></el-table-column>
         <el-table-column prop="userPhone" label="手机话"></el-table-column>
         <el-table-column prop="userEmail" label="邮箱"></el-table-column>
-        <el-table-column prop="createPerson" label="用户状态" sortable></el-table-column>
+        <el-table-column prop="createPerson" label="用户状态" sortable>
+            <el-switch
+              v-model="value"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              active-value="100"
+              inactive-value="0">
+            </el-switch>
+        </el-table-column>
         <el-table-column prop="createPerson" label="创建人" sortable></el-table-column>
         <el-table-column prop="createDate" label="创建时间" sortable></el-table-column>
         <el-table-column prop="updateDate" label="更新时间" sortable></el-table-column>

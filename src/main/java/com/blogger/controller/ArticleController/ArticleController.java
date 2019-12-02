@@ -4,11 +4,16 @@ package com.blogger.controller.ArticleController;
 import com.alibaba.fastjson.JSONObject;
 import com.blogger.entity.ArticleEntity.Article;
 import com.blogger.server.ArticleService.ArticleService;
+import com.blogger.util.ExportWord;
 import com.blogger.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("article")
@@ -74,31 +79,21 @@ public class ArticleController {
         return article;
     }
 
+    // 导出文章Word文件 /// throws ParseException
+    @GetMapping("exportWrod/{articleId}")
+    public void exportWrod(HttpServletRequest request, HttpServletResponse response, @PathVariable("articleId") int articleId) {
 
-//    // 调度命令复制
-//    @PostMapping("copyScheduling")
-//    public Json copyScheduling(@RequestBody String data) {
-//        String oper = "copyScheduling";
-//        data = StringUtils.decode(data);
-//        JSONObject obj = JSONObject.parseObject(data);
-//        JSONArray idList = (JSONArray) obj.get("idList");
-//
-//        boolean succ = schedulingMgmtService.copyScheduling(idList);
-//        if (succ) {
-//            return Json.succ(oper, "复制成功");
-//        } else {
-//            return Json.succ(oper, "复制失败");
-//        }
-//    }
-//
-//
-//    // 调度获取当前调度人员列表
-//    @GetMapping("getSchedulingPersonGroup")
-//    public Json getSchedulingPersonGroup() {
-//        String oper = "getSchedulingPersonGroup";
-//
-//        List<JSONObject> SchedulingPersonGroup = schedulingMgmtService.getSchedulingPersonGroup();
-//        return Json.succ(oper, "当前调度人员列表")
-//                .data("PersonGroup", SchedulingPersonGroup);
-//    }
+
+        List<Article> articleList = articleService.getArticleList();
+        Article article = articleService.detailsArticle(articleId);
+        Map<String, Object> params = new HashMap<>();
+        params.put("ArticleName", article.getArticleName());
+        // 工具类生成word文档（本地）
+        ExportWord.exportWord("C:/Users/DELL/Desktop/exportWord.docx", "C:/Users/DELL/Desktop",
+                article.getArticleName() + ".docx", params, request, response, article,articleList);
+
+        // 工具类生成word文档（服务器）   高明有轨电车XX月XX日运营日报
+//        WorderToNewWordUtils.exportWord("/root/operateWord.docx", "/root", operationalProjectOne.getOperateName() + ".docx",
+//                params, request, response, operationalProjectTimetables, operationalProjectDelayList, operationalProjectVehicleList, operationalProjectEventList, operationalProjectFaultList);
+    }
 }

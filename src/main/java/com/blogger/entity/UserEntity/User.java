@@ -20,10 +20,12 @@ public class User extends Role {
     private String userPassword;
     // 登录验证
     private String token;
-    // 创建人（用户ID）
+    // 创建者（用户ID）
     private String createPerson;
     // 创建时间
     private String createDate;
+    // 更新者（用户ID）
+    private String updatePerson;
     // 更新时间
     private String updateDate;
 
@@ -114,5 +116,13 @@ public class User extends Role {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getUpdatePerson() {
+        return updatePerson;
+    }
+
+    public void setUpdatePerson(String updatePerson) {
+        this.updatePerson = updatePerson;
     }
 }

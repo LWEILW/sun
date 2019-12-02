@@ -12,6 +12,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 import NavigationMoudle from './components/BasicsPackage/navigationMoudle'
 import HeaderMoudle from './components/BasicsPackage/headerMoudle'
 import TinymceMoudle from './components/TinymcePackage/tinymceMoudle'
+import BreadBoxMoudle from './components/BasicsPackage/breadBox'
+import Tags from './components/BasicsPackage/tags'
 
 // import NavigationMoudle from './components/Navigation/nav'
 
@@ -23,6 +25,10 @@ Vue.use(ElementUI)
 Vue.component('NavigationMoudle', NavigationMoudle)
 Vue.component('HeaderMoudle', HeaderMoudle)
 Vue.component('TinymceMoudle', TinymceMoudle)
+Vue.component('BreadBoxMoudle', BreadBoxMoudle)
+Vue.component('Tags', Tags)
+
+
 
 /* eslint-disable no-new */
 new Vue({

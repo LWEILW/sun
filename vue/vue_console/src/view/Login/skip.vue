@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import ol from "openlayers";
+
 import Map from "ol/Map.js";
 import View from "ol/View.js";
 import { Draw, Modify, Snap } from "ol/interaction.js";

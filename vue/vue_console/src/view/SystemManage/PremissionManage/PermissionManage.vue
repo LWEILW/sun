@@ -3,7 +3,7 @@
     <!--搜索框,添加按钮,删除按钮 -->
     <div class="PermissionOperation">
       <el-button type="text" @click="handleCreate">添加权限</el-button>
-      <el-button type="text" @click="handleSwtich">展开/折叠</el-button>
+<!--      <el-button type="text" @click="handleSwtich">展开/折叠</el-button>-->
     </div>
 
     <!--  1.data:显示的数据, 2.stripe:是否为斑马纹, 3.border:是否带有纵向边框, 4.selection-change:当选择项发生变化时会触发该事件 -->
