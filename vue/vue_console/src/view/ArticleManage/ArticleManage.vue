@@ -36,8 +36,9 @@
           <el-table-column prop="articleType" label="文章类型"></el-table-column>
           <el-table-column prop="articleContent" label="文章内容"></el-table-column>
           <el-table-column prop="articleStatus" label="文章状态"></el-table-column>
-          <el-table-column prop="createPerson" label="创建人" sortable></el-table-column>
+          <el-table-column prop="createPerson" label="创建者" sortable></el-table-column>
           <el-table-column prop="createDate" label="创建时间" sortable></el-table-column>
+          <el-table-column prop="createPerson" label="更新者" sortable></el-table-column>
           <el-table-column prop="updateDate" label="更新时间" sortable></el-table-column>
 
           <el-table-column fixed="right" label="操作">

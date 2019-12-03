@@ -14,24 +14,24 @@
         </span>
       </li>
     </ul>
-    <div class="tags-close-box">
-      <!-- elementUi下拉菜单 -->
-      <el-dropdown @command="handleTags">
-        <el-button size="mini" type="primary">
-          标签选项
-          <i class="el-icon-arrow-down el-icon--right"></i>
-        </el-button>
-        <el-dropdown-menu size="small" slot="dropdown">
-          <el-dropdown-item command="other">关闭其他</el-dropdown-item>
-          <el-dropdown-item command="all">关闭所有</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-    </div>
+<!--    <div class="tags-close-box">-->
+<!--      &lt;!&ndash; elementUi下拉菜单 &ndash;&gt;-->
+<!--      <el-dropdown @command="handleTags">-->
+<!--        <el-button size="mini" type="primary">-->
+<!--          标签选项-->
+<!--          <i class="el-icon-arrow-down el-icon&#45;&#45;right"></i>-->
+<!--        </el-button>-->
+<!--        <el-dropdown-menu size="small" slot="dropdown">-->
+<!--          <el-dropdown-item command="other">关闭其他</el-dropdown-item>-->
+<!--          <el-dropdown-item command="all">关闭所有</el-dropdown-item>-->
+<!--        </el-dropdown-menu>-->
+<!--      </el-dropdown>-->
+<!--    </div>-->
   </div>
 </template>
 
 <script>
-  // import bus from "./bus";  // 引入通用组件传值组件
+  import bus from "./bus";  // 引入通用组件传值组件
   export default {
     data() {
       return {
@@ -60,13 +60,13 @@
         this.tagsList = [];
         this.$router.push("/");
       },
-      // 关闭其他标签
-      closeOther() {
-        const curItem = this.tagsList.filter(item => {
-          return item.path === this.$route.fullPath;
-        });
-        this.tagsList = curItem;
-      },
+      // // 关闭其他标签
+      // closeOther() {
+      //   const curItem = this.tagsList.filter(item => {
+      //     return item.path === this.$route.fullPath;
+      //   });
+      //   this.tagsList = curItem;
+      // },
       // 设置标签
       setTags(route) {
         const isExist = this.tagsList.some(item => {
@@ -84,10 +84,10 @@
         }
         bus.$emit("tags", this.tagsList); // 组件传值
       },
-      // 点击标签下拉选项(关闭其他或者关闭所有)
-      handleTags(command) {
-        command === "other" ? this.closeOther() : this.closeAll();
-      }
+      // // 点击标签下拉选项(关闭其他或者关闭所有)
+      // handleTags(command) {
+      //   command === "other" ? this.closeOther() : this.closeAll();
+      // }
     },
     computed: {
       // 大于0则显示标签组件
@@ -110,11 +110,11 @@
 
 <style>
   .tags {
-    position: relative;
-    height: 60px;
+    /*position: relative;*/
+    height: 40px;
     overflow: hidden;
     background: #fff;
-    padding-right: 120px;
+    /*padding-right: 120px;*/
     box-shadow: 0 5px 10px #ddd;
   }
 
@@ -122,6 +122,8 @@
     box-sizing: border-box;
     width: 100%;
     height: 100%;
+    margin: 3px;
+    padding-inline-start: 0;
   }
 
   .tags-li {
@@ -164,24 +166,27 @@
   .tags-li.active .tags-li-title {
     color: #fff;
   }
+
   .tags-li.active {
     border: 1px solid #409EFF;
     background-color: #409EFF;
   }
+
   a {
     text-decoration: none;
   }
-  .tags-close-box {
-    position: absolute;
-    right: 0;
-    top: 0;
-    box-sizing: border-box;
-    padding-top: 1px;
-    text-align: center;
-    width: 110px;
-    height: 30px;
-    background: #fff;
-    box-shadow: -3px 0 15px 3px rgba(0, 0, 0, 0.1);
-    z-index: 10;
-  }
+
+  /*.tags-close-box {*/
+  /*  position: absolute;*/
+  /*  right: 0;*/
+  /*  top: 0;*/
+  /*  box-sizing: border-box;*/
+  /*  padding-top: 1px;*/
+  /*  text-align: center;*/
+  /*  width: 110px;*/
+  /*  height: 30px;*/
+  /*  background: #fff;*/
+  /*  box-shadow: -3px 0 15px 3px rgba(0, 0, 0, 0.1);*/
+  /*  z-index: 10;*/
+  /*}*/
 </style>

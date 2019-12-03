@@ -1,10 +1,12 @@
 <template>
   <div class="RoleManage">
     <!--搜索框,添加按钮,删除按钮 -->
-    <div class="RoleOperation">
-      <el-button type="text" @click="handleCreate">添加角色</el-button>
-      <el-button type="text" @click="handleCreate">删除</el-button>
-      <el-button type="text" @click="handleCreate">导出</el-button>
+    <div class="RoleOperation" style="margin-bottom: 10px;">
+      <el-row type="flex" class="row-bg" justify="end">
+        <el-button size="medium" round @click="handleCreate">添加角色</el-button>
+        <el-button size="medium" round @click="handleCreate">删除</el-button>
+        <el-button size="medium" round @click="handleCreate">导出</el-button>
+      </el-row>
     </div>
 
     <!--  1.data:显示的数据,
@@ -16,11 +18,13 @@
                 max-height="800px" ref="RoleTable">
         <el-table-column prop="roleId" label="角色ID" sortable></el-table-column>
         <el-table-column prop="roleName" label="角色名称"></el-table-column>
-        <el-table-column prop="roleDescribe" label="权限字符"></el-table-column>
         <el-table-column prop="roleDescribe" label="角色描述"></el-table-column>
-        <el-table-column prop="roleDescribe" label="角色状态"></el-table-column>
-        <el-table-column prop="createPerson" label="创建人"></el-table-column>
+
+<!--        <el-table-column prop="roleDescribe" label="权限字符"></el-table-column>-->
+<!--        <el-table-column prop="roleDescribe" label="角色状态"></el-table-column>-->
+        <el-table-column prop="createPerson" label="创建者"></el-table-column>
         <el-table-column prop="createDate" label="创建时间"></el-table-column>
+        <el-table-column prop="updatePerson" label="更新者"></el-table-column>
         <el-table-column prop="updateDate" label="更新时间" sortable></el-table-column>
 
         <el-table-column fixed="right" label="操作">

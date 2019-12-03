@@ -9,24 +9,22 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 
 // 导入组件
-import NavigationMoudle from './components/BasicsPackage/navigationMoudle'
-import HeaderMoudle from './components/BasicsPackage/headerMoudle'
-import TinymceMoudle from './components/TinymcePackage/tinymceMoudle'
-import BreadBoxMoudle from './components/BasicsPackage/breadBox'
-import Tags from './components/BasicsPackage/tags'
-
-// import NavigationMoudle from './components/Navigation/nav'
+import Navigation from './components/navigation/navigation'
+import Header from './components/header/header'
+import Tags from './components/tags/tags'
+import BreadBox from './components/breadBox/breadBox'
+import Tinymce from './components/tinymce/tinymce'
 
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 
 // 引用组件
-Vue.component('NavigationMoudle', NavigationMoudle)
-Vue.component('HeaderMoudle', HeaderMoudle)
-Vue.component('TinymceMoudle', TinymceMoudle)
-Vue.component('BreadBoxMoudle', BreadBoxMoudle)
+Vue.component('Navigation', Navigation)
+Vue.component('Header', Header)
 Vue.component('Tags', Tags)
+Vue.component('BreadBox', BreadBox)
+Vue.component('Tinymce', Tinymce)
 
 
 

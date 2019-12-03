@@ -1,11 +1,22 @@
 <template>
-  <div class="navigationMoudle">
+  <div class="navigation">
     <!-- logo样式 -->
-    <div class="logo" style="line-height: 60px;">logoBIG12345</div>
-    <!--  1.default-active:高亮显示 刷新页面后，对应menu高亮     2.collapse:侧边栏是否收展    3.@select:选中事件
-     4.background-color:菜单的背景色  5.active-text-color:当前激活菜单的文字颜色   6.text-color:菜单的文字颜色-->
-    <el-menu class="el-menu-vertical-demo" :default-active="activeIndex" :collapse="isCollapse" @select="handleSelect"
-             background-color="rgb(48, 65, 86)" text-color="#fff" active-text-color="#ffd04b">
+    <div class="logo" style="line-height: 40px;">logoBIG12345</div>
+    <!--
+     1.default-active:高亮显示 刷新页面后，对应menu高亮
+     2.collapse:侧边栏是否收展
+     3.@select:选中事件
+     4.background-color:菜单的背景色
+     5.active-text-color:当前激活菜单的文字颜色
+     6.text-color:菜单的文字颜色
+     -->
+    <el-menu class="el-menu-vertical-demo"
+             :default-active="activeIndex"
+             :collapse="isCollapse"
+             @select="handleSelect"
+             background-color="rgb(48, 65, 86)"
+             text-color="#fff"
+             active-text-color="#ffd04b">
       <!-- 首页 -->
       <el-menu-item index="HomePage">
         <i class="el-icon-menu"></i>
@@ -109,7 +120,7 @@
 
 <script>
   export default {
-    name: "navigationMoudle",
+    name: "navigation",
     // 存储数据
     data() {
       return {
@@ -184,7 +195,7 @@
 
 
 <style scoped>
-  .navigationMoudle {
+  .navigation {
     height: 100%;
   }
 

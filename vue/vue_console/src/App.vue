@@ -1,35 +1,26 @@
 <template>
   <div id="app">
     <el-container style="height:100%;">
-
-      <!-- Navigation组件 -->
       <el-aside style="width: 200px; background-color: rgb(48, 65, 86);">
-        <NavigationMoudle></NavigationMoudle>
+        <!-- Navigation组件 -->
+        <Navigation></Navigation>
       </el-aside>
-
       <el-container>
-        <!-- header组件 -->
-        <el-header style="background-color: antiquewhite;">
-          <HeaderMoudle></HeaderMoudle>
-        </el-header>
-
-        <!-- main组件 -->
-        <el-main style="background-color: #E9EEF3;">
+        <el-header style="background-color: antiquewhite; height: 150px; padding: 0;">
+          <!-- header组件 -->
+          <Header></Header>
           <!-- 多重标签页 -->
           <Tags></Tags>
 
-          <!-- 面包屑组件 -->
-          <BreadBoxMoudle></BreadBoxMoudle>
-
-          <!-- 主页内容 -->
-          <router-view></router-view>
-
+          <BreadBox></BreadBox>
+        </el-header>
+        <el-main>
           <!-- 增加keep-alive缓存机制 -->
           <keep-alive :include="tagsList">
-<!--            <router-view></router-view>-->
+            <!--  main主页内容 -->
+            <router-view></router-view>
           </keep-alive>
         </el-main>
-
       </el-container>
     </el-container>
   </div>

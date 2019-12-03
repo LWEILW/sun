@@ -1,7 +1,7 @@
 <template>
-  <div class="breadBox">
+  <div class="breadBox" style="margin:15px;height: 20px;">
     <!--  面包屑组件  -->
-    <el-breadcrumb separator="/" style="margin-bottom:15px;">
+    <el-breadcrumb separator="/" >
       <el-breadcrumb-item
         v-for="(item,index) in breadList"
         :key="index"

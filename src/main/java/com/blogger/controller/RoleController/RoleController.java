@@ -99,7 +99,7 @@ public class RoleController {
             if (permission.getLevelNo() == 1) {
                 JSONObject obj = new JSONObject();
                 obj.put("PermissionId", permission.getPermissionId());
-                obj.put("label", permission.getFunName());
+                obj.put("label", permission.getFunctionName());
                 obj.put("LevelNo", permission.getLevelNo());
                 obj.put("ParentId", permission.getParentId());
                 jsonObjects.add(obj);
@@ -115,7 +115,7 @@ public class RoleController {
                 int parentId = permission.getParentId();
                 if (PermissionId == parentId) {
                     JSONObject one = new JSONObject();
-                    one.put("label", permission.getFunName());
+                    one.put("label", permission.getFunctionName());
                     one.put("PermissionId", permission.getPermissionId());
                     jsonObjects1.add(one);
 
