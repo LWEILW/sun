@@ -24,6 +24,10 @@ public interface RoleMapperEx {
     // 角色删除
     int deleteRole(@Param("roleId")  int roleId);
 
+    // 删除角色关联用户
+    int deleteRoleByUser(@Param("roleId")  int roleId);
+
+
     // 角色详情
     Role detailsRole(@Param("roleId")  int roleId);
 
@@ -38,8 +42,8 @@ public interface RoleMapperEx {
 
 
 
-    // 权限维护台账
-    List<Permission> getPermissionListByRoleId(@Param("roleId") int roleId);
+    // 权限维护已选数据
+    List<Permission> getPermissionListByRoleId(@Param("roleId") int roleId,@Param("type") int type);
 
     // 权限维护添加
     int addPermissionByRoleId(@Param("roleId") int roleId, @Param("permissionId") int permissionId);

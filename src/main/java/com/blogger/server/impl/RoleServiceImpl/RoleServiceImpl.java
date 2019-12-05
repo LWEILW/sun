@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service("RoleService")
 public class RoleServiceImpl implements RoleService {
@@ -51,8 +53,17 @@ public class RoleServiceImpl implements RoleService {
 
     // 角色删除
     @Override
-    public int deleteRole(int roleId) {
-        return roleMapperEx.deleteRole(roleId);
+    public boolean deleteRole(int roleId) {
+
+        // 删除角色
+        int count = roleMapperEx.deleteRole(roleId);
+        if (count != 1) {
+            return false;
+        }
+        // 删除关联的用户
+        roleMapperEx.deleteRoleByUser(roleId);
+
+        return true;
     }
 
 
@@ -95,10 +106,48 @@ public class RoleServiceImpl implements RoleService {
     }
 
 
-    // 权限维护台账
+    // 权限维护已选数据
     @Override
-    public List<Permission> getPermissionListByRoleId(int roleId) {
-        return roleMapperEx.getPermissionListByRoleId(roleId);
+    public List<JSONObject> getPermissionListByRoleId(int roleId) {
+        // 封装数据
+        List<JSONObject> jsonObjects = new ArrayList<JSONObject>();
+
+        // 第一层权限
+        List<Permission> permissionFirstList = roleMapperEx.getPermissionListByRoleId(roleId, 1);
+        for (Permission permission : permissionFirstList) {
+            JSONObject firstObj = new JSONObject();
+            firstObj.put("permissionId", permission.getPermissionId());
+            firstObj.put("permissionName", permission.getPermissionName());
+            firstObj.put("LevelNo", permission.getLevelNo());
+            firstObj.put("ParentId", permission.getParentId());
+            jsonObjects.add(firstObj);
+
+        }
+
+        // 其他层权限
+        List<Permission> permissionOtherList = roleMapperEx.getPermissionListByRoleId(roleId, 0);
+        for (JSONObject jsonObject : jsonObjects) {
+            // 循环获取第一层ID，匹配封装第一层数据下的值
+            int PermissionId = jsonObject.getInteger("permissionId");
+
+            // children层
+            List<JSONObject> jsonObjectList = new ArrayList<JSONObject>();
+            for (Permission permission : permissionOtherList) {
+                // 获取父类ID,匹配第一层ID
+                int parentId = permission.getParentId();
+                if (PermissionId == parentId) {
+                    JSONObject OtherObject = new JSONObject();
+                    OtherObject.put("permissionId", permission.getPermissionId());
+                    OtherObject.put("permissionName", permission.getPermissionName());
+                    jsonObjectList.add(OtherObject);
+
+                }
+            }
+            jsonObject.put("children", jsonObjectList);
+        }
+
+
+        return jsonObjects;
     }
 
     // 权限维护添加

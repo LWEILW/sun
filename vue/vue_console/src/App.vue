@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <el-container style="height:100%;">
-      <el-aside style="width: 200px; background-color: rgb(48, 65, 86);">
+      <el-aside style="width: auto; background-color: #3e4a61;">
         <!-- Navigation组件 -->
         <Navigation></Navigation>
       </el-aside>
       <el-container>
-        <el-header style="background-color: antiquewhite; height: 150px; padding: 0;">
+        <el-header style="height: 135px; padding: 0;">
           <!-- header组件 -->
           <Header></Header>
-          <!-- 多重标签页 -->
+          <!-- 多重标签页组件 -->
           <Tags></Tags>
-
+          <!-- 面包屑组件 -->
           <BreadBox></BreadBox>
         </el-header>
         <el-main>

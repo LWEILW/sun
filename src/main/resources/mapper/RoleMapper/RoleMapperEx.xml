@@ -47,6 +47,11 @@
         delete  from  role where roleId=#{roleId}
     </delete>
 
+    <!--  删除角色关联用户  -->
+    <delete id="deleteRoleByUser" parameterType="java.lang.Integer">
+      delete  from  user_role where roleId=#{roleId}
+    </delete>
+
     <!--  角色详情  -->
     <select id="detailsRole" parameterType="java.lang.Integer" resultType="com.blogger.entity.RoleEntity.Role">
         select * from role where roleId = #{roleId}
@@ -82,9 +87,19 @@
     <!--  权限维护台账  -->
     <select id="getPermissionListByRoleId" parameterType="java.lang.Integer"
             resultType="com.blogger.entity.PermissionEntity.PermissionRole">
-         select * from permission_role
-         left join  permission on permission.permissionId=permission_role.permissionId
-         where roleId = #{roleId}
+        select * from permission_role pr
+        left join permission p on p.permissionId=pr.permissionId
+        <where>
+            pr.roleId = #{roleId}
+            <choose>
+                <when test="type !=null and type != 1">
+                    and p.levelNo != 1
+                </when>
+                <otherwise>
+                    and p.levelNo=1
+                </otherwise>
+            </choose>
+        </where>
     </select>
 
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="breadBox" style="margin:15px;height: 20px;">
+  <div class="breadBox" style="margin:15px; height: 20px;">
     <!--  面包屑组件  -->
     <el-breadcrumb separator="/" >
       <el-breadcrumb-item

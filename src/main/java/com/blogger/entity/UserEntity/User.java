@@ -18,6 +18,8 @@ public class User extends Role {
     private String userEmail;
     // 密码
     private String userPassword;
+    // 用户状态
+    private int userStatus;
     // 登录验证
     private String token;
     // 创建者（用户ID）
@@ -124,5 +126,13 @@ public class User extends Role {
 
     public void setUpdatePerson(String updatePerson) {
         this.updatePerson = updatePerson;
+    }
+
+    public int getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(int userStatus) {
+        this.userStatus = userStatus;
     }
 }

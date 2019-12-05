@@ -17,6 +17,7 @@
     userPhone,
     userEmail,
     userPassword,
+    userStatus,
     createPerson,
     createDate
     ) values (
@@ -27,6 +28,7 @@
     #{user.userPhone},
     #{user.userEmail},
     #{user.userPassword},
+    #{user.userStatus},
     #{user.createPerson},
     now()
     )
@@ -54,6 +56,9 @@
             <if test="user.getUserPassword!=null and user.getUserPassword!=''">
                 userPassword=#{user.userPassword},
             </if>
+            <if test="user.getUserStatus!=null and user.getUserStatus!=''">
+                userStatus=#{user.userStatus},
+            </if>
             updateDate=now()
         </set>
         where userId=#{user.userId}
@@ -68,9 +73,6 @@
     <select id="detailsUser" parameterType="java.lang.Integer" resultType="com.blogger.entity.UserEntity.User">
         select * from user where userId = #{userId}
     </select>
-
-
-
 
 
     <select id="usersLogin" parameterType="java.lang.String" resultType="com.blogger.entity.UserEntity.User">

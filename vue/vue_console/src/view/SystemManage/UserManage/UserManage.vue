@@ -3,10 +3,10 @@
     <!--搜索框,添加按钮,删除按钮 -->
     <div class="userOperation" style="margin-bottom: 10px;">
       <el-row type="flex" class="row-bg" justify="end">
-          <el-button size="medium" round @click="handleCreate">添加用户</el-button>
-          <el-button size="medium" round @click="handleDeleteAll()">删除</el-button>
-          <el-button size="medium" round @click="handleCreate">导入</el-button>
-          <el-button size="medium" round @click="handleCreate">导出</el-button>
+        <el-button size="medium" round @click="handleCreate">添加用户</el-button>
+        <el-button size="medium" round @click="handleDeleteAll()">删除</el-button>
+        <el-button size="medium" round @click="handleCreate">导入</el-button>
+        <el-button size="medium" round @click="handleCreate">导出</el-button>
       </el-row>
 
       <!--            &lt;!&ndash; 搜索框 &ndash;&gt;-->
@@ -40,24 +40,35 @@
       <!--      </button>-->
     </div>
 
-    <!--  表格数据及操作 -->
-    <!--  1.data:显示的数据, 2.stripe:是否为斑马纹, 3.border:是否带有纵向边框, 4.selection-change:当选择项发生变化时会触发该事件 -->
+    <!--  表格数据及操作
+         1.data:显示的数据,
+         2.stripe:是否为斑马纹,
+         3.border:是否带有纵向边框,
+         4.selection-change:当选择项发生变化时会触发该事件
+         5.header-cell-style:表头背景色-->
     <div class="user-table">
       <el-table :data="userList.slice((currentPage-1)*pagesize,currentPage*pagesize)" stripe border
-                @selection-change="handleSelectionChange" max-height="800px" ref="multipleTable">
+                @selection-change="handleSelectionChange" max-height="800px" ref="multipleTable"
+                :header-cell-style="{background:'grey',color:'#FFF'}">
         <el-table-column prop="userAccount" label="用户账号"></el-table-column>
         <el-table-column prop="userName" label="用户姓名"></el-table-column>
         <el-table-column prop="userSex" label="性别"></el-table-column>
-        <el-table-column prop="userPhone" labelhandleSearch="电话"></el-table-column>
+        <el-table-column prop="userPhone" label="电话"></el-table-column>
         <el-table-column prop="userEmail" label="邮箱"></el-table-column>
-        <el-table-column prop="createPerson" label="用户状态">
-          <el-switch
-            v-model="value"
-            active-color="#13ce66"
-            inactive-color="#ff4949"
-            active-value="100"
-            inactive-value="0">
-          </el-switch>
+        <el-table-column prop="userStatus" label="用户状态">
+          <template slot-scope="scope">
+            <el-switch
+              v-model="scope.row.userStatus"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              :active-value="1"
+              :inactive-value="0"
+              @change=changeSwitch($event,scope.row.userStatus)
+            >
+              <!--              @change="changeSwitch($event,scope.row,scope.$index)"-->
+              <!--                  @chang=changeSwitch($event,status)>-->
+            </el-switch>
+          </template>
         </el-table-column>
         <el-table-column prop="createPerson" label="创建者"></el-table-column>
         <el-table-column prop="createDate" label="创建时间"></el-table-column>
@@ -73,7 +84,7 @@
                  style=" margin-left: 1em;"></i>
             </el-tooltip>
             <el-tooltip effect="dark" content="重置 弹出框显示登陆名和密码" placement="top-start">
-              <i class="iconfont iconchangyonggoupiaorenshanchu" @click="handleDelete(scope.row)"
+              <i class="iconfont iconjingwuicon_svg-" @click="handleDelete(scope.row)"
                  style=" margin-left: 1em;"></i>
             </el-tooltip>
           </template>
@@ -96,14 +107,13 @@
     </div>
 
     <!--     弹出模态框-->
-    <el-dialog :title="updateTitle" :visible.sync="UserDialog" width="700px" center>
+    <el-dialog :title="updateTitle" :visible.sync="UserDialog" width="900px" center>
       <el-form :model="userData" ref="userform" label-width="120px">
         <el-row>
-          <el-col :span="12">
+          <el-col :span="8">
             <el-form-item label="用户工号" prop="userAccount">
               <el-input v-model="userData.userAccount"></el-input>
             </el-form-item>
-
             <el-form-item label="用户姓名" prop="userName">
               <el-input v-model="userData.userName"></el-input>
             </el-form-item>
@@ -114,9 +124,9 @@
                 <el-radio label="女"></el-radio>
               </el-radio-group>
             </el-form-item>
-
           </el-col>
-          <el-col :span="12">
+
+          <el-col :span="8">
             <el-form-item label="手机号" prop="userPhone">
               <el-input v-model="userData.userPhone"></el-input>
             </el-form-item>
@@ -125,6 +135,24 @@
               <el-input v-model="userData.userEmail"></el-input>
             </el-form-item>
 
+          </el-col>
+
+          <el-col :span="8">
+            <el-form-item label="创建者" prop="createPerson">
+              <el-input v-model="userData.createPerson" :disabled="true"></el-input>
+            </el-form-item>
+
+            <el-form-item label="创建时间" prop="createDate">
+              <el-input v-model="userData.createDate" :disabled="true"></el-input>
+            </el-form-item>
+
+            <el-form-item label="更新者" prop="updatePerson">
+              <el-input v-model="userData.updateDate" :disabled="true"></el-input>
+            </el-form-item>
+
+            <el-form-item label="更新时间" prop="updatePerson">
+              <el-input v-model="userData.updateDate" :disabled="true"></el-input>
+            </el-form-item>
 
           </el-col>
         </el-row>

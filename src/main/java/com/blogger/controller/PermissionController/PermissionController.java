@@ -19,7 +19,7 @@ public class PermissionController {
     // 权限台账
     @PostMapping("getPermissionList")
     public Result getPermissionList() {
-        List<Permission> permissionList = permissionService.getPermissionList();
+        List<JSONObject> permissionList = permissionService.getPermissionList();
         return Result.success(permissionList);
     }
 

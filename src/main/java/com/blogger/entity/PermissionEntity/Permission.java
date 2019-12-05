@@ -7,14 +7,12 @@ public class Permission extends Role {
     private int permissionId;
     // 权限名称
     private String permissionName;
+    // 权限路径
+    private String permissionPath;
     // 父类ID
     private int parentId;
     // 父类名称
     private String parentName;
-    // 功能名称
-    private String functionName;
-    // 功能路径
-    private String functionPath;
     // 权限等级
     private int levelNo;
     // 创建者（用户ID）
@@ -43,36 +41,20 @@ public class Permission extends Role {
         this.permissionName = permissionName;
     }
 
+    public String getPermissionPath() {
+        return permissionPath;
+    }
+
+    public void setPermissionPath(String permissionPath) {
+        this.permissionPath = permissionPath;
+    }
+
     public int getParentId() {
         return parentId;
     }
 
     public void setParentId(int parentId) {
         this.parentId = parentId;
-    }
-
-    public String getParentName() {
-        return parentName;
-    }
-
-    public void setParentName(String parentName) {
-        this.parentName = parentName;
-    }
-
-    public String getFunctionName() {
-        return functionName;
-    }
-
-    public void setFunctionName(String functionName) {
-        this.functionName = functionName;
-    }
-
-    public String getFunctionPath() {
-        return functionPath;
-    }
-
-    public void setFunctionPath(String functionPath) {
-        this.functionPath = functionPath;
     }
 
     public int getLevelNo() {
@@ -103,10 +85,12 @@ public class Permission extends Role {
         this.createDate = createDate;
     }
 
+    @Override
     public String getUpdatePerson() {
         return updatePerson;
     }
 
+    @Override
     public void setUpdatePerson(String updatePerson) {
         this.updatePerson = updatePerson;
     }
@@ -119,5 +103,13 @@ public class Permission extends Role {
     @Override
     public void setUpdateDate(String updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public String getParentName() {
+        return parentName;
+    }
+
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
     }
 }

@@ -12,6 +12,9 @@ public interface PermissionMapperEx {
     // 权限台账
     List<Permission> getPermissionList();
 
+    // 获取初始层权限结构
+    List<Permission> getPermissionListByFirst(@Param("type")  int type);
+
     // 权限创建
     int createPermission(@Param("permission")  Permission permission);
 

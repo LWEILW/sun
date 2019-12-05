@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.blogger.entity.PermissionEntity.Permission;
 import com.blogger.entity.RoleEntity.Role;
 import com.blogger.entity.UserEntity.User;
+import com.blogger.server.PermissionService.PermissionService;
 import com.blogger.server.RoleService.RoleService;
 import com.blogger.util.CodeMsg;
 import com.blogger.util.Result;
@@ -23,6 +24,9 @@ import java.util.Map;
 public class RoleController {
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private PermissionService permissionService;
 
     // 角色台账
     @PostMapping("getRoleList")
@@ -47,7 +51,7 @@ public class RoleController {
 
     // 角色删除
     @GetMapping("deleteRole/{roleId}")
-    public int deleteRole(@PathVariable int roleId) {
+    public boolean deleteRole(@PathVariable int roleId) {
 
         return roleService.deleteRole(roleId);
     }
@@ -80,7 +84,7 @@ public class RoleController {
         JSONObject obj = JSONObject.parseObject(data);
         int roleId = obj.getInteger("changesRoleId");
         List<JSONObject> jsonObjectList = JSON.parseArray(obj.getString("userList"), JSONObject.class);
-        boolean succ = roleService.addUserByRoleId(jsonObjectList,roleId);
+        boolean succ = roleService.addUserByRoleId(jsonObjectList, roleId);
         if (succ) {
             return Result.success("添加成功");
         } else {
@@ -88,44 +92,22 @@ public class RoleController {
         }
     }
 
-    // 权限维护台账
-    @GetMapping("getPermissionListByRoleId/{roleId}")
-    public Result getPermissionListByRoleId(@PathVariable("roleId") int roleId) {
+    // 权限维护所有数据
+    @GetMapping("getPermissionAllListByRoleId/{roleId}")
+    public Result getPermissionAllListByRoleId(@PathVariable("roleId") int roleId) {
+        List<JSONObject> permissionAllList = permissionService.getPermissionList();
 
-        List<Permission> permissionList = roleService.getPermissionListByRoleId(roleId);
-
-        List<JSONObject> jsonObjects = new ArrayList<JSONObject>();
-        for (Permission permission : permissionList) {
-            if (permission.getLevelNo() == 1) {
-                JSONObject obj = new JSONObject();
-                obj.put("PermissionId", permission.getPermissionId());
-                obj.put("label", permission.getFunctionName());
-                obj.put("LevelNo", permission.getLevelNo());
-                obj.put("ParentId", permission.getParentId());
-                jsonObjects.add(obj);
-            }
-        }
-
-        Map<String, List<JSONObject>> jsonObjectsChildren = new HashMap<>();
-        for (JSONObject jsonObject : jsonObjects) {
-            String FunName = jsonObject.getString("FunName");
-            int PermissionId = jsonObject.getInteger("PermissionId");
-            List<JSONObject> jsonObjects1 = new ArrayList<JSONObject>();
-            for (Permission permission : permissionList) {
-                int parentId = permission.getParentId();
-                if (PermissionId == parentId) {
-                    JSONObject one = new JSONObject();
-                    one.put("label", permission.getFunctionName());
-                    one.put("PermissionId", permission.getPermissionId());
-                    jsonObjects1.add(one);
-
-                }
-            }
-            jsonObject.put("children", jsonObjects1);
-        }
-
-        return Result.success(jsonObjects);
+        return Result.success(permissionAllList);
     }
+
+    // 权限维护已选数据
+    @GetMapping("getPermissionChangeListByRoleId/{roleId}")
+    public Result getPermissionChangeListByRoleId(@PathVariable("roleId") int roleId) {
+        List<JSONObject> permissionList = roleService.getPermissionListByRoleId(roleId);
+
+        return Result.success(permissionList);
+    }
+
 
     // 权限维护添加
     @PostMapping("addPermissionByRoleId")

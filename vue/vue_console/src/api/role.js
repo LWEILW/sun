@@ -54,10 +54,17 @@ export default {
       data
     })
   },
-  // 权限维护台账
-  getPermissionListByRoleId(id) {
+  // 权限维护所有数据
+  getPermissionAllListByRoleId(id) {
     return request({
-      url: `/role/getPermissionListByRoleId/${id}`,
+      url: `/role/getPermissionAllListByRoleId/${id}`,
+      method: 'get'
+    })
+  },
+  // 权限维护已选数据
+  getPermissionChangeListByRoleId(id) {
+    return request({
+      url: `/role/getPermissionChangeListByRoleId/${id}`,
       method: 'get'
     })
   },

@@ -17,7 +17,7 @@ public interface RoleService {
 
 
     // 角色删除
-    int deleteRole(int roleId);
+    boolean deleteRole(int roleId);
 
 
     // 角色详情
@@ -33,8 +33,8 @@ public interface RoleService {
     // 人员维护添加
     boolean addUserByRoleId(List<JSONObject> jsonObjectList,int roleId);
 
-    // 权限维护台账
-    List<Permission> getPermissionListByRoleId(int roleId);
+    // 权限维护已选数据
+    List<JSONObject> getPermissionListByRoleId(int roleId);
 
     // 权限维护添加
     boolean addPermissionByRoleId(JSONObject obj);

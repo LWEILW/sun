@@ -38,16 +38,29 @@ export default {
       // 已选中添加人员数组
       multipleSelection: [],
 
-      // 权限数据
-      permissionData: [],
-      // 权限树状图规则
-      Props: {
-        id: 'id',
-        label: 'label',
+      // 权限展示所有数据
+      permissionShowData: [],
+      // 权限展示树状图规则
+      permissionShowProps: {
+        id: 'permissionId',
+        label: 'permissionName',
         children: 'children'
       },
-      // 权限模态框隐藏
-      permissionDialog: false
+      // 权限展示模态框隐藏
+      permissionShowDialog: false,
+
+
+      // 权限编辑已选数据
+      permissionEditData: [],
+      permissionChangeData: [],
+      // 权限编辑树状图规则
+      permissionEditProps: {
+        id: 'permissionId',
+        label: 'permissionName',
+        children: 'children'
+      },
+      // 权限编辑模态框隐藏
+      permissionEditDialog: false
     };
   },
   // 初始化加载
@@ -58,20 +71,19 @@ export default {
     // 角色台账列表
     getRoleList() {
       api.getRoleList(this.roleParams).then(res => {
-        console.log(res.data.data)
+        // 角色台账列表
         this.roleTable = res.data.data;
         this.totalCount = res.data.data.length;
       });
     },
 
-    /** 分页方法
-     * handleSizeChange: 切换每页显示的数量
-     * handleCurrentChange: 切换页码
-     * */
+    /** 分页方法 */
+    // handleSizeChange: 切换每页显示的数量
     handleSizeChange(size) {
       this.pagesize = size;
       console.log(`每页 ${size} 条`); //每页下拉显示数据
     },
+    // handleCurrentChange: 切换页码
     handleCurrentChange(currentPage) {
       this.currentPage = currentPage;
       console.log(`当前页: ${currentPage}`); //点击第几页
@@ -142,11 +154,7 @@ export default {
         });
     },
 
-    /** 人员维护
-     * handleUserList: 人员维护台账
-     * handleAddUserList: 人员维护可添加台账
-     * addUserToRole: 人员维护添加人员
-     * */
+    /** 人员维护  */
     // 人员维护台账
     handleUserList(row) {
       this.userListDialog = true;
@@ -156,7 +164,7 @@ export default {
         this.userTable = res.data.data;
       });
     },
-    // 人员维护可添加列表
+    // 人员维护可添加台账
     handleAddUserList() {
       this.addUserListDialog = true;
       api.getUserOthersByRoleId(this.changesRoleId).then(res => {
@@ -178,20 +186,18 @@ export default {
     },
 
 
-    /** 权限维护
-     * handleUserList: 权限维护台账
-     * handleAddUserList: 权限维护添加
-     * */
-    // 权限维护台账
-    handlePermissionList(row) {
-      this.permissionDialog = true;
-      api.getPermissionListByRoleId(row.roleId).then(res => {
-        this.permissionData = res.data.data;
+    /** 权限维护  */
+    // 权限维护展示台账
+    handlePermissionShowList(row) {
+      this.permissionShowDialog = true;
+      api.getPermissionChangeListByRoleId(row.roleId).then(res => {
+        // 已选权限数据
+        this.permissionEditData = res.data.data;
       });
     },
     // 权限维护添加
     handlePermissionAdd(row) {
-      this.permissionDialog = true;
+      this.permissionShowDialog = true;
       const params = {
         'roleId': roleId,
       }
@@ -201,7 +207,30 @@ export default {
     },
     handleNodeClick() {
 
-    }
+    },
+
+    // 权限已选择编辑台账
+    handlePermissionEditList(row) {
+      this.permissionEditDialog = true;
+
+      api.getPermissionAllListByRoleId(row.roleId).then(res => {
+        // 所有权限数据
+        this.permissionShowData = res.data.data;
+      });
+
+      api.getPermissionChangeListByRoleId(row.roleId).then(res => {
+        this.permissionChangeData = [];
+        // 已选权限数据
+        this.permissionEditData = res.data.data;
+        var permission = this.permissionEditData;
+        for (var i = 0; i < permission.length; i++) {
+          for (var a = 0; a < permission[i].children.length; a++) {
+            this.permissionChangeData.push(permission[i].children[a].permissionId)
+          }
+        }});
+    },
 
   }
 };
+
+

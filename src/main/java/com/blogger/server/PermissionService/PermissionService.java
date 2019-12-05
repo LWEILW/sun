@@ -1,13 +1,17 @@
 package com.blogger.server.PermissionService;
 
+import com.alibaba.fastjson.JSONObject;
 import com.blogger.entity.PermissionEntity.Permission;
 
 import java.util.List;
 
 public interface PermissionService {
 
+    // 所有权限数据
+    List<Permission> getPermissionAllList();
+
     // 权限台账
-    List<Permission> getPermissionList();
+    List<JSONObject> getPermissionList();
 
     // 权限保存
     boolean savePermission(Permission permission);

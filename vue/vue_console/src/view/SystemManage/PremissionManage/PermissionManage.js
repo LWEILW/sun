@@ -31,7 +31,8 @@ export default {
         {value: 1, label: 1},
         {value: 2, label: 2},
         {value: 3, label: 3},
-        {value: 4, label: 4}]
+        {value: 4, label: 4}],
+      defaultOpen: false
     };
   },
   // 初始化加载
@@ -53,7 +54,7 @@ export default {
       this.updateTitle = '添加权限';
       this.permissionStatus = 'create';
       this.permissionData = {};
-      this.resetForm("permissionForm");
+      // this.resetForm("permissionForm");
     },
 
     // 编辑权限-显示详情

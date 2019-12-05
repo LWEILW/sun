@@ -1,20 +1,20 @@
 <template>
-  <div class="navigation">
+  <div class="navigation" style="width: 201px;">
     <!-- logo样式 -->
-    <div class="logo" style="line-height: 40px;">logoBIG12345</div>
-    <!--
+    <div class="logo" style="line-height: 40px; color: #000;">logoBIG12345</div>
+    <!-- el-menu导航栏
      1.default-active:高亮显示 刷新页面后，对应menu高亮
      2.collapse:侧边栏是否收展
      3.@select:选中事件
      4.background-color:菜单的背景色
-     5.active-text-color:当前激活菜单的文字颜色
-     6.text-color:菜单的文字颜色
+     5.text-color:菜单的文字颜色
+     6.active-text-color:当前激活菜单的文字颜色
      -->
     <el-menu class="el-menu-vertical-demo"
              :default-active="activeIndex"
              :collapse="isCollapse"
              @select="handleSelect"
-             background-color="rgb(48, 65, 86)"
+             background-color="#3e4a61"
              text-color="#fff"
              active-text-color="#ffd04b">
       <!-- 首页 -->
@@ -199,20 +199,20 @@
     height: 100%;
   }
 
-  /* 导航栏收缩样式 */
-  .el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
-    min-width: 140px;
-    /* height: 100%; */
-  }
+  /*!* 导航栏收缩样式 *!*/
+  /*.el-menu-vertical-demo:not(.el-menu--collapse) {*/
+  /*  width: 200px;*/
+  /*  min-width: 140px;*/
+  /*  !* height: 100%; *!*/
+  /*}*/
 
-  .logo {
-    height: 60px;
-    font-size: 22px;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-color: rgba(238, 241, 146, 0.3);
-    border-right-width: 1px;
-    border-right-style: solid;
-  }
+  /*.logo {*/
+  /*  height: 60px;*/
+  /*  font-size: 22px;*/
+  /*  padding-left: 20px;*/
+  /*  padding-right: 20px;*/
+  /*  border-color: rgba(238, 241, 146, 0.3);*/
+  /*  border-right-width: 1px;*/
+  /*  border-right-style: solid;*/
+  /*}*/
 </style>

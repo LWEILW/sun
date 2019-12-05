@@ -147,11 +147,20 @@ export default {
         type: "warning"
       })
         .then(() => {
-          this.$message({
-            type: "success",
-            message: "删除成功!"
-          });
+
           api.deleteUser(row.userId).then(res => {
+            if (res.data.data) {
+              this.$message({
+                type: "success",
+                message: "删除成功!"
+              });
+            } else {
+              this.$message({
+                type: "fail",
+                message: "删除失败!"
+              });
+            }
+
             // 刷新页面
             this.getUserList();
           });
@@ -162,6 +171,28 @@ export default {
             message: "已取消删除"
           });
         });
-    }
+    },
+    changeSwitch: function ($event, userStatus) {
+      console.log($event);
+      console.log(userStatus);
+    },
+    // changeSwitch(user) {
+    //   console.log(this.user)
+    //
+    //   console.log(this.user.userStatus);
+    //   // shopUpdate(b), then(response => {
+    //   //   if (response.code == 0) {
+    //   //     // 成功了不做处理，因为switch状态已经修改
+    //   //     this.message({
+    //   //       message: "状态修改成功",
+    //   //       type: "success"
+    //   //     })
+    //   //   } else {
+    //   //     let newData = b;
+    //   //     newData.state = newData.state == 1 ? "2" : "1";
+    //   //     this.tableData(index) = newData;
+    //   //   }
+    //   // })
+    // }
   }
 };

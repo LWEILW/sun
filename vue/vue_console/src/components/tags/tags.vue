@@ -113,7 +113,7 @@
     /*position: relative;*/
     height: 40px;
     overflow: hidden;
-    background: #fff;
+    background: #DCDCDC;
     /*padding-right: 120px;*/
     box-shadow: 0 5px 10px #ddd;
   }

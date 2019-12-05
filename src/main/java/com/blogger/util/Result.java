@@ -28,6 +28,8 @@ public class Result<T> {
         return new Result<T>(data);
     }
 
+
+
     /**
      * 成功，不需要传入参数
      *
