@@ -10,6 +10,7 @@ import com.blogger.server.PermissionService.PermissionService;
 import com.blogger.server.RoleService.RoleService;
 import com.blogger.util.CodeMsg;
 import com.blogger.util.Result;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +30,7 @@ public class RoleController {
     private PermissionService permissionService;
 
     // 角色台账
+    @RequiresPermissions("角色一览")
     @PostMapping("getRoleList")
     public Result getRoleList() {
         List<Role> roleList = roleService.getRoleList();
@@ -36,6 +38,7 @@ public class RoleController {
     }
 
     // 角色保存
+    @RequiresPermissions("role:saveRole")
     @PostMapping("saveRole")
     public String saveRole(@RequestBody String data) {
         JSONObject obj = JSONObject.parseObject(data);
@@ -51,12 +54,14 @@ public class RoleController {
 
     // 角色删除
     @GetMapping("deleteRole/{roleId}")
+    @RequiresPermissions("role:deleteRole")
     public boolean deleteRole(@PathVariable int roleId) {
 
         return roleService.deleteRole(roleId);
     }
 
     // 角色详情
+    @RequiresPermissions("role:detailsRole")
     @GetMapping("/detailsRole/{roleId}")
     public Role detailsRole(@PathVariable("roleId") int roleId) {
         Role role = roleService.detailsRole(roleId);
@@ -64,6 +69,7 @@ public class RoleController {
     }
 
     // 人员维护台账
+    @RequiresPermissions("role:getUserListByRoleId")
     @GetMapping("getUserListByRoleId/{roleId}")
     public Result getUserListByRoleId(@PathVariable("roleId") int roleId) {
 
@@ -72,6 +78,7 @@ public class RoleController {
     }
 
     // 人员维护待添加人员台账
+    @RequiresPermissions("role:getUserOthersByRoleId")
     @GetMapping("getUserOthersByRoleId/{roleId}")
     public Result getUserOthersByRoleId(@PathVariable("roleId") int roleId) {
         List<User> userList = roleService.getUserOthersByRoleId(roleId);
@@ -79,6 +86,7 @@ public class RoleController {
     }
 
     // 人员维护添加
+    @RequiresPermissions("role:addUserToRole")
     @PostMapping("addUserToRole")
     public Result addUserToRole(@RequestBody String data) {
         JSONObject obj = JSONObject.parseObject(data);
@@ -93,6 +101,7 @@ public class RoleController {
     }
 
     // 权限维护所有数据
+    @RequiresPermissions("role:getPermissionAllListByRoleId")
     @GetMapping("getPermissionAllListByRoleId/{roleId}")
     public Result getPermissionAllListByRoleId(@PathVariable("roleId") int roleId) {
         List<JSONObject> permissionAllList = permissionService.getPermissionList();
@@ -101,6 +110,7 @@ public class RoleController {
     }
 
     // 权限维护已选数据
+    @RequiresPermissions("role:getPermissionChangeListByRoleId")
     @GetMapping("getPermissionChangeListByRoleId/{roleId}")
     public Result getPermissionChangeListByRoleId(@PathVariable("roleId") int roleId) {
         List<JSONObject> permissionList = roleService.getPermissionListByRoleId(roleId);
@@ -110,6 +120,7 @@ public class RoleController {
 
 
     // 权限维护添加
+    @RequiresPermissions("role:addPermissionByRoleId")
     @PostMapping("addPermissionByRoleId")
     public Result addPermissionByRoleId(@RequestBody String data) {
         JSONObject obj = JSON.parseObject(data);

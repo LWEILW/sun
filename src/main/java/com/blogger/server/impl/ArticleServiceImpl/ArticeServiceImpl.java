@@ -24,7 +24,7 @@ public class ArticeServiceImpl implements ArticleService {
     @Override
     public boolean saveArticle(Article article) {
         int succ = 0;
-        if (article.getArticleId() != null && article.getArticleId() != "") {
+        if (article.getArticleId() != null && !"".equals(article.getArticleId())) {
             // ID不为空，更新操作
             succ = articleMapper.updateArticle(article);
         } else {

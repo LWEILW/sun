@@ -1,5 +1,5 @@
 <template>
-  <div class="asideMoudle">
+  <div class="asideModular">
     <div class="bloggerItem shadow">
       <h5 class="itemTitle">自我介绍</h5>
       <div class="inner bloggerInfo">
@@ -96,7 +96,7 @@
 import api from "@/api/user";
 
 export default {
-  name: "asideMoudle",
+  name: "asideModular",
   // 存储数据
   data() {
     return {

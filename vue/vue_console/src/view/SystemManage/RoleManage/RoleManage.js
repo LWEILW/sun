@@ -71,9 +71,14 @@ export default {
     // 角色台账列表
     getRoleList() {
       api.getRoleList(this.roleParams).then(res => {
-        // 角色台账列表
-        this.roleTable = res.data.data;
-        this.totalCount = res.data.data.length;
+        if (res.data.retCode === 200) {
+          // 角色台账列表
+          this.roleTable = res.data.data;
+          this.totalCount = res.data.data.length;
+        } else if (res.data.retCode === 400) {
+          console.log(400)
+        }
+
       });
     },
 
@@ -104,6 +109,11 @@ export default {
       this.updateTitle = '编辑角色';
       this.roleStatus = 'edit';
       api.detailsRole(row.roleId).then(res => {
+        if (res.data.retCode === 200) {
+          console.log(200)
+        }else {
+          console.log(400)
+        }
         this.roleDetails = res.data;
       });
     },
@@ -227,7 +237,8 @@ export default {
           for (var a = 0; a < permission[i].children.length; a++) {
             this.permissionChangeData.push(permission[i].children[a].permissionId)
           }
-        }});
+        }
+      });
     },
 
   }

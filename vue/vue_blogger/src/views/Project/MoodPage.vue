@@ -1,12 +1,12 @@
 <template>
   <el-row :gutter="10">
     <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-      <div class="gamePage" :style="backgroundDiv">
+      <div class="moodPage" :style="backgroundDiv">
         <el-container>
           <el-container>
             <!-- main组件 -->
             <el-main>
-              <GameMoudle></GameMoudle>
+              <MoodMoudle></MoodMoudle>
             </el-main>
             <!-- aside组件 -->
             <el-aside width="263px" class="asideNone">
@@ -25,11 +25,11 @@
 
 <script>
 export default {
-  name: "gamePage",
+  name: "moodPage",
   data() {
     return {
       backgroundDiv: {
-        backgroundImage: "url(" + require("../images/beijing.jpg") + ")"
+        backgroundImage: "url(" + require("../../images/beijing.jpg") + ")"
       }
     };
   }

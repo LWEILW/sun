@@ -8,10 +8,11 @@ export default {
       method: 'get'
     })
   },
-  newsList() {
+  newsList(data) {
     return request({
-      url: '/news/newsList',
-      method: 'get'
+      url: '/article/getArticleList',
+      method: 'post',
+      data
     })
   },
   getNews(id) {

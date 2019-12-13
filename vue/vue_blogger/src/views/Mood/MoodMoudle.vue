@@ -13,8 +13,8 @@
           :key="index"
         >
           <el-card>
-            <h4>{{item.title}}</h4>
-            <p>{{item.content}}</p>
+            <h4>{{item.articleName}}</h4>
+            <p>{{item.articleContent}}</p>
             <!-- <el-image class="mood-image" :src="imgUrl" lazy></el-image> -->
             <!-- <div> -->
             <!-- <router-link to="/ShowPage/" + {{item.content}}>阅读全文</router-link> -->
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import api from "@/api/mood";
+import api from "@/api/article";
 
 export default {
   name: "moodMoudle",
@@ -42,17 +42,19 @@ export default {
   },
   // 初始化加载
   created() {
-    console.log(this.$route);
-    var that = this;
-    that.mood();
+    this.getArticleList();
   },
   // 方法
   methods: {
-    mood() {
-      api.moodList().then(res => {
-        var that = this;
-        that.items = res.data;
-        console.log(that.items);
+    getArticleList() {
+
+      const userParams = {
+        userAccount: '',
+        userName: '',
+        userSex: ''
+      }
+      api.getArticleList(userParams).then(res => {
+        this.items = res.data.data;
       });
     }
   }

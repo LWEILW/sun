@@ -15,6 +15,8 @@ import Tags from './components/tags/tags'
 import BreadBox from './components/breadBox/breadBox'
 import Tinymce from './components/tinymce/tinymce'
 
+import has from './view/SystemManage/PremissionManage/shiro';
+
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)

@@ -50,7 +50,7 @@ public class CodeMsg implements Cloneable {
     // 通用异常
     public static CodeMsg SUCCESS = new CodeMsg(0, "success");
     public static CodeMsg EMPTY_PARAM_ERROR = new CodeMsg(400, "参数为空");
-    public static CodeMsg INTER_ERROR = new CodeMsg(505, "服务端异常");
+    public final static CodeMsg INTER_ERROR = new CodeMsg(505, "服务端异常");
 
     private CodeMsg(int retCode, String message) {
         this.retCode = retCode;

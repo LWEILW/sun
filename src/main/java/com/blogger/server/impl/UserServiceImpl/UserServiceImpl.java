@@ -5,6 +5,11 @@ import com.blogger.dao.UserMapper.UserMapperEx;
 import com.blogger.entity.PermissionEntity.Permission;
 import com.blogger.entity.UserEntity.User;
 import com.blogger.server.UserService.UserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.crypto.RandomNumberGenerator;
+import org.apache.shiro.crypto.SecureRandomNumberGenerator;
+import org.apache.shiro.crypto.hash.Md5Hash;
+import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +32,13 @@ public class UserServiceImpl implements UserService {
     // 用户保存
     @Override
     public boolean saveUser(User user) {
+        //密码加密
+        RandomNumberGenerator saltGen = new SecureRandomNumberGenerator();
+        String salt = saltGen.nextBytes().toString();
+        Md5Hash md5Hash = new Md5Hash(user.getUserPassword(), salt, 2);
+        user.setUserPassword(md5Hash.toString());
+        user.setSalt(salt);
+
         int succ = 0;
         if (user.getUserId() != 0) {
             // ID不为空，更新操作
@@ -55,7 +67,6 @@ public class UserServiceImpl implements UserService {
 
         return userMapperEx.detailsUser(userId);
     }
-
 
 
     @Override

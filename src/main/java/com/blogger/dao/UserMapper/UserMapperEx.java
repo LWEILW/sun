@@ -2,6 +2,7 @@ package com.blogger.dao.UserMapper;
 
 
 import com.blogger.entity.PermissionEntity.Permission;
+import com.blogger.entity.RoleEntity.Role;
 import com.blogger.entity.UserEntity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -27,9 +28,15 @@ public interface UserMapperEx {
     User detailsUser(@Param("userId") int Id);
 
 
-
     User usersLogin(@Param("account") String account);
 
-    //shiro
+    // shiro验证
+    // 根据用户名获取用户信息
     User selectAllByName(@Param("userName") String userName);
+
+    // 根据用户ID获取角色信息
+    List<Role> getRoleListByUserId(@Param("userId") int userId);
+
+    // 根据角色ID获取权限信息
+    List<Permission> getPermissionListByRoleId(@Param("roleId") int roleId);
 }

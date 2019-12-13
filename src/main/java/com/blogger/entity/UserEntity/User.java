@@ -2,6 +2,8 @@ package com.blogger.entity.UserEntity;
 
 import com.blogger.entity.RoleEntity.Role;
 
+import java.util.List;
+
 public class User extends Role {
 
     // 用户ID
@@ -18,6 +20,8 @@ public class User extends Role {
     private String userEmail;
     // 密码
     private String userPassword;
+    // mb5加密
+    private String salt;
     // 用户状态
     private int userStatus;
     // 登录验证
@@ -31,6 +35,9 @@ public class User extends Role {
     // 更新时间
     private String updateDate;
 
+    private List<String> roleList;
+
+    private List<String> permissionList;
 
     public int getUserId() {
         return userId;
@@ -134,5 +141,29 @@ public class User extends Role {
 
     public void setUserStatus(int userStatus) {
         this.userStatus = userStatus;
+    }
+
+    public List<String> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<String> roleList) {
+        this.roleList = roleList;
+    }
+
+    public List<String> getPermissionList() {
+        return permissionList;
+    }
+
+    public void setPermissionList(List<String> permissionList) {
+        this.permissionList = permissionList;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 }

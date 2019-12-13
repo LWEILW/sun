@@ -1,10 +1,10 @@
 import request from '@/utils/request'
 
 export default {
-  /* 登录接口 */
-  ajaxLogin(data) {
+  /* 文章接口 */
+  getArticleList(data) {
     return request({
-      url: '/admin/login',
+      url: '/article/getArticleList',
       method: 'post',
       data
     })

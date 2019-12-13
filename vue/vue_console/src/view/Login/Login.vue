@@ -29,74 +29,79 @@
 </template>
 
 <script>
-import api from "@/api/login";
+  import api from "@/api/login";
 
-export default {
-  data() {
-    var checkAccount = (rule, value, callback) => {
-      if (!value) {
-        return callback();
-      }
-      if (value) {
-        setTimeout(() => {
-          var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-          if (!reg.test(value)) {
-            callback(new Error("请输入有效的电子邮箱！"));
-          } else {
-            callback();
+  export default {
+    data() {
+      // var checkAccount = (rule, value, callback) => {
+      //   if (!value) {
+      //     return callback();
+      //   }
+      //   if (value) {
+      //     setTimeout(() => {
+      //       var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+      //       if (!reg.test(value)) {
+      //         callback(new Error("请输入有效的电子邮箱！"));
+      //       } else {
+      //         callback();
+      //       }
+      //     }, 500);
+      //   }
+      // };
+
+      var validatePass = (rule, value, callback) => {
+        if (value === "") {
+          callback(new Error("请输入密码"));
+        } else {
+          if (this.ruleForm.checkPass !== "") {
+            this.$refs.ruleForm.validateField("checkPass");
           }
-        }, 500);
-      }
-    };
-
-    var validatePass = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请输入密码"));
-      } else {
-        if (this.ruleForm.checkPass !== "") {
-          this.$refs.ruleForm.validateField("checkPass");
+          callback();
         }
-        callback();
-      }
-    };
-    var validatePass2 = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请再次输入密码"));
-      } else if (value !== this.ruleForm.pass) {
-        callback(new Error("两次输入密码不一致!"));
-      } else {
-        callback();
-      }
-    };
-    return {
-      ruleForm: {
-        account: "",
-        pass: "",
-        checkPass: ""
-      },
-      rules: {
-        account: [{ validator: checkAccount, trigger: "blur" }],
-        pass: [{ validator: validatePass, trigger: "blur" }],
-        checkPass: [{ validator: validatePass2, trigger: "blur" }]
-      }
-    };
-  },
-  methods: {
-    // 登录方法
-    submitForm(formName) {
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          api
-            .ajaxLogin({
-              username: this.ruleForm.account,
+      };
+      var validatePass2 = (rule, value, callback) => {
+        if (value === "") {
+          callback(new Error("请再次输入密码"));
+        } else if (value !== this.ruleForm.pass) {
+          callback(new Error("两次输入密码不一致!"));
+        } else {
+          callback();
+        }
+      };
+      return {
+        ruleForm: {
+          account: "欧阳锋",
+          pass: "123",
+          checkPass: "123"
+        },
+        rules: {
+          // account: [{ validator: checkAccount, trigger: "blur" }],
+          pass: [{validator: validatePass, trigger: "blur"}],
+          checkPass: [{validator: validatePass2, trigger: "blur"}]
+        }
+      };
+    },
+    methods: {
+      // 登录方法
+      submitForm(formName) {
+        this.$refs[formName].validate(valid => {
+          if (valid) {
+
+            api.ajaxLogin({
+              userName: this.ruleForm.account,
               password: this.ruleForm.pass
-            })
-            .then(res => {
-              if (res.data.status == 200) {
-                this.$router.push({ path: "/UserListPage" }); //登录成功之后重定向到首页
-              } else {
-                this.$message.success(res.data.message);
+            }).then(res => {
+              console.log(res.data);
+              if (res.data=="登录成功"){
+                //登录成功之后重定向到首页
+                this.$router.push({path: "/UserListPage"});
               }
+              // debugger
+              // if (res.data.status == 200) {
+              //   this.$router.push({path: "/UserListPage"}); //登录成功之后重定向到首页
+              // } else {
+              //   this.$message.success(res.data.message);
+              // }
 
               // if (res.data.flag) {
               //   this.$router.push({ path: "/HomePage" }); //登录成功之后重定向到首页
@@ -104,22 +109,22 @@ export default {
               //   this.$message.success(res.data.msg);
               // }
             });
-        } else {
-          console.log("error submit!!");
-          return false;
-        }
-      });
-    },
-    // 重置
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
+          } else {
+            console.log("error submit!!");
+            return false;
+          }
+        });
+      },
+      // 重置
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
+      }
     }
-  }
-};
+  };
 </script>
 
 <style scoped>
-.loginPage {
-  margin: 15%;
-}
+  .loginPage {
+    margin: 15%;
+  }
 </style>
