@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.blogger.entity.PermissionEntity.Permission;
 import com.blogger.server.PermissionService.PermissionService;
+import com.blogger.util.CodeMsg;
 import com.blogger.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,8 @@ public class PermissionController {
     @PostMapping("getPermissionList")
     public Result getPermissionList() {
         List<JSONObject> permissionList = permissionService.getPermissionList();
+
+        Result.error(CodeMsg.INTER_ERROR, "111");
         return Result.success(permissionList);
     }
 

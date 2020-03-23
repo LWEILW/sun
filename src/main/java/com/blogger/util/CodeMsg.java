@@ -2,7 +2,7 @@ package com.blogger.util;
 
 
 public class CodeMsg implements Cloneable {
-//    // 参考返回值定义
+    //    // 参考返回值定义
 //    // 成功状态码
 //    public static final int SUCCESS = 1;
 //
@@ -39,9 +39,6 @@ public class CodeMsg implements Cloneable {
 //    public static final int INTERFACE_REQUEST_TIMEOUT = 60005;// 接口请求超时
 //    public static final int INTERFACE_EXCEED_LOAD = 60006;// 接口负载过高
 //
-//    // 权限错误
-//    public static final int PERMISSION_NO_ACCESS = 70001;// 没有访问权限
-
 
 
     private int retCode;
@@ -51,6 +48,17 @@ public class CodeMsg implements Cloneable {
     public static CodeMsg SUCCESS = new CodeMsg(0, "success");
     public static CodeMsg EMPTY_PARAM_ERROR = new CodeMsg(400, "参数为空");
     public final static CodeMsg INTER_ERROR = new CodeMsg(505, "服务端异常");
+
+
+
+
+
+    // 权限错误
+    // 没有访问权限
+    public static final CodeMsg PERMISSION_CANNOTACCESS = new CodeMsg(70001, "无权限");
+    // 权限认证失败
+    public static final CodeMsg PERMISSION_ERROR = new CodeMsg(70002, "无权限");
+
 
     private CodeMsg(int retCode, String message) {
         this.retCode = retCode;

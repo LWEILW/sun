@@ -1,4 +1,4 @@
-package com.blogger.config;
+package com.blogger.config.Shiro;
 
 
 import com.blogger.shiro.ShiroRealm;

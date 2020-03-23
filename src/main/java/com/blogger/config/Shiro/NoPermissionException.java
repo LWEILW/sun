@@ -1,8 +1,9 @@
-package com.blogger.config;
+package com.blogger.config.Shiro;
 
+import com.blogger.util.CodeMsg;
+import com.blogger.util.Result;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.UnauthorizedException;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,13 +19,13 @@ public class NoPermissionException {
 
     @ResponseBody
     @ExceptionHandler(UnauthorizedException.class)
-    public String handleShiroException(Exception ex) {
-        return "无权限";
+    public Result handleShiroException(Exception ex) {
+        return Result.error(CodeMsg.PERMISSION_CANNOTACCESS, "没有访问权限");
     }
 
     @ResponseBody
     @ExceptionHandler(AuthorizationException.class)
-    public String AuthorizationException(Exception ex) {
-        return "权限认证失败";
+    public Result AuthorizationException(Exception ex) {
+        return Result.error(CodeMsg.PERMISSION_ERROR, "权限认证失败");
     }
 }

@@ -1,4 +1,4 @@
-package com.blogger.config;
+package com.blogger.config.Interceptor;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
