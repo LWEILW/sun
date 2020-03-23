@@ -2,9 +2,10 @@ package com.blogger.controller.ArticleController;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.blogger.entity.ArticleEntity.Article;
 import com.blogger.server.ArticleService.ArticleService;
-import com.blogger.util.ExportWord;
+//import com.blogger.util.ExportWord;
 import com.blogger.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,29 @@ public class ArticleController {
     @PostMapping("getArticleList")
     public Result getArticleList(@RequestBody String data) {
         JSONObject obj = JSONObject.parseObject(data);
+        Page<Article> page = new Pagegit<>();
+//        设置当前第几页
+        page.setCurrent(1);
+//        设置每页显示条数
+        page.setSize(2);
+//        把page传到方法内进行分页
+//        List<User> users = userDao.selectAllUser(page);
         List<Article> articleList = articleService.getArticleList();
+//        获取总共分了几页
+        page.getPages();
+//        获取总条数
+        page.getTotal();
+//        for (User user : users) {
+//            System.out.println(user);
+//        }
+
+        Page pageBean = new Page<Tenant>(pageNum, pageSize);
+        List<User> users = userMapper.selectPage(pageBean);
+        pageBean.setRecords(users);
+
+        Page<Article> articleList = articleService.getArticleList(pageNum, pageSize);
+
+//        List<Article> articleList = articleService.getArticleList();
         return Result.success(articleList);
     }
 

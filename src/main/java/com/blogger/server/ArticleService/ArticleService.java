@@ -7,7 +7,7 @@ import java.util.List;
 public interface ArticleService {
 
     // 文章台账
-    List<Article> getArticleList();
+    List<Article> getArticleList(int pageNum, int pageSize);
 
     // 文章保存
     boolean saveArticle(Article article);

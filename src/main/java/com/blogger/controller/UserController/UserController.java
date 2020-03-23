@@ -2,6 +2,7 @@ package com.blogger.controller.UserController;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.blogger.entity.ArticleEntity.Article;
 import com.blogger.entity.PermissionEntity.Permission;
 import com.blogger.entity.UserEntity.User;
 import com.blogger.server.UserService.UserService;
@@ -80,6 +81,9 @@ public class UserController {
     // 用户台账
     @PostMapping("getUserList")
     public Result getUserList(@RequestBody String data) {
+        JSONObject obj = JSONObject.parseObject(data);
+        Article article = JSONObject.parseObject(data, Article.class);
+
         List<User> userList = userService.getUserList();
         return Result.success(userList);
     }
