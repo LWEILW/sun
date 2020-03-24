@@ -2,13 +2,15 @@ package com.blogger.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.blogger.server.UserService.UserService;
+import com.blogger.util.CodeMsg;
+import com.blogger.util.Result;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
-import org.mybatis.logging.Logger;
-import org.mybatis.logging.LoggerFactory;
+//import org.mybatis.logging.Logger;
+//import org.mybatis.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,15 +22,15 @@ import java.util.Map;
 @RequestMapping("/admin")
 public class AdminController {
 
-    private static Logger logger = LoggerFactory.getLogger(AdminController.class);
+//    private static Logger logger = LoggerFactory.getLogger(AdminController.class);
 
     @Autowired
     private UserService userService;
 
     @RequestMapping(value = "/loginGet", method = RequestMethod.GET)
     @ResponseBody
-    public String defaultLogin() {
-        return "首页";
+    public Result defaultLogin() {
+        return Result.error(CodeMsg.INTER_ERROR, "登录成功");
     }
 
     @RequestMapping(value = "/loginOut", method = RequestMethod.GET)

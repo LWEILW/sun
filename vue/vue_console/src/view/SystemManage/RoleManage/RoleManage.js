@@ -105,16 +105,15 @@ export default {
 
     // 编辑角色-显示详情
     handleEdit(row) {
-      this.roleDialog = true;
-      this.updateTitle = '编辑角色';
-      this.roleStatus = 'edit';
       api.detailsRole(row.roleId).then(res => {
         if (res.data.retCode === 200) {
-          console.log(200)
-        }else {
-          console.log(400)
+          this.roleDialog = true;
+          this.updateTitle = '编辑角色';
+          this.roleStatus = 'edit';
+          this.roleDetails = res.data;
+        } else {
+          console.log(res.data.message)
         }
-        this.roleDetails = res.data;
       });
     },
 
