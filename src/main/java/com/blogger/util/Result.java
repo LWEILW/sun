@@ -1,83 +1,117 @@
 package com.blogger.util;
 
-public class Result<T> {
-    private String message;
-    private int retCode;
-    private T data;
+import com.alibaba.fastjson.JSONObject;
 
-    private Result(T data) {
-        this.retCode = 200;
-        this.message = "成功";
-        this.data = data;
+/**
+ * HTTP接口通用返回值，以json字符串的形式
+ *
+ * @author Liu wei
+ * @date 2020-03-31 16:00
+ */
+public class Result extends JSONObject {
+
+    /*
+     * 1    成功
+     * -1   失败
+     * 4401 登陆超时
+     */
+
+    /**
+     * 全参构造
+     *
+     * @param status  string 需要返回的状态
+     * @param message string 需要返回的消息
+     * @author LW
+     */
+    private Result(int status, String message) {
+        this.put("status", status);
+        this.put("message", message);
     }
 
-    private Result(CodeMsg cm) {
-        if (cm == null) {
-            return;
-        }
-        this.retCode = cm.getRetCode();
-        this.message = cm.getMessage();
+
+    /**
+     * 调用方法
+     * 成功不附加消息
+     *
+     * @return com.ste.util.Result
+     * @author 张永清
+     */
+    public static Result success() {
+        return new Result(1, "");
+    }
+
+
+    /**
+     * 调用方法
+     * 成功附加消息
+     *
+     * @param message 需要返回的消息
+     * @return com.ste.util.Result
+     * @author 张永清
+     */
+    public static Result success(String message) {
+        return new Result(1, message);
     }
 
     /**
-     * 成功时候的调用
+     * 调用方法
+     * 失败不附加消息
      *
-     * @return
+     * @return com.ste.util.Result
+     * @author 张永清
      */
-    public static <T> Result<T> success(T data) {
-        return new Result<T>(data);
-    }
-
-
-
-    /**
-     * 成功，不需要传入参数
-     *
-     * @return
-     */
-    @SuppressWarnings("unchecked")
-    public static <T> Result<T> success() {
-        return (Result<T>) success("");
+    public static Result fail() {
+        return new Result(-1, "");
     }
 
     /**
-     * 失败时候的调用
+     * 调用方法
+     * 失败附加消息
      *
-     * @return
+     * @param message 需要返回的消息
+     * @return com.ste.util.Result
+     * @author 张永清
      */
-    public static <T> Result<T> error(CodeMsg cm) {
-        return new Result<T>(cm);
+    public static Result fail(String message) {
+        return new Result(-1, message);
     }
 
     /**
-     * 失败时候的调用,扩展消息参数
+     * 调用方法
+     * 登陆超时
      *
-     * @param cm
-     * @param msg
-     * @return
+     * @return com.ste.util.Result
+     * @author 张永清
      */
-    public static <T> Result<T> error(CodeMsg cm, String msg) {
-        CodeMsg newCodeMsg = null;
-        try {
-            newCodeMsg = (CodeMsg) cm.clone();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        newCodeMsg.setMessage(cm.getMessage() + "--" + msg);
-        return new Result<T>(newCodeMsg);
+    public static Result logout() {
+        return new Result(4401, "登陆超时");
     }
 
-    public T getData() {
-        return data;
+    /**
+     * 调用方法
+     * 设置message，若已存在设置过的message，则覆盖
+     *
+     * @param message 需要返回的消息
+     * @return com.ste.util.Result
+     * @author 张永清
+     */
+    public Result message(String message) {
+        this.put("message", message);
+        return this;
     }
 
-    public String getMessage() {
-        return message;
+    /**
+     * 调用方法
+     * 设置data，若已存在对应的键的数据，则覆盖
+     *
+     * @param key   需要返回的数据的键
+     * @param value 需要返回的数据的值
+     * @return com.ste.util.Result
+     * @author 张永清
+     */
+    public Result data(String key, Object value) {
+        this.put(key, value);
+        return this;
     }
-
-    public int getRetCode() {
-        return retCode;
-    }
-
 
 }

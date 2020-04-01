@@ -1,17 +1,14 @@
 package com.blogger.shiro;
 
-import com.blogger.dao.UserMapper.UserMapperEx;
-import com.blogger.entity.PermissionEntity.Permission;
-import com.blogger.entity.RoleEntity.Role;
-import com.blogger.entity.UserEntity.User;
+
+import com.blogger.dao.admin.UserMapper;
+import com.blogger.entity.admin.Permission;
+import com.blogger.entity.admin.Role;
+import com.blogger.entity.admin.User;
 import org.apache.shiro.authc.*;
-import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
-import org.apache.shiro.crypto.RandomNumberGenerator;
-import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.Md5Hash;
-import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
@@ -25,7 +22,7 @@ public class ShiroRealm extends AuthorizingRealm {
     private Logger logger = LoggerFactory.getLogger(ShiroRealm.class);
 
     @Autowired
-    private UserMapperEx userMapperEx;
+    private UserMapper userMapperEx;
 
 
     /**

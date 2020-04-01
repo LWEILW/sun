@@ -4,7 +4,7 @@ export default {
   // 文章台账
   getArticleList(data) {
     return request({
-      url: '/article/getArticleList',
+      url: '/api/v1/article/getArticleList',
       method: 'post',
       data
     })

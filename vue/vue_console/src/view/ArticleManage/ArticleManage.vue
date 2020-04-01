@@ -29,7 +29,7 @@
       <!--  1.data:显示的数据, 2.stripe:是否为斑马纹, 3.border:是否带有纵向边框,
       4.row-click:表格添加行点击事件 5.ref:显示元素身份 -->
       <div class="ArticleTable">
-        <el-table :data="articleTable.slice((currentPage-1)*pagesize,currentPage*pagesize)" stripe border
+        <el-table :data="articleTable.slice((currentPage-1)*pageSize,currentPage*pageSize)" stripe border
                   @row-click="handleDetails" max-height="800px" ref="multipleTable">
           <el-table-column prop="articleNum" label="文章编号" sortable></el-table-column>
           <el-table-column prop="articleName" label="文章名称"></el-table-column>
@@ -62,7 +62,7 @@
           @current-change="handleCurrentChange"
           :current-page="currentPage"
           :page-sizes="[5, 10, 20, 100]"
-          :page-size="pagesize"
+          :page-size="pageSize"
           layout="total, sizes, prev, pager, next, jumper"
           :total="totalCount"
           :hide-on-single-page="true">

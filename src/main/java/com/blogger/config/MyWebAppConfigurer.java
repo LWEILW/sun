@@ -10,11 +10,18 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * 解决跨域问题springboot所需配置
+ *
+ * @author Liu wei
+ * @date 2020-03-31 16:00
  */
 @Configuration
 public class MyWebAppConfigurer implements WebMvcConfigurer {
 
-    //解决跨域
+    /**
+     * 解决跨域
+     *
+     * @return
+     */
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration conf = new CorsConfiguration();
@@ -30,7 +37,8 @@ public class MyWebAppConfigurer implements WebMvcConfigurer {
         conf.addExposedHeader("access-control-max-age");
         conf.addExposedHeader("X-Frame-Options");
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", conf); // 4 对接口配置跨域设置
+        // 4 对接口配置跨域设置
+        source.registerCorsConfiguration("/**", conf);
         return new CorsFilter(source);
     }
 }

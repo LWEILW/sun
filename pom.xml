@@ -12,9 +12,11 @@
     <artifactId>blogger</artifactId>
     <version>0.0.1</version>
     <name>blogger</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Learn in order to practise</description>
+
     <!--默认为jar方式-->
     <packaging>jar</packaging>
+
     <!--改为war方式-->
     <!--<packaging>war</packaging>-->
 
@@ -42,7 +44,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
-            <!--<scope>provided</scope>-->
         </dependency>
 
         <dependency>
@@ -52,17 +53,17 @@
         </dependency>
 
         <!-- mybatis依赖 -->
-<!--        <dependency>-->
-<!--            <groupId>org.mybatis.spring.boot</groupId>-->
-<!--            <artifactId>mybatis-spring-boot-starter</artifactId>-->
-<!--            <version>2.0.0</version>-->
-<!--        </dependency>-->
-
-        <!-- mybatis-plus依赖 -->
         <dependency>
             <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus</artifactId>
-            <version>2.3</version>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+
+        <!-- mysql依赖 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
         <!-- shiro依赖 -->
@@ -90,38 +91,6 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- mysql依赖 -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
-
-        <!--alibaba的架包FastJson可以对json字符串进行快捷的类型转换。-->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.32</version>
-        </dependency>
-
-        <!-- 热部署依赖 -->
-        <!-- devtools可以实现页面热部署（即页面修改后会立即生效，
-            这个可以直接在application.properties文件中配置spring.thymeleaf.cache=false来实现） -->
-        <!-- 实现类文件热部署（类文件修改后不会立即生效），实现对属性文件的热部署。 -->
-        <!-- 即devtools会监听classpath下的文件变动，并且会立即重启应用（发生在保存时机），
-            注意：因为其采用的虚拟机机制，该项重启是很快的 -->
-        <!-- （1）base classloader （Base类加载器）：加载不改变的Class，例如：第三方提供的jar包。 -->
-        <!-- （2）restart classloader（Restart类加载器）：加载正在开发的Class。 -->
-        <!-- 为什么重启很快，因为重启的时候只是加载了在开发的Class，没有重新加载第三方的jar包。 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <!-- optional=true, 依赖不会传递, 该项目依赖devtools;
-            之后依赖boot项目的项目如果想要使用devtools, 需要重新引入 -->
-            <optional>true</optional>
-        </dependency>
-
         <!-- 导出word文件依赖 -->
         <dependency>
             <groupId>cn.afterturn</groupId>
@@ -138,46 +107,33 @@
             <artifactId>easypoi-annotation</artifactId>
             <version>3.0.3</version>
         </dependency>
-
-<<<<<<< HEAD
-
-        <!--spring boot 整合shiro依赖-->
         <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
-            <version>1.4.0</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
         </dependency>
 
-<!--        &lt;!&ndash; shiro+redis缓存插件 &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.crazycake</groupId>-->
-<!--            <artifactId>shiro-redis</artifactId>-->
-<!--            <version>2.4.2.1-RELEASE</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.shiro</groupId>-->
-<!--            <artifactId>shiro-web</artifactId>-->
-<!--            <version>1.4.0</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework</groupId>-->
-<!--            <artifactId>spring-web</artifactId>-->
-<!--            <version>5.1.6.RELEASE</version>-->
-<!--        </dependency>-->
-
-
-
-
-        <!-- mybatisPlus的依赖 -->
+        <!-- alibaba的架包FastJson可以对json字符串进行快捷的类型转换 -->
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.1.1</version>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.32</version>
         </dependency>
 
+        <!-- lombok 简写get、set方法  -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
 
-=======
->>>>>>> 50d4189daacfec6ad12778897e1a775f16522f8a
+        <!-- 热部署依赖 devtools可以实现页面热部署，页面修改后会立即生效 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
     </dependencies>
 
     <build>

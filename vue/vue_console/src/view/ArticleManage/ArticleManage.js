@@ -13,7 +13,7 @@ export default {
       // 初始选中页码
       currentPage: 1,
       // 显示每页的数据
-      pagesize: 5,
+      pageSize: 5,
       // 显示总共有多少数据
       totalCount: 40,
       // 文章详情数据
@@ -29,11 +29,15 @@ export default {
   methods: {
     // 文章台账列表
     getArticleList() {
-      api.getArticleList(this.articleParams).then(res => {
+      const params = {
+        'currentPage': this.currentPage,
+        'pageSize': this.pageSize
+      }
+      api.getArticleList(params).then(res => {
         // 赋值台账数据
-        this.articleTable = res.data.data;
+        this.articleTable = res.data.articleList;
         // 获取台账数量,赋值分页总个数
-        this.totalCount = res.data.data.length;
+        this.totalCount = res.data.articleList.length;
       });
     },
     // 跳转创建画面
@@ -106,7 +110,7 @@ export default {
     },
     /** 分页方法 handleSizeChange:切换每页显示的数量,handleCurrentChange:切换页码  */
     handleSizeChange(size) {
-      this.pagesize = size;
+      this.pageSize = size;
       console.log(`每页 ${size} 条`); //每页下拉显示数据
     },
     handleCurrentChange(currentPage) {
