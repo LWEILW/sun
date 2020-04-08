@@ -101,7 +101,10 @@
           </el-col>
         </el-row>
         <el-row>
-          <TinymceMoudle></TinymceMoudle>
+          <!--          <Tinymce></Tinymce>-->
+          <!--          <editor :catchData="catchData" :content="ruleForm.info.description"></editor>-->
+          <wangEditor></wangEditor>
+          <Editor></Editor>
         </el-row>
         <el-row>
           <el-button @click="submitForm">保存</el-button>

@@ -12,14 +12,14 @@ export default {
   // 文章详情
   detailsArticle(id) {
     return request({
-      url: `/article/detailsArticle/${id} `,
+      url: `/api/v1/article/detailsArticle/${id} `,
       method: 'get',
     })
   },
   // 保存文章
   saveArticle(data) {
     return request({
-      url: '/article/saveArticle',
+      url: '/api/v1/article/saveArticle',
       method: 'post',
       data
     })
@@ -27,7 +27,7 @@ export default {
   // 删除文章
   deleteArticle(id) {
     return request({
-      url: `/article/deleteArticle/${id} `,
+      url: `/api/v1/article/deleteArticle/${id} `,
       method: 'get',
     })
   }

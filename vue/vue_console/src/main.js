@@ -15,6 +15,8 @@ import Tags from './components/tags/tags'
 import BreadBox from './components/breadBox/breadBox'
 import Tinymce from './components/tinymce/tinymce'
 
+import wangEditor from './components/wangEditor/wangEditor'
+import Editor from './components/wangEditor/Editor'
 import has from './view/SystemManage/PremissionManage/shiro';
 
 
@@ -27,6 +29,8 @@ Vue.component('Header', Header)
 Vue.component('Tags', Tags)
 Vue.component('BreadBox', BreadBox)
 Vue.component('Tinymce', Tinymce)
+Vue.component('wangEditor', wangEditor)
+Vue.component('Editor', Editor)
 
 
 
