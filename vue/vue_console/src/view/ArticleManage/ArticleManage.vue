@@ -4,6 +4,10 @@
       <!-- 靠右显示css样式：text-align:right     -->
       <div style="text-align:right">
         <el-button @click="handleCreate">添加文章</el-button>
+        <a :href='`http://localhost:9999/api/v1/article/wordExport`' target="_blank">
+          <el-button>word导出</el-button>
+<!--          <el-button type="primary" icon="iconfont iconupload">导出</el-button>-->
+        </a>
       </div>
       <!--      &lt;!&ndash;搜索框&ndash;&gt;-->
       <!--      <div class="blogger-operation">-->
@@ -103,8 +107,9 @@
         <el-row>
           <!--          <Tinymce></Tinymce>-->
           <!--          <editor :catchData="catchData" :content="ruleForm.info.description"></editor>-->
-          <wangEditor></wangEditor>
-          <Editor></Editor>
+          <!--          <wangEditor></wangEditor>-->
+          <!--          <Editor ref="editor"></Editor>-->
+          <CKEditor></CKEditor>
         </el-row>
         <el-row>
           <el-button @click="submitForm">保存</el-button>

@@ -21,7 +21,10 @@ import ArticleManage from '@/view/ArticleManage/ArticleManage.vue'
 // import skip from '@/view/Login/skip.vue'
 // import PointOvelay from '@/view/Login/PointOvelay'
 
+import CKEditor from '@ckeditor/ckeditor5-vue'
+
 Vue.use(Router)
+Vue.use(CKEditor)
 
 export default new Router({
   // build打包添加的地方

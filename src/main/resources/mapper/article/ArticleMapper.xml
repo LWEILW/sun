@@ -7,6 +7,7 @@
         select * from article
     </select>
 
+
     <!--  文章创建  -->
     <insert id="createArticle" parameterType="com.blogger.entity.article.Article">
             insert into article (
@@ -28,7 +29,8 @@
             #{article.createPerson},
             now()
             )
-        </insert>
+    </insert>
+
 
     <!--  文章更新  -->
     <update id="updateArticle" parameterType="com.blogger.entity.article.Article">
@@ -39,17 +41,31 @@
          articleStatus = #{article.articleStatus},
          updateDate =  now()
          where articleId = #{article.articleId}
-        </update>
+    </update>
+
 
     <!--  文章删除  -->
     <delete id="deleteArticle" parameterType="java.lang.Integer">
         delete from article where articleId=#{articleId}
-        </delete>
+    </delete>
+
+
+    <!--  文章删除 批量删除 -->
+    <delete id="deleteArticleAll" parameterType="com.alibaba.fastjson.JSONObject">
+        delete from article
+        where articleId in
+        <foreach collection="idList" item="item" index="no" open="("
+                 separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
 
     <!--  文章详情  -->
     <select id="detailsArticle" parameterType="java.lang.Integer" resultType="com.blogger.entity.article.Article">
             select * from article where articleId=#{articleId}
-        </select>
+    </select>
+
 
     <!--  <select id="getBloggerByParam" parameterType="java.lang.String" resultType="com.blogger.entity.Blogger">-->
     <!--        select * from blogger where title LIKE "%"#{searchParam}"%"-->

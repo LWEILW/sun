@@ -1,5 +1,6 @@
 import api from "@/api/article";
 
+
 export default {
   name: "articleManage",
   data() {
@@ -56,7 +57,15 @@ export default {
     },
     // 用户保存
     submitForm(formName) {
-      api.saveArticle(this.articleData).then(res => {
+      console.log(this.$refs.editor) //返回的是一个vue对象，所以可以直接调用其方法
+      const params = {
+        'articleName': this.articleData.articleName,
+        'articleType': this.articleData.articleType,
+        'articleContent': this.$refs.editor.editorContent,
+        'articleStatus': this.articleData.articleStatus
+      }
+
+      api.saveArticle(params).then(res => {
         if (this.articleStatus == "create") {
           this.$message.success("创建成功");
         } else if (this.articleStatus == "edit") {
@@ -74,6 +83,9 @@ export default {
       this.active = "2";
       api.detailsArticle(row.articleId).then(res => {
         this.articleData = res.data;
+
+        var editor = new E('#editor')
+        editor.txt.html("ppasdasd")
       });
     },
     // 删除方法

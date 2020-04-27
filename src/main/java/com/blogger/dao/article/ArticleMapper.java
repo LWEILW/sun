@@ -48,6 +48,15 @@ public interface ArticleMapper {
     int deleteArticle(@Param("articleId") int articleId);
 
     /**
+     * 文章删除 批量删除
+     *
+     * @param idList
+     * @return
+     */
+    int deleteArticleAll(@Param("idList") List<Integer> idList);
+
+
+    /**
      * 文章详情
      *
      * @param articleId

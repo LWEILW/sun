@@ -17,6 +17,7 @@ import Tinymce from './components/tinymce/tinymce'
 
 import wangEditor from './components/wangEditor/wangEditor'
 import Editor from './components/wangEditor/Editor'
+
 import has from './view/SystemManage/PremissionManage/shiro';
 
 
@@ -31,7 +32,6 @@ Vue.component('BreadBox', BreadBox)
 Vue.component('Tinymce', Tinymce)
 Vue.component('wangEditor', wangEditor)
 Vue.component('Editor', Editor)
-
 
 
 /* eslint-disable no-new */

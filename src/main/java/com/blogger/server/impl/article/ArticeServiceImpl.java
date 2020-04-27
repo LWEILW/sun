@@ -1,11 +1,15 @@
 package com.blogger.server.impl.article;
 
+import com.alibaba.fastjson.JSONArray;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.blogger.dao.article.ArticleMapper;
 import com.blogger.entity.article.Article;
 import com.blogger.server.article.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 文章管理
@@ -60,6 +64,29 @@ public class ArticeServiceImpl implements ArticleService {
     @Override
     public int deleteArticle(int articleId) {
         return articleMapper.deleteArticle(articleId);
+    }
+
+
+    /**
+     * 文章删除 批量删除
+     *
+     * @param list
+     * @return
+     */
+    @Override
+    public boolean deleteArticleAll(JSONArray list){
+        //定义装有需要删除的ID集合
+        List<Integer> idList = new ArrayList<Integer>();
+        //遍历原有数据
+        for (Object id : list) {
+            //封装到新集合里
+            idList.add((Integer) id);
+        }
+        int succ = articleMapper.deleteArticleAll(idList);
+        if (succ == 0) {
+            return false;
+        }
+        return true;
     }
 
 
