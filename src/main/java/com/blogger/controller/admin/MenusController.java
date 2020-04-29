@@ -19,7 +19,7 @@ import java.util.List;
  * @date 2020-03-31 16:00
  */
 @RestController
-@RequestMapping("menus")
+@RequestMapping("/menus")
 public class MenusController {
     @Autowired
     private MenusService menusService;
@@ -28,7 +28,7 @@ public class MenusController {
      * 菜单台账
      * @return
      */
-    @PostMapping("getMenusList")
+    @PostMapping("/getMenusList")
     public Result getMenusList(@RequestBody String data) {
         JSONObject obj = JSONObject.parseObject(data);
         int currentPage = obj.getInteger("currentPage");
@@ -47,7 +47,7 @@ public class MenusController {
      * @param data
      * @return
      */
-    @PostMapping("saveMenus")
+    @PostMapping("/saveMenus")
     public String saveMenus(@RequestBody String data) {
         JSONObject obj = JSONObject.parseObject(data);
         Menus menus = JSON.parseObject(data, Menus.class);
@@ -65,7 +65,7 @@ public class MenusController {
      * @param menusId
      * @return
      */
-    @GetMapping("deleteMenus/{menusId}")
+    @GetMapping("/deleteMenus/{menusId}")
     public int deleteMenus(@PathVariable int menusId) {
 
         return menusService.deleteMenus(menusId);

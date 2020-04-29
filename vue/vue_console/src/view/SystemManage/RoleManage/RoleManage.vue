@@ -14,7 +14,7 @@
     3.border:是否带有纵向边框,
     4.selection-change:当选择项发生变化时会触发该事件 -->
     <div class="userTable">
-      <el-table :data="roleTable.slice((currentPage-1)*pagesize,currentPage*pagesize)"
+      <el-table :data="roleTable.slice((currentPage-1)*pageSize,currentPage*pageSize)"
                 stripe border max-height="800px" ref="RoleTable"
                 :header-cell-style="{background:'grey',color:'#FFF'}">
         <el-table-column prop="roleId" label="角色ID" sortable></el-table-column>
@@ -61,7 +61,7 @@
         @current-change="handleCurrentChange"
         :current-page="currentPage"
         :page-sizes="[5, 10, 20, 50]"
-        :page-size="pagesize"
+        :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="totalCount"
         :hide-on-single-page="true"

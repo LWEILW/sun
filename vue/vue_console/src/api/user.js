@@ -4,7 +4,7 @@ export default {
   // 用户台账
   getUserList(data) {
     return request({
-      url: '/user/getUserList',
+      url: '/api/v1/user/getUserList',
       method: 'post',
       data
     })
@@ -12,7 +12,7 @@ export default {
  // 用户保存
   saveUser(data) {
     return request({
-      url: '/user/saveUser',
+      url: '/api/v1/user/saveUser',
       method: 'post',
       data
     })
@@ -20,14 +20,14 @@ export default {
   // 用户删除
   deleteUser(userId) {
     return request({
-      url: `/user/deleteUser/${userId} `,
+      url: `/api/v1/user/deleteUser/${userId} `,
       method: 'get',
     })
   },
   // 用户详情
   detailsUser(userId) {
     return request({
-      url: `/user/detailsUser/${userId} `,
+      url: `/api/v1/user/detailsUser/${userId} `,
       method: 'get',
     })
   }

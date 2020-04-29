@@ -10,7 +10,7 @@
 
     <!--  1.data:显示的数据, 2.stripe:是否为斑马纹, 3.border:是否带有纵向边框, 4.selection-change:当选择项发生变化时会触发该事件 -->
     <div class="permission-table">
-      <el-table :data="permissionTable.slice((currentPage-1)*pagesize,currentPage*pagesize)"
+      <el-table :data="permissionTable.slice((currentPage-1)*pageSize,currentPage*pageSize)"
                 stripe border max-height="800px" ref="PermissionTable"
                 :header-cell-style="{background:'grey',color:'#FFF'}"
                 row-key="permissionId" :default-expand-all="defaultOpen"
@@ -48,7 +48,7 @@
         @current-change="handleCurrentChange"
         :current-page="currentPage"
         :page-sizes="[5, 10, 20, 50]"
-        :page-size="pagesize"
+        :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="totalCount"
         :hide-on-single-page="true"

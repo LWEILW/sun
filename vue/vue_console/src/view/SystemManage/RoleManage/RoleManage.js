@@ -11,7 +11,7 @@ export default {
       // 初始选中页码
       currentPage: 1,
       // 显示每页的数据
-      pagesize: 5,
+      pageSize: 5,
       // 显示总共有多少数据
       totalCount: 40,
 
@@ -70,14 +70,18 @@ export default {
   methods: {
     // 角色台账列表
     getRoleList() {
-      api.getRoleList(this.roleParams).then(res => {
-        if (res.data.retCode === 200) {
+      const params = {
+        'currentPage': this.currentPage,
+        'pageSize': this.pageSize
+      }
+      api.getRoleList(params).then(res => {
+        // if (res.data.retCode === 200) {
           // 角色台账列表
-          this.roleTable = res.data.data;
-          this.totalCount = res.data.data.length;
-        } else if (res.data.retCode === 400) {
-          console.log(400)
-        }
+          this.roleTable = res.data.roleList;
+          this.totalCount = res.data.roleList.length;
+        // } else if (res.data.retCode === 400) {
+        //   console.log(400)
+        // }
 
       });
     },
@@ -85,7 +89,7 @@ export default {
     /** 分页方法 */
     // handleSizeChange: 切换每页显示的数量
     handleSizeChange(size) {
-      this.pagesize = size;
+      this.pageSize = size;
       console.log(`每页 ${size} 条`); //每页下拉显示数据
     },
     // handleCurrentChange: 切换页码

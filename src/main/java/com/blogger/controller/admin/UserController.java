@@ -75,7 +75,7 @@ public class UserController {
      * @param userId
      * @return
      */
-    @GetMapping("deleteUser/{userId}")
+    @GetMapping("/deleteUser/{userId}")
     public int deleteUser(@PathVariable int userId) {
 
         return userService.deleteUser(userId);

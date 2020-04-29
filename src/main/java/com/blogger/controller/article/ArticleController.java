@@ -18,16 +18,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
-import java.io.Writer;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * 文章管理
@@ -107,7 +103,7 @@ public class ArticleController {
      * @param data
      * @return
      */
-    @PostMapping("deleteArticleAll")
+    @PostMapping("/deleteArticleAll")
     public String deleteArticleAll(@RequestBody String data) {
         JSONObject obj = JSONObject.parseObject(data);
         JSONArray list = (JSONArray) obj.get("idList");

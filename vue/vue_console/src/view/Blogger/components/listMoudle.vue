@@ -117,7 +117,7 @@
     <!--  1.data:显示的数据, 2.stripe:是否为斑马纹, 3.border:是否带有纵向边框, 4.selection-change:当选择项发生变化时会触发该事件 -->
     <div class="blogger-table">
       <el-table
-        :data="items.slice((currentPage-1)*pagesize,currentPage*pagesize)"
+        :data="items.slice((currentPage-1)*pageSize,currentPage*pageSize)"
         stripe
         border
         max-height="800px"
@@ -189,7 +189,7 @@
         @current-change="handleCurrentChange"
         :current-page="currentPage"
         :page-sizes="[5, 10, 20, 50]"
-        :page-size="pagesize"
+        :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="totalCount"
         :hide-on-single-page="true"
@@ -252,7 +252,7 @@ export default {
       // 初始选中页码
       currentPage: 1,
       // 显示每页的数据
-      pagesize: 5,
+      pageSize: 5,
       // 显示总共有多少数据
       totalCount: 40
     };
@@ -378,7 +378,7 @@ export default {
     },
     /** 分页方法 handleSizeChange:切换每页显示的数量,handleCurrentChange:切换页码  */
     handleSizeChange(size) {
-      this.pagesize = size;
+      this.pageSize = size;
       console.log(`每页 ${size} 条`); //每页下拉显示数据
     },
     handleCurrentChange(currentPage) {

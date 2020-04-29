@@ -9,7 +9,7 @@
 
     <!--  1.data:显示的数据, 2.stripe:是否为斑马纹, 3.border:是否带有纵向边框, 4.selection-change:当选择项发生变化时会触发该事件 -->
     <div class="MenusTable">
-      <el-table :data="menusTable.slice((currentPage-1)*pagesize,currentPage*pagesize)" stripe border max-height="800px"
+      <el-table :data="menusTable.slice((currentPage-1)*pageSize,currentPage*pageSize)" stripe border max-height="800px"
                 ref="MenusTable">
         <el-table-column prop="permissionId" label="菜单名称" sortable></el-table-column>
         <el-table-column prop="modName" label="排序"></el-table-column>
@@ -96,7 +96,7 @@
         @current-change="handleCurrentChange"
         :current-page="currentPage"
         :page-sizes="[5, 10, 20, 50]"
-        :page-size="pagesize"
+        :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="totalCount"
         :hide-on-single-page="true"

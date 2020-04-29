@@ -19,7 +19,7 @@ export default {
       // 初始选中页码
       currentPage: 1,
       // 显示每页的数据
-      pagesize: 5,
+      pageSize: 5,
       // 显示总共有多少数据
       totalCount: 40,
       parentId: [
@@ -42,10 +42,14 @@ export default {
   methods: {
     // 权限台账列表
     getPermissionList() {
-      api.getPermissionList(this.permissionParams).then(res => {
-        console.log(res.data.data)
-        this.permissionTable = res.data.data;
-        this.totalCount = res.data.data.length;
+      const params = {
+        'currentPage': this.currentPage,
+        'pageSize': this.pageSize
+      }
+      api.getPermissionList(params).then(res => {
+        console.log(res.data.permissionList)
+        this.permissionTable = res.data.permissionList;
+        this.totalCount = res.data.permissionList.length;
       });
     },
     // 添加权限
@@ -117,7 +121,7 @@ export default {
 
     /** 分页方法 handleSizeChange:切换每页显示的数量,handleCurrentChange:切换页码  */
     handleSizeChange(size) {
-      this.pagesize = size;
+      this.pageSize = size;
       console.log(`每页 ${size} 条`); //每页下拉显示数据
     },
     handleCurrentChange(currentPage) {

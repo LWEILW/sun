@@ -33,22 +33,21 @@
 
   export default {
     data() {
-      // var checkAccount = (rule, value, callback) => {
-      //   if (!value) {
-      //     return callback();
-      //   }
-      //   if (value) {
-      //     setTimeout(() => {
-      //       var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-      //       if (!reg.test(value)) {
-      //         callback(new Error("请输入有效的电子邮箱！"));
-      //       } else {
-      //         callback();
-      //       }
-      //     }, 500);
-      //   }
-      // };
-
+      var checkAccount = (rule, value, callback) => {
+        if (!value) {
+          return callback();
+        }
+        if (value) {
+          setTimeout(() => {
+            var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+            if (!reg.test(value)) {
+              callback(new Error("请输入有效的电子邮箱！"));
+            } else {
+              callback();
+            }
+          }, 500);
+        }
+      };
       var validatePass = (rule, value, callback) => {
         if (value === "") {
           callback(new Error("请输入密码"));
@@ -69,6 +68,7 @@
         }
       };
       return {
+        tabType: true,
         ruleForm: {
           account: "欧阳锋",
           pass: "123",
@@ -92,9 +92,9 @@
               password: this.ruleForm.pass
             }).then(res => {
               console.log(res.data);
-              if (res.data=="登录成功"){
+              if (res.data == "登录成功") {
                 //登录成功之后重定向到首页
-                this.$router.push({path: "/UserListPage"});
+                this.$router.push({path: "/ArticleManage"});
               }
               // debugger
               // if (res.data.status == 200) {

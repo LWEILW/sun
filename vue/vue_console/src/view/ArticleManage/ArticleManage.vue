@@ -6,7 +6,7 @@
         <el-button @click="handleCreate">添加文章</el-button>
         <a :href='`http://localhost:9999/api/v1/article/wordExport`' target="_blank">
           <el-button>word导出</el-button>
-<!--          <el-button type="primary" icon="iconfont iconupload">导出</el-button>-->
+          <el-button type="primary" icon="iconfont iconupload">导出</el-button>
         </a>
       </div>
       <!--      &lt;!&ndash;搜索框&ndash;&gt;-->
@@ -35,14 +35,13 @@
       <div class="ArticleTable">
         <el-table :data="articleTable.slice((currentPage-1)*pageSize,currentPage*pageSize)" stripe border
                   @row-click="handleDetails" max-height="800px" ref="multipleTable">
+          <el-table-column type="selection" width="55"></el-table-column>
           <el-table-column prop="articleNum" label="文章编号" sortable></el-table-column>
           <el-table-column prop="articleName" label="文章名称"></el-table-column>
           <el-table-column prop="articleType" label="文章类型"></el-table-column>
           <el-table-column prop="articleContent" label="文章内容"></el-table-column>
           <el-table-column prop="articleStatus" label="文章状态"></el-table-column>
-          <el-table-column prop="createPerson" label="创建者" sortable></el-table-column>
           <el-table-column prop="createDate" label="创建时间" sortable></el-table-column>
-          <el-table-column prop="createPerson" label="更新者" sortable></el-table-column>
           <el-table-column prop="updateDate" label="更新时间" sortable></el-table-column>
 
           <el-table-column fixed="right" label="操作">
@@ -69,7 +68,7 @@
           :page-size="pageSize"
           layout="total, sizes, prev, pager, next, jumper"
           :total="totalCount"
-          :hide-on-single-page="true">
+          :hide-on-single-page="false">
         </el-pagination>
       </div>
     </div>
@@ -105,11 +104,19 @@
           </el-col>
         </el-row>
         <el-row>
-          <!--          <Tinymce></Tinymce>-->
-          <!--          <editor :catchData="catchData" :content="ruleForm.info.description"></editor>-->
-          <!--          <wangEditor></wangEditor>-->
+          <div>
+            {{ msg }}
+            <tinymce v-model="msg"
+                     :disabled="disabled"
+                     @onClick="onClick"
+                     ref="editor"></tinymce>
+            <button @click="clear">清空内容</button>
+            <button @click="disabled = true">禁用</button>
+          </div>
+          <!--                    <editor :catchData="catchData" :content="ruleForm.info.description"></editor>-->
+          <!--                    <wangEditor></wangEditor>-->
           <!--          <Editor ref="editor"></Editor>-->
-          <CKEditor></CKEditor>
+          <!--          <CKEditor></CKEditor>-->
         </el-row>
         <el-row>
           <el-button @click="submitForm">保存</el-button>

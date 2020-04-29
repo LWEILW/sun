@@ -4,7 +4,7 @@ export default {
   // 角色台账
   getRoleList(data) {
     return request({
-      url: '/role/getRoleList',
+      url: '/api/v1/role/getRoleList',
       method: 'post',
       data
     })
@@ -12,7 +12,7 @@ export default {
   // 保存角色
   saveRole(data) {
     return request({
-      url: '/role/saveRole',
+      url: '/api/v1/role/saveRole',
       method: 'post',
       data
     })
@@ -20,14 +20,14 @@ export default {
   // 角色详情
   detailsRole(id) {
     return request({
-      url: `/role/detailsRole/${id} `,
+      url: `/api/v1/role/detailsRole/${id} `,
       method: 'get',
     })
   },
   // 删除角色
   deleteRole(id) {
     return request({
-      url: `/role/deleteRole/${id} `,
+      url: `/api/v1/role/deleteRole/${id} `,
       method: 'get'
     })
   },
@@ -35,21 +35,21 @@ export default {
   // 人员维护台账
   getUserListByRoleId(id) {
     return request({
-      url: `/role/getUserListByRoleId/${id}`,
+      url: `/api/v1/role/getUserListByRoleId/${id}`,
       method: 'get'
     })
   },
   // 人员维护可添加列表
   getUserOthersByRoleId(id) {
     return request({
-      url: `/role/getUserOthersByRoleId/${id}`,
+      url: `/api/v1/role/getUserOthersByRoleId/${id}`,
       method: 'get'
     })
   },
   // 人员维护添加
   addUserToRole(data) {
     return request({
-      url: `/role/addUserToRole`,
+      url: `/api/v1/role/addUserToRole`,
       method: 'post',
       data
     })
@@ -57,21 +57,21 @@ export default {
   // 权限维护所有数据
   getPermissionAllListByRoleId(id) {
     return request({
-      url: `/role/getPermissionAllListByRoleId/${id}`,
+      url: `/api/v1/role/getPermissionAllListByRoleId/${id}`,
       method: 'get'
     })
   },
   // 权限维护已选数据
   getPermissionChangeListByRoleId(id) {
     return request({
-      url: `/role/getPermissionChangeListByRoleId/${id}`,
+      url: `/api/v1/role/getPermissionChangeListByRoleId/${id}`,
       method: 'get'
     })
   },
   // 人员维护台账
   addPermissionByRoleId(data) {
     return request({
-      url: `/role/addPermissionByRoleId`,
+      url: `/api/v1/role/addPermissionByRoleId`,
       method: 'get',
       data
     })

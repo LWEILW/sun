@@ -4,7 +4,7 @@ export default {
   /* 登录接口 */
   ajaxLogin(data) {
     return request({
-      url: '/admin/login',
+      url: '/api/v1/admin/login',
       method: 'post',
       data
     })

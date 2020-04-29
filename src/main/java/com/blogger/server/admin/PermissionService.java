@@ -27,7 +27,7 @@ public interface PermissionService {
      *
      * @return
      */
-    List<JSONObject> getPermissionList();
+    List<JSONObject> getPermissionList(int currentPage,int pageSize);
 
     /**
      * 权限保存

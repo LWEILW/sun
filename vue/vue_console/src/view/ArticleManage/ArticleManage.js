@@ -19,7 +19,9 @@ export default {
       totalCount: 40,
       // 文章详情数据
       articleData: {},
-      articleStatus: ''
+      articleStatus: '',
+      msg: 'Welcome to Use Tinymce Editor',
+      disabled: false
 
     };
   },
@@ -84,8 +86,6 @@ export default {
       api.detailsArticle(row.articleId).then(res => {
         this.articleData = res.data;
 
-        var editor = new E('#editor')
-        editor.txt.html("ppasdasd")
       });
     },
     // 删除方法
@@ -128,6 +128,17 @@ export default {
     handleCurrentChange(currentPage) {
       this.currentPage = currentPage;
       console.log(`当前页: ${currentPage}`); //点击第几页
+    },
+
+    //鼠标单击的事件
+    onClick(e, editor) {
+      console.log('Element clicked')
+      console.log(e)
+      console.log(editor)
+    },
+    //清空内容
+    clear() {
+      this.$refs.editor.clear()
     }
   }
 };

@@ -47,7 +47,7 @@
          4.selection-change:当选择项发生变化时会触发该事件
          5.header-cell-style:表头背景色-->
     <div class="user-table">
-      <el-table :data="userList.slice((currentPage-1)*pagesize,currentPage*pagesize)" stripe border
+      <el-table :data="userList.slice((currentPage-1)*pageSize,currentPage*pageSize)" stripe border
                 @selection-change="handleSelectionChange" max-height="800px" ref="multipleTable"
                 :header-cell-style="{background:'grey',color:'#FFF'}">
         <el-table-column prop="userAccount" label="用户账号"></el-table-column>
@@ -99,10 +99,10 @@
         @current-change="handleCurrentChange"
         :current-page="currentPage"
         :page-sizes="[5, 10, 20, 50]"
-        :page-size="pagesize"
+        :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="totalCount"
-        :hide-on-single-page="true"
+        :hide-on-single-page="false"
       ></el-pagination>
     </div>
 

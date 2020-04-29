@@ -2,6 +2,7 @@ package com.blogger.server.impl.admin;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
 import com.blogger.dao.admin.PermissionMapper;
 import com.blogger.entity.admin.Permission;
 import com.blogger.server.admin.PermissionService;
@@ -39,7 +40,8 @@ public class PermissionServiceImpl implements PermissionService {
      * @return
      */
     @Override
-    public List<JSONObject> getPermissionList() {
+    public List<JSONObject> getPermissionList(int currentPage,int pageSize) {
+
         // 封装数据
         List<JSONObject> jsonObjects = new ArrayList<JSONObject>();
 
@@ -88,7 +90,7 @@ public class PermissionServiceImpl implements PermissionService {
             }
             jsonObject.put("children", jsonObjectList);
         }
-
+        PageHelper.startPage(currentPage, pageSize);
         return jsonObjects;
     }
 

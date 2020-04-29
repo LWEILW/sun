@@ -4,13 +4,13 @@ export default {
   /* 博客接口 */
   bloggerList() {
     return request({
-      url: '/blogger/bloggerList',
+      url: '/api/v1/blogger/bloggerList',
       method: 'get'
     })
   },
   createBlogger(data) {
     return request({
-      url: '/blogger/createBlogger',
+      url: '/api/v1/blogger/createBlogger',
       method: 'post',
       data
 
@@ -18,13 +18,13 @@ export default {
   },
   deleteBlogger(id) {
     return request({
-      url: `/blogger/deleteBlogger/${id} `,
+      url: `/api/v1/blogger/deleteBlogger/${id} `,
       method: 'get',
     })
   },
   updateBlogger(data) {
     return request({
-      url: '/blogger/updateBlogger',
+      url: '/api/v1/blogger/updateBlogger',
       method: 'post',
       data
 
@@ -32,13 +32,13 @@ export default {
   },
   getBlogger(id) {
     return request({
-      url: `/blogger/getBlogger/${id} `,
+      url: `/api/v1/blogger/getBlogger/${id} `,
       method: 'get',
     })
   },
   getBloggerByParam(data) {
     return request({
-      url: '/blogger/getBloggerByParam',
+      url: '/api/v1/blogger/getBloggerByParam',
       method: 'post',
       data
     })

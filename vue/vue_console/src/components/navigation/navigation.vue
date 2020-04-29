@@ -1,7 +1,7 @@
 <template>
   <div class="navigation" style="width: 201px;">
     <!-- logo样式 -->
-    <div class="logo" style="line-height: 40px; color: #000;">logoBIG12345</div>
+    <div class="logo" style="font-size: 28px; line-height: 40px; color: #000;">后端管理控制台</div>
     <!-- el-menu导航栏
      1.default-active:高亮显示 刷新页面后，对应menu高亮
      2.collapse:侧边栏是否收展

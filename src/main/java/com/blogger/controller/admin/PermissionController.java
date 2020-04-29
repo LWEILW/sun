@@ -3,6 +3,8 @@ package com.blogger.controller.admin;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
+import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.blogger.entity.admin.Permission;
 import com.blogger.entity.article.Article;
 import com.blogger.server.admin.PermissionService;
@@ -19,24 +21,26 @@ import java.util.List;
  * @date 2020-03-31 16:00
  */
 @RestController
-@RequestMapping("permission")
+@RequestMapping("/permission")
 public class PermissionController {
     @Autowired
     private PermissionService permissionService;
 
     /**
      * 权限台账
+     *
      * @return
      */
-    @PostMapping("getPermissionList")
+    @PostMapping("/getPermissionList")
     public Result getPermissionList(@RequestBody String data) {
         JSONObject obj = JSONObject.parseObject(data);
         int currentPage = obj.getInteger("currentPage");
         int pageSize = obj.getInteger("pageSize");
-        Page<Article> page = new Page<>(currentPage, pageSize);
-        List<JSONObject> permissionList = permissionService.getPermissionList();
+        List<JSONObject> permissionList = permissionService.getPermissionList(currentPage,pageSize);
+        Pagination page = PageHelper.getPagination();
+        PageHelper.remove();
         return Result.success("权限台账")
-                .data("permissionList", page.getRecords())
+                .data("permissionList", permissionList)
                 .data("total", page.getTotal())
                 .data("pages", page.getPages())
                 .data("currentPage", currentPage);
@@ -44,10 +48,11 @@ public class PermissionController {
 
     /**
      * 权限保存
+     *
      * @param data
      * @return
      */
-    @PostMapping("savePermission")
+    @PostMapping("/savePermission")
     public String savePermission(@RequestBody String data) {
         JSONObject obj = JSONObject.parseObject(data);
         Permission permission = JSON.parseObject(data, Permission.class);
@@ -62,10 +67,11 @@ public class PermissionController {
 
     /**
      * 权限删除
+     *
      * @param permissionId
      * @return
      */
-    @GetMapping("deletePermission/{permissionId}")
+    @GetMapping("/deletePermission/{permissionId}")
     public int deletePermission(@PathVariable int permissionId) {
 
         return permissionService.deletePermission(permissionId);
@@ -74,6 +80,7 @@ public class PermissionController {
 
     /**
      * 权限详情
+     *
      * @param permissionId
      * @return
      */
