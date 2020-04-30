@@ -48,7 +48,7 @@ public class ShiroConfiguration {
         shiroFilterFactoryBean.setLoginUrl("/admin/loginGet");
 
         // 设置成功之后要跳转的链接
-        shiroFilterFactoryBean.setSuccessUrl("/user/userManage");
+        shiroFilterFactoryBean.setSuccessUrl("/user/ArticleManage");
 
         // 设置未授权界面，权限认证失败会访问该 URL
         shiroFilterFactoryBean.setUnauthorizedUrl("/admin/loginOut");

@@ -32,24 +32,11 @@ public class AdminController {
     /**
      * 登录
      *
-     * @return
-     */
-    @GetMapping(value = "/loginGet")
-    public Result defaultLogin() {
-
-        System.out.println("登录成功");
-        return Result.fail("登录成功");
-    }
-
-
-    /**
-     * 登录
-     *
      * @param data
      * @return
      */
     @PostMapping(value = "/login")
-    public String login(@RequestBody String data) {
+    public Result login(@RequestBody String data) {
         JSONObject obj = JSONObject.parseObject(data);
         String userName = obj.getString("userName");
         String password = obj.getString("password");
@@ -62,21 +49,21 @@ public class AdminController {
         try {
             subject.login(token);
         } catch (UnknownAccountException uae) {
-            return "未知账户";
+            return Result.fail("未知账户");
         } catch (IncorrectCredentialsException ice) {
-            return "密码不正确";
+            return Result.fail("密码不正确");
         } catch (LockedAccountException lae) {
-            return "账户已锁定";
+            return Result.fail("账户已锁定");
         } catch (ExcessiveAttemptsException eae) {
-            return "用户名或密码错误次数过多";
+            return Result.fail("用户名或密码错误次数过多");
         } catch (AuthenticationException ae) {
-            return "用户名或密码不正确！";
+            return Result.fail("用户名或密码不正确");
         }
         if (subject.isAuthenticated()) {
-            return "登录成功";
+            return Result.success("登录成功");
         } else {
             token.clear();
-            return "登录失败";
+            return Result.fail("登录失败");
         }
     }
 

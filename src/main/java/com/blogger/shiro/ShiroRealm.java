@@ -18,12 +18,18 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
+/**
+ * Shiro配置文件
+ *
+ * @author Liu wei
+ * @date 2020-03-31 16:00
+ **/
 public class ShiroRealm extends AuthorizingRealm {
-    private Logger logger = LoggerFactory.getLogger(ShiroRealm.class);
 
     @Autowired
     private UserMapper userMapperEx;
 
+    private Logger logger = LoggerFactory.getLogger(ShiroRealm.class);
 
     /**
      * 登录认证,用来验证当前登录的用户，获取认证信息。
@@ -63,12 +69,11 @@ public class ShiroRealm extends AuthorizingRealm {
             // 更新用户方法
             // sysUserService.updateById(user);
 
-            // 若存在，将此用户存放到登录认证info中，无需自己做密码对比，Shiro会为我们进行密码对比校验
-            //用户的角色集合
+            // 用户的角色集合
             List<String> roleStrlist = new ArrayList<String>();
-            //用户的权限集合
+            // 用户的权限集合
             List<String> perminsStrlist = new ArrayList<String>();
-            //获取用户角色
+            // 获取用户角色
             List<Role> roleList = userMapperEx.getRoleListByUserId(user.getUserId());
             for (Role role : roleList) {
                 roleStrlist.add(role.getRoleName());
@@ -115,11 +120,11 @@ public class ShiroRealm extends AuthorizingRealm {
         logger.info("---------权限认证----------");
         User user = (User) principalCollection.getPrimaryPrincipal();
         if (user != null) {
-            //权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
+            // 权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
             SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-            //用户的角色集合
+            // 用户的角色集合
             info.addRoles(user.getRoleList());
-            //用户的权限集合
+            // 用户的权限集合
             info.addStringPermissions(user.getPermissionList());
 
             return info;

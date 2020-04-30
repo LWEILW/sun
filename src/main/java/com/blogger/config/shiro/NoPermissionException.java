@@ -20,12 +20,14 @@ public class NoPermissionException {
     @ResponseBody
     @ExceptionHandler(UnauthorizedException.class)
     public Result handleShiroException(Exception ex) {
+
         return Result.fail("没有访问权限");
     }
 
     @ResponseBody
     @ExceptionHandler(AuthorizationException.class)
     public Result AuthorizationException(Exception ex) {
+
         return Result.fail("权限认证失败");
     }
 }
