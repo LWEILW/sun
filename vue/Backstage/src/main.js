@@ -7,14 +7,32 @@ import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
+// 导入组件
+import navigation from './components/layout/navigation'
+import header from './components/layout/header'
+import breadBox from './components/layout/breadBox'
+
+// 导入全局样式
+import './assets/css/global.css'
+
+// 引入公共方法
+import store from './utils/store'
+
+Vue.prototype.store = store
+
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
+
+// 引用组件
+Vue.component('Navigation', navigation)
+Vue.component('Header', header)
+Vue.component('BreadBox', breadBox)
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: {App},
   template: '<App/>'
 })

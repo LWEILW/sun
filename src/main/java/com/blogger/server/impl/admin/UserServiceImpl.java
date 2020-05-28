@@ -44,6 +44,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public boolean saveUser(User user) {
+        user.setUserPassword("123");
         //密码加密
         RandomNumberGenerator saltGen = new SecureRandomNumberGenerator();
         String salt = saltGen.nextBytes().toString();

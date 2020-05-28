@@ -1,30 +1,38 @@
 <template>
-  <div>
-    <div id="wave" :style="`height:${waveAllHeight}px`">
-      <h2>博客控制台管理</h2>
-      <div class="loginValidate">
-        <!-- model:表单数据对象,rules:表单验证规则,status-icon:是否在输入框中显示校验结果反馈图标
-        label-position:表单域标签的位置,label-width:表单域标签的宽度 -->
-        <el-form :model="ruleForm" :rules="rules" status-icon ref="ruleForm"
-                 label-position="left" label-width="80px">
-          <el-form-item label="账号" prop="account">
-            <el-input v-model="ruleForm.account"></el-input>
-          </el-form-item>
+  <div class="login_container">
+    <h2>博客控制台管理</h2>
+    <div class="login_box">
 
-          <el-form-item label="密码" prop="pass">
-            <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
-          </el-form-item>
-
-          <el-form-item label="确认密码" prop="checkPass">
-            <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
-          </el-form-item>
-
-          <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-            <el-button @click="resetForm('ruleForm')">重置</el-button>
-          </el-form-item>
-        </el-form>
+      <div class="avatar_box">
+        <img src="../assets/logo.png">
       </div>
+
+
+      <!-- model:表单数据对象,rules:表单验证规则,status-icon:是否在输入框中显示校验结果反馈图标
+      label-position:表单域标签的位置,label-width:表单域标签的宽度 -->
+      <el-form class="login_form" :model="ruleForm" :rules="rules" status-icon ref="ruleForm"
+               label-position="left" label-width="0">
+        <el-form-item prop="account">
+          <el-input v-model="ruleForm.account"></el-input>
+        </el-form-item>
+
+        <el-form-item prop="pass">
+          <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
+        </el-form-item>
+
+<!--        <el-form-item prop="checkPass">-->
+<!--          <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>-->
+<!--        </el-form-item>-->
+
+        <el-form-item class="login_button">
+          <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+          <el-button @click="resetForm('ruleForm')">重置</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+
+    <div id="wave" :style="`height:${waveAllHeight}px`">
+
       <div class="wave-box">
         <canvas id="wave1"></canvas>
         <canvas id="wave2"></canvas>
@@ -80,7 +88,7 @@
       };
       return {
         //波浪的整体高度
-        waveAllHeight: 1050,
+        waveAllHeight: 350,
         //波浪个数
         waveCount: 4,
         //波浪起伏高度
@@ -210,7 +218,7 @@
     font-size: 40px;
     font-weight: 300;
     text-transform: uppercase;
-    line-height: 200px;
+    line-height: 100px;
   }
 
   .wave-box {
@@ -231,11 +239,55 @@
     top: 0;
   }
 
-  .loginValidate {
-    width: 40%;
-    transform: translateX(70%);
-    /**右移元素**/
-    -ms-transform: translateX(70%);
-    -webkit-transform: translateX(70%);
+  .login_container {
+    /*background-color: #b8e7ff;*/
+    height: 100%;
+  }
+
+  .login_box {
+    width: 450px;
+    height: 300px;
+    background-color: #d0e5f2;
+    border-radius: 3px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .avatar_box {
+    height: 130px;
+    width: 130px;
+    border: 1px solid #eee;
+    /*圆弧*/
+    border-radius: 50%;
+    padding: 10px;
+    /*阴影*/
+    box-shadow: 0 0 10px #000000;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #eee;
+  }
+
+  .login_form {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .login_button {
+    display: flex;
+    justify-content: flex-end;
   }
 </style>
