@@ -15,45 +15,15 @@ import java.util.List;
  **/
 @Mapper
 public interface ArticleMapper {
+
+
     /**
      * 文章台账
      *
      * @param page
      * @return
      */
-    List<Article> getArticleList(Pagination page);
-
-    /**
-     * 文章创建
-     *
-     * @param article
-     * @return
-     */
-    int createArticle(@Param("article") Article article);
-
-    /**
-     * 文章更新
-     *
-     * @param article
-     * @return
-     */
-    int updateArticle(@Param("article") Article article);
-
-    /**
-     * 文章删除
-     *
-     * @param articleId
-     * @return
-     */
-    int deleteArticle(@Param("articleId") int articleId);
-
-    /**
-     * 文章删除 批量删除
-     *
-     * @param idList
-     * @return
-     */
-    int deleteArticleAll(@Param("idList") List<Integer> idList);
+    List<Article> articleList(Pagination page);
 
 
     /**
@@ -62,5 +32,40 @@ public interface ArticleMapper {
      * @param articleId
      * @return
      */
-    Article detailsArticle(@Param("articleId") int articleId);
+    Article articleDetails(@Param("articleId") int articleId);
+
+
+    /**
+     * 文章创建
+     *
+     * @param article
+     * @return
+     */
+    int articleCreate(@Param("total") Article article);
+
+    /**
+     * 文章编辑
+     *
+     * @param article
+     * @return
+     */
+    int articleUpdate(@Param("total") Article article);
+
+    /**
+     * 文章删除
+     *
+     * @param articleId
+     * @return
+     */
+    int articleDelete(@Param("articleId") int articleId);
+
+    /**
+     * 文章批量删除
+     *
+     * @param list
+     * @return
+     */
+    int articleDeleteAll(@Param("list") List<Integer> list);
+
+
 }

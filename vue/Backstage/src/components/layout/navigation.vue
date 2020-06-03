@@ -12,7 +12,7 @@
      -->
     <el-menu class="el-menu-vertical-demo" :default-active="activeIndex" :collapse="isCollapse" @select="handleSelect"
              background-color="#304156" text-color="rgb(191, 203, 217)" active-text-color="#1890ff"
-             unique-opened="true" collapse-transition="false">
+             :unique-opened="true" :collapse-transition="false">
 
       <!-- 首页 -->
       <el-menu-item index="HomePage">

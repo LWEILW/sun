@@ -18,31 +18,8 @@ public interface ArticleService {
      * @param page
      * @return
      */
-    Page<Article> getArticleList(Page<Article> page);
+    Page<Article> articleList(Page<Article> page);
 
-    /**
-     * 文章保存
-     *
-     * @param article
-     * @return
-     */
-    boolean saveArticle(Article article);
-
-    /**
-     * 文章删除 单独删除
-     *
-     * @param articleId
-     * @return
-     */
-    int deleteArticle(int articleId);
-
-    /**
-     * 文章删除 批量删除
-     *
-     * @param idList
-     * @return
-     */
-    boolean deleteArticleAll(JSONArray list);
 
     /**
      * 文章详情
@@ -50,5 +27,33 @@ public interface ArticleService {
      * @param articleId
      * @return
      */
-    Article detailsArticle(int articleId);
+    Article articleDetails(int articleId);
+
+
+    /**
+     * 文章新建/编辑
+     *
+     * @param article
+     * @return
+     */
+    boolean articleSave(Article article);
+
+
+    /**
+     * 文章删除
+     *
+     * @param articleId
+     * @return
+     */
+    int articleDelete(int articleId);
+
+    /**
+     * 文章批量删除
+     *
+     * @param idList
+     * @return
+     */
+    boolean articleDeleteAll(JSONArray idList);
+
+
 }

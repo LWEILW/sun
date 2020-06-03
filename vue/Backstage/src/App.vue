@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <router-view/>
+<!--    <wavePlay></wavePlay>-->
   </div>
 </template>
 

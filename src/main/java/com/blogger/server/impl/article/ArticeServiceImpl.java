@@ -25,64 +25,81 @@ public class ArticeServiceImpl implements ArticleService {
 
     /**
      * 文章台账
+     *
      * @param page
      * @return
      */
     @Override
-    public Page<Article> getArticleList(Page<Article> page) {
+    public Page<Article> articleList(Page<Article> page) {
 
-        return page.setRecords(articleMapper.getArticleList(page));
+        return page.setRecords(articleMapper.articleList(page));
     }
 
 
     /**
-     * 文章保存
-     * @param article
-     * @return
-     */
-    @Override
-    public boolean saveArticle(Article article) {
-        int succ = 0;
-        if (article.getArticleId() != null && !"".equals(article.getArticleId())) {
-            // ID不为空，更新操作
-            succ = articleMapper.updateArticle(article);
-        } else {
-            // ID为空，创建操作
-            succ = articleMapper.createArticle(article);
-        }
-        if (succ != 1) {
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * 文章删除
+     * 文章详情
+     *
      * @param articleId
      * @return
      */
     @Override
-    public int deleteArticle(int articleId) {
-        return articleMapper.deleteArticle(articleId);
+    public Article articleDetails(int articleId) {
+        return articleMapper.articleDetails(articleId);
     }
 
 
     /**
-     * 文章删除 批量删除
+     * 文章新建/编辑
      *
-     * @param list
+     * @param article
      * @return
      */
     @Override
-    public boolean deleteArticleAll(JSONArray list){
-        //定义装有需要删除的ID集合
-        List<Integer> idList = new ArrayList<Integer>();
-        //遍历原有数据
-        for (Object id : list) {
-            //封装到新集合里
-            idList.add((Integer) id);
+    public boolean articleSave(Article article) {
+        if (article.getArticleId() != 0) {
+            // 编辑
+            if (articleMapper.articleUpdate(article) == 1) {
+                return true;
+            }
+        } else {
+            // 创建
+            if (articleMapper.articleCreate(article) == 1) {
+                return true;
+            }
         }
-        int succ = articleMapper.deleteArticleAll(idList);
+        return false;
+    }
+
+
+    /**
+     * 文章删除
+     *
+     * @param articleId
+     * @return
+     */
+    @Override
+    public int articleDelete(int articleId) {
+
+        return articleMapper.articleDelete(articleId);
+    }
+
+
+    /**
+     * 文章批量删除
+     *
+     * @param idList
+     * @return
+     */
+    @Override
+    public boolean articleDeleteAll(JSONArray idList) {
+        //定义装有需要删除的ID集合
+        List<Integer> list = new ArrayList<Integer>();
+        //遍历原有数据
+        for (Object id : idList) {
+            //封装到新集合里
+            list.add((Integer) id);
+        }
+        int succ = articleMapper.articleDeleteAll(list);
         if (succ == 0) {
             return false;
         }
@@ -90,13 +107,4 @@ public class ArticeServiceImpl implements ArticleService {
     }
 
 
-    /**
-     * 文章详情
-     * @param articleId
-     * @return
-     */
-    @Override
-    public Article detailsArticle(int articleId) {
-       return articleMapper.detailsArticle(articleId);
-    }
 }

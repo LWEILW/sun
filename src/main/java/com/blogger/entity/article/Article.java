@@ -5,7 +5,8 @@ import com.baomidou.mybatisplus.annotations.TableName;
 import lombok.Data;
 
 /**
- *文章实体类
+ * 博客文章
+ *
  * @author Liu wei
  * @date 2020-03-31 16:00
  **/
@@ -14,31 +15,33 @@ import lombok.Data;
 public class Article {
 
     @TableField(value = "articleId", el = "博客ID")
-    private String articleId;
-
-    @TableField(value = "articleNum", el = "博客编号")
-    private String articleNum;
+    private int articleId;
 
     @TableField(value = "articleName", el = "博客名称")
     private String articleName;
 
-    @TableField(value = "articleType", el = "博客类型")
-    private String articleType;
+    @TableField(value = "articleTitle", el = "博客标题")
+    private String articleTitle;
 
     @TableField(value = "articleContent", el = "博客内容")
     private String articleContent;
 
     @TableField(value = "articleStatus", el = "博客状态")
-    private String articleStatus;
+    private int articleStatus;
 
-    @TableField(value = "createPerson", el = "创建人")
-    private String createPerson;
+    @TableField(value = "readingAmount", el = "阅读数量")
+    private int readingAmount;
 
-    @TableField(value = "createDate", el = "创建时间")
-    private String createDate;
+    @TableField(value = "publisher", el = "发布人")
+    private String publisher;
+
+    @TableField(value = "publisherTime", el = "发布时间")
+    private String publisherTime;
+
+    @TableField(value = "updatePerson", el = "更新人")
+    private String updatePerson;
 
     @TableField(value = "updateDate", el = "更新时间")
     private String updateDate;
-
 
 }

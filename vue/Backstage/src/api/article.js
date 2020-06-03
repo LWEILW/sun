@@ -2,32 +2,32 @@ import request from '@/utils/request'
 
 export default {
   // 文章台账
-  getArticleList(data) {
+  articleList(data) {
     return request({
-      url: '/api/v1/article/getArticleList',
+      url: '/api/v1/article/articleList',
       method: 'post',
       data
     })
   },
   // 文章详情
-  detailsArticle(id) {
+  articleDetails(id) {
     return request({
-      url: `/api/v1/article/detailsArticle/${id} `,
+      url: `/api/v1/article/articleDetails/${id} `,
       method: 'get',
     })
   },
   // 保存文章
-  saveArticle(data) {
+  articleSave(data) {
     return request({
-      url: '/api/v1/article/saveArticle',
+      url: '/api/v1/article/articleSave',
       method: 'post',
       data
     })
   },
   // 删除文章
-  deleteArticle(id) {
+  articleDelete(id) {
     return request({
-      url: `/api/v1/article/deleteArticle/${id} `,
+      url: `/api/v1/article/articleDelete/${id} `,
       method: 'get',
     })
   }

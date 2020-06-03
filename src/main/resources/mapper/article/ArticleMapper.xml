@@ -3,72 +3,89 @@
 <mapper namespace="com.blogger.dao.article.ArticleMapper">
 
     <!--  文章台账  -->
-    <select id="getArticleList" resultType="com.blogger.entity.article.Article">
-        select * from article
+    <select id="articleList" resultType="com.blogger.entity.article.Article">
+        select
+         articleId,
+         articleName,
+         articleTitle,
+         articleContent,
+         articleStatus,
+         readingAmount,
+         publisher,
+         publisherTime,
+         updatePerson,
+         updateDate
+        from article
+    </select>
+
+
+    <!--  文章详情  -->
+    <select id="articleDetails" parameterType="java.lang.Integer" resultType="com.blogger.entity.article.Article">
+            select * from article where articleId=#{articleId}
     </select>
 
 
     <!--  文章创建  -->
-    <insert id="createArticle" parameterType="com.blogger.entity.article.Article">
+    <insert id="articleCreate" parameterType="com.blogger.entity.article.Article">
             insert into article (
             articleId,
-            articleNum,
+            articleTitle,
             articleName,
-            articleType,
             articleContent,
             articleStatus,
-            createPerson,
-            createDate
+            readingAmount,
+            publisher,
+            publisherTime
             )values(
-            #{article.articleId},
-            #{article.articleNum},
-            #{article.articleName},
-            #{article.articleType},
-            #{article.articleContent},
-            #{article.articleStatus},
-            #{article.createPerson},
+            #{total.articleId},
+            #{total.articleTitle},
+            #{total.articleName},
+            #{total.articleContent},
+            #{total.articleStatus},
+            #{total.readingAmount},
+            #{total.publisher},
             now()
             )
     </insert>
 
 
     <!--  文章更新  -->
-    <update id="updateArticle" parameterType="com.blogger.entity.article.Article">
-         update  article set
-         articleName = #{article.articleName},
-         articleType =  #{article.articleType} ,
-         articleContent =  #{article.articleContent},
-         articleStatus = #{article.articleStatus},
-         updateDate =  now()
-         where articleId = #{article.articleId}
+    <update id="articleUpdate" parameterType="com.blogger.entity.article.Article">
+        update article
+        <set>
+            <if test="total.getArticleTitle() != null and total.getArticleTitle() != ''">
+                articleTitle = #{total.articleTitle},
+            </if>
+            <if test="total.getArticleName() != null and total.getArticleName() != ''">
+                articleName = #{total.articleName},
+            </if>
+            <if test="total.getArticleContent() != null and total.getArticleContent() != ''">
+                articleContent = #{total.articleContent},
+            </if>
+            <if test="total.getUpdatePerson() != null and total.getUpdatePerson() != ''">
+                updatePerson = #{total.updatePerson},
+            </if>
+            updateDate = now()
+        </set>
+        where articleId = #{total.articleId}
     </update>
 
 
     <!--  文章删除  -->
-    <delete id="deleteArticle" parameterType="java.lang.Integer">
-        delete from article where articleId=#{articleId}
+    <delete id="articleDelete" parameterType="java.lang.Integer">
+        delete from article
+        where articleId=#{articleId}
     </delete>
 
 
     <!--  文章删除 批量删除 -->
-    <delete id="deleteArticleAll" parameterType="com.alibaba.fastjson.JSONObject">
+    <delete id="articleDeleteAll" parameterType="com.alibaba.fastjson.JSONObject">
         delete from article
         where articleId in
-        <foreach collection="idList" item="item" index="no" open="("
+        <foreach collection="list" item="item" index="no" open="("
                  separator="," close=")">
             #{item}
         </foreach>
     </delete>
-
-
-    <!--  文章详情  -->
-    <select id="detailsArticle" parameterType="java.lang.Integer" resultType="com.blogger.entity.article.Article">
-            select * from article where articleId=#{articleId}
-    </select>
-
-
-    <!--  <select id="getBloggerByParam" parameterType="java.lang.String" resultType="com.blogger.entity.Blogger">-->
-    <!--        select * from blogger where title LIKE "%"#{searchParam}"%"-->
-    <!--    </select>-->
 
 </mapper>

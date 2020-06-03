@@ -1,6 +1,5 @@
 package com.blogger.controller.article;
 
-
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -14,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
@@ -44,21 +42,34 @@ public class ArticleController {
      * @param data
      * @return
      */
-    @PostMapping("/getArticleList")
-    public Result getArticleList(@RequestBody String data) {
+    @PostMapping("/articleList")
+    public Result articleList(@RequestBody String data) {
         JSONObject obj = JSONObject.parseObject(data);
         int currentPage = obj.getInteger("currentPage");
         int pageSize = obj.getInteger("pageSize");
 
         Page<Article> page = new Page<>(currentPage, pageSize);
-        page = articleService.getArticleList(page);
-
-        return Result.success("文章台账")
+        page = articleService.articleList(page);
+        return Result.success("博客文章台账")
                 .data("articleList", page.getRecords())
                 .data("total", page.getTotal())
                 .data("pages", page.getPages())
                 .data("currentPage", currentPage);
     }
+
+
+    /**
+     * 文章详情
+     *
+     * @param articleId
+     * @return
+     */
+    @GetMapping("/articleDetails/{articleId}")
+    public Article articleDetails(@PathVariable("articleId") int articleId) {
+
+        return articleService.articleDetails(articleId);
+    }
+
 
     /**
      * 文章新建/编辑
@@ -66,29 +77,29 @@ public class ArticleController {
      * @param data
      * @return
      */
-    @PostMapping("/saveArticle")
-    public String saveArticle(@RequestBody String data) {
+    @PostMapping("/articleSave")
+    public String articleSave(@RequestBody String data) {
         Article article = JSONObject.parseObject(data, Article.class);
 
-        boolean succ = articleService.saveArticle(article);
+        boolean succ = articleService.articleSave(article);
         if (succ) {
             return "保存成功";
         } else {
             return "保存失败";
         }
-
     }
 
 
     /**
-     * 文章删除 单独删除
+     * 文章删除
      *
      * @param articleId
      * @return
      */
-    @GetMapping("/deleteArticle/{articleId}")
-    public String deleteArticle(@PathVariable("articleId") int articleId) {
-        int succ = articleService.deleteArticle(articleId);
+    @GetMapping("/articleDelete/{articleId}")
+    public String articleDelete(@PathVariable("articleId") int articleId) {
+
+        int succ = articleService.articleDelete(articleId);
         if (succ == 1) {
             return "删除成功";
         } else {
@@ -98,7 +109,7 @@ public class ArticleController {
 
 
     /**
-     * 文章删除 批量删除
+     * 文章批量删除
      *
      * @param data
      * @return
@@ -106,8 +117,9 @@ public class ArticleController {
     @PostMapping("/deleteArticleAll")
     public String deleteArticleAll(@RequestBody String data) {
         JSONObject obj = JSONObject.parseObject(data);
-        JSONArray list = (JSONArray) obj.get("idList");
-        boolean succ = articleService.deleteArticleAll(list);
+        JSONArray idList = (JSONArray) obj.get("idList");
+
+        boolean succ = articleService.articleDeleteAll(idList);
         if (succ) {
             return "删除成功";
         } else {
@@ -115,16 +127,6 @@ public class ArticleController {
         }
     }
 
-    /**
-     * 文章详情
-     *
-     * @param articleId
-     * @return
-     */
-    @GetMapping("/detailsArticle/{articleId}")
-    public Article detailsArticle(@PathVariable("articleId") int articleId) {
-        return articleService.detailsArticle(articleId);
-    }
 
     /**
      * 运营日报导出Word文档
@@ -292,7 +294,6 @@ public class ArticleController {
     }
 
     /**
-     * @param args
      * @throws UnsupportedEncodingException
      */
     public static void ddd() throws UnsupportedEncodingException {

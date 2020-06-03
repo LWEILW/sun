@@ -11,6 +11,9 @@ import 'element-ui/lib/theme-chalk/index.css'
 import navigation from './components/layout/navigation'
 import header from './components/layout/header'
 import breadBox from './components/layout/breadBox'
+import wavePlay from './components/canvas/canvas'
+import editor from './components/wangEnduit/wangEnduit'
+
 
 // 导入全局样式
 import './assets/css/global.css'
@@ -28,6 +31,8 @@ Vue.use(ElementUI)
 Vue.component('Navigation', navigation)
 Vue.component('Header', header)
 Vue.component('BreadBox', breadBox)
+Vue.component('wavePlay', wavePlay)
+Vue.component('editor', editor)
 
 /* eslint-disable no-new */
 new Vue({

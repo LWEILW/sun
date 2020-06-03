@@ -1,91 +1,76 @@
 import api from "@/api/article";
-
+import EditorBar from '../../components/wangEnduit/wangEnduit'
 
 export default {
   name: "articleManage",
+  components: {EditorBar},
   data() {
     return {
-      // 切换显示
-      active: '1',
+      // 初始选中页码
+      currentPage: 1,
+      // 显示每页的数据
+      pageSize: 10,
+      // 显示总共有多少数据
+      totalCount: 10,
       // 文章模糊查询
       articleParams: {},
       // 文章台账列表
       articleTable: [],
-      // 初始选中页码
-      currentPage: 1,
-      // 显示每页的数据
-      pageSize: 5,
-      // 显示总共有多少数据
-      totalCount: 40,
       // 文章详情数据
       articleData: {},
-      articleStatus: '',
-      msg: 'Welcome to Use Tinymce Editor',
-      disabled: false
-
+      // 切换显示
+      active: '1',
+      test:"",
+      isClear: false,
+      detail: ""
     };
   },
   // 初始化加载
   created() {
-    this.getArticleList();
+    this.articleList();
   },
   methods: {
+    // 切换每页显示的数量
+    handleSizeChange(size) {
+      this.pageSize = size;
+      // 每页下拉显示数据
+      console.log(`每页 ${size} 条`);
+
+      this.articleList();
+    },
+    // 切换页码
+    handleCurrentChange(currentPage) {
+      this.currentPage = currentPage;
+      // 点击第几页
+      console.log(`当前页: ${currentPage}`);
+      this.articleList();
+    },
     // 文章台账列表
-    getArticleList() {
+    articleList() {
       const params = {
         'currentPage': this.currentPage,
         'pageSize': this.pageSize
       }
-      api.getArticleList(params).then(res => {
+      api.articleList(params).then(res => {
         // 赋值台账数据
         this.articleTable = res.data.articleList;
-        // 获取台账数量,赋值分页总个数
-        this.totalCount = res.data.articleList.length;
-      });
-    },
-    // 跳转创建画面
-    handleCreate() {
-      this.active = "2";
-      this.articleStatus = 'create';
-    },
-    // 跳转编辑画面
-    handleEdit(row) {
-      this.active = "2";
-      this.articleStatus = 'edit';
-      //查看详情
-      api.detailsArticle(row.articleId).then(res => {
-        this.articleData = res.data;
+        this.currentPage = res.data.currentPage;
+        this.totalCount = res.data.total;
       });
     },
     // 用户保存
-    submitForm(formName) {
-      console.log(this.$refs.editor) //返回的是一个vue对象，所以可以直接调用其方法
+    handleSave(formName) {
       const params = {
         'articleName': this.articleData.articleName,
-        'articleType': this.articleData.articleType,
-        'articleContent': this.$refs.editor.editorContent,
-        'articleStatus': this.articleData.articleStatus
+        'articleTitle': this.articleData.articleTitle,
+        'articleContent': this.$refs.editorElem.value
       }
-
-      api.saveArticle(params).then(res => {
-        if (this.articleStatus == "create") {
-          this.$message.success("创建成功");
-        } else if (this.articleStatus == "edit") {
-          this.$message.success("更新成功");
-        }
+      api.articleSave(params).then(res => {
+        this.$message.success("保存成功");
         this.active = "1";
         // 刷新页面
-        this.getArticleList(this.articleParams);
+        this.articleList(this.articleParams);
         this.resetForm("articleFrom");
-      });
-    },
-    // 跳转详情画面
-    handleDetails(row) {
-      console.log(row)
-      this.active = "2";
-      api.detailsArticle(row.articleId).then(res => {
-        this.articleData = res.data;
-
       });
     },
     // 删除方法
@@ -100,9 +85,9 @@ export default {
             type: "success",
             message: "删除成功!"
           });
-          api.deleteArticle(row.articleId).then(res => {
+          api.articleDelete(row.articleId).then(res => {
             // 刷新页面
-            this.getArticleList();
+            this.articleList();
           });
         })
         .catch(() => {
@@ -112,33 +97,34 @@ export default {
           });
         });
     },
-    // 返回画面
-    handleBack() {
-      this.active = '1';
-      this.resetForm("articleFrom");
-    },
+    // 重置表单
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
-    /** 分页方法 handleSizeChange:切换每页显示的数量,handleCurrentChange:切换页码  */
-    handleSizeChange(size) {
-      this.pageSize = size;
-      console.log(`每页 ${size} 条`); //每页下拉显示数据
+    // 跳转至创建画面
+    handleCreate() {
+      this.active = "2";
     },
-    handleCurrentChange(currentPage) {
-      this.currentPage = currentPage;
-      console.log(`当前页: ${currentPage}`); //点击第几页
+    // 跳转至编辑画面
+    handleEdit(row) {
+      this.active = "2";
+      api.articleDetails(row.articleId).then(res => {
+        this.articleData = res.data;
+      });
     },
-
-    // //鼠标单击的事件
-    // onClick(e, editor) {
-    //   console.log('Element clicked')
-    //   console.log(e)
-    //   console.log(editor)
-    // },
-    // //清空内容
-    // clear() {
-    //   this.$refs.editor.clear()
-    // }
+    // 跳转至详情画面
+    handleDetails(row) {
+      this.active = "2";
+      api.articleDetails(row.articleId).then(res => {
+        this.articleData = res.data;
+        // 富文本赋值
+        this.detail = res.data.articleContent;
+      });
+    },
+    // 返回至台账画面
+    handleBack() {
+      this.active = '1';
+      this.resetForm("articleFrom");
+    }
   }
 };
