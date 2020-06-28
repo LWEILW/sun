@@ -1,6 +1,7 @@
 package com.blogger.controller.admin;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.blogger.entity.admin.Role;
@@ -9,6 +10,7 @@ import com.blogger.entity.article.Article;
 import com.blogger.server.admin.PermissionService;
 import com.blogger.server.admin.RoleService;
 import com.blogger.util.Result;
+import io.swagger.models.auth.In;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +38,7 @@ public class RoleController {
      *
      * @return
      */
-    @RequiresPermissions("角色一览")
+//    @RequiresPermissions("角色一览")
     @PostMapping("/getRoleList")
     public Result getRoleList(@RequestBody String data) {
         JSONObject obj = JSONObject.parseObject(data);
@@ -57,13 +59,14 @@ public class RoleController {
      * @param data
      * @return
      */
-    @RequiresPermissions("role:saveRole")
+//    @RequiresPermissions("role:saveRole")
     @PostMapping("/saveRole")
     public String saveRole(@RequestBody String data) {
         JSONObject obj = JSONObject.parseObject(data);
         Role role = JSON.parseObject(data, Role.class);
+        JSONArray permissionList = (JSONArray) obj.get("permissionList");
 
-        boolean succ = roleService.saveRole(role);
+        boolean succ = roleService.saveRole(role,permissionList);
         if (succ) {
             return "保存成功";
         } else {
@@ -78,7 +81,7 @@ public class RoleController {
      * @return
      */
     @GetMapping("/deleteRole/{roleId}")
-    @RequiresPermissions("role:deleteRole")
+//    @RequiresPermissions("role:deleteRole")
     public boolean deleteRole(@PathVariable int roleId) {
 
         return roleService.deleteRole(roleId);
@@ -90,11 +93,20 @@ public class RoleController {
      * @param roleId
      * @return
      */
-    @RequiresPermissions("role:detailsRole")
+//    @RequiresPermissions("role:detailsRole")
     @GetMapping("/detailsRole/{roleId}")
-    public Role detailsRole(@PathVariable("roleId") int roleId) {
+    public Result detailsRole(@PathVariable("roleId") int roleId) {
         Role role = roleService.detailsRole(roleId);
-        return role;
+        //  权限维护所有数据
+        List<JSONObject> permissionAllList = permissionService.getPermissionList(1, 100000);
+
+        // 权限维护已选数据
+        List<Integer> permissionList = roleService.getPermissionChangeList(roleId);
+
+        return Result.success("角色详情")
+                .data("role", role)
+                .data("permissionAllList", permissionAllList)
+                .data("permissionList", permissionList);
     }
 
     /**
@@ -103,7 +115,7 @@ public class RoleController {
      * @param roleId
      * @return
      */
-    @RequiresPermissions("role:getUserListByRoleId")
+//    @RequiresPermissions("role:getUserListByRoleId")
     @GetMapping("/getUserListByRoleId/{roleId}")
     public Result getUserListByRoleId(@PathVariable("roleId") int roleId) {
 
@@ -117,7 +129,7 @@ public class RoleController {
      * @param roleId
      * @return
      */
-    @RequiresPermissions("role:getUserOthersByRoleId")
+//    @RequiresPermissions("role:getUserOthersByRoleId")
     @GetMapping("/getUserOthersByRoleId/{roleId}")
     public Result getUserOthersByRoleId(@PathVariable("roleId") int roleId) {
         List<User> userList = roleService.getUserOthersByRoleId(roleId);
@@ -130,7 +142,7 @@ public class RoleController {
      * @param data
      * @return
      */
-    @RequiresPermissions("role:addUserToRole")
+//    @RequiresPermissions("role:addUserToRole")
     @PostMapping("/addUserToRole")
     public Result addUserToRole(@RequestBody String data) {
         JSONObject obj = JSONObject.parseObject(data);
@@ -150,10 +162,10 @@ public class RoleController {
      * @param roleId
      * @return
      */
-    @RequiresPermissions("role:getPermissionAllListByRoleId")
-    @GetMapping("/getPermissionAllListByRoleId/{roleId}")
-    public Result getPermissionAllListByRoleId(@PathVariable("roleId") int roleId) {
-        List<JSONObject> permissionAllList = permissionService.getPermissionList(1,100000);
+//    @RequiresPermissions("role:getPermissionAllListByRoleId")
+    @GetMapping("/getPermissionAllListByRoleId")
+    public Result getPermissionAllListByRoleId() {
+        List<JSONObject> permissionAllList = permissionService.getPermissionList(1, 100000);
 
         return Result.success("权限维护所有数据").data("permissionAllList", permissionAllList);
     }
@@ -164,7 +176,7 @@ public class RoleController {
      * @param roleId
      * @return
      */
-    @RequiresPermissions("role:getPermissionChangeListByRoleId")
+//    @RequiresPermissions("role:getPermissionChangeListByRoleId")
     @GetMapping("/getPermissionChangeListByRoleId/{roleId}")
     public Result getPermissionChangeListByRoleId(@PathVariable("roleId") int roleId) {
         List<JSONObject> permissionList = roleService.getPermissionListByRoleId(roleId);
@@ -173,13 +185,20 @@ public class RoleController {
     }
 
 
+    @GetMapping("/getPermissionChangeList/{roleId}")
+    public Result getPermissionChangeList(@PathVariable("roleId") int roleId) {
+        List<Integer> permissionList = roleService.getPermissionChangeList(roleId);
+
+        return Result.success("权限维护已选数据").data("permissionList", permissionList);
+    }
+
     /**
      * 权限维护添加
      *
      * @param data
      * @return
      */
-    @RequiresPermissions("role:addPermissionByRoleId")
+//    @RequiresPermissions("role:addPermissionByRoleId")
     @PostMapping("/addPermissionByRoleId")
     public Result addPermissionByRoleId(@RequestBody String data) {
         JSONObject obj = JSON.parseObject(data);

@@ -1,9 +1,9 @@
 <template>
   <div class="login_container">
-    <h2>博客控制台管理</h2>
+    <!--    <h2>博客控制台管理</h2>-->
     <div class="login_box">
       <div class="avatar_box">
-        <img src="../assets/logo.png">
+        <img src="../assets/image/cat.jpg">
       </div>
       <!-- model:表单数据对象
       rules:表单验证规则
@@ -104,7 +104,7 @@
               console.log(res.data);
               if (res.data.status == 1) {
                 //登录成功之后重定向到首页
-                this.$router.push({path: "/ArticleManage"});
+                this.$router.push({path: "/HomePage"});
                 this.$message.success(res.data.message);
               } else {
                 this.$message.warning(res.data.message);
@@ -138,6 +138,8 @@
 
   .login_container {
     /*background-color: #b8e7ff;*/
+    background-image: url("../assets/image/sky.jpg");
+    background-repeat:no-repeat;
     height: 100%;
   }
 

@@ -13,6 +13,7 @@ import header from './components/layout/header'
 import breadBox from './components/layout/breadBox'
 import wavePlay from './components/canvas/canvas'
 import editor from './components/wangEnduit/wangEnduit'
+import Tags from './components/tags/tags'
 
 
 // 导入全局样式
@@ -20,7 +21,6 @@ import './assets/css/global.css'
 
 // 引入公共方法
 import store from './utils/store'
-
 Vue.prototype.store = store
 
 
@@ -33,6 +33,7 @@ Vue.component('Header', header)
 Vue.component('BreadBox', breadBox)
 Vue.component('wavePlay', wavePlay)
 Vue.component('editor', editor)
+Vue.component('Tags', Tags)
 
 /* eslint-disable no-new */
 new Vue({

@@ -1,5 +1,6 @@
 package com.blogger.server.admin;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.blogger.entity.admin.Role;
@@ -28,7 +29,7 @@ public interface RoleService {
      * @param role
      * @return
      */
-    boolean saveRole(Role role);
+    boolean saveRole(Role role, JSONArray permissionList);
 
 
     /**
@@ -81,6 +82,9 @@ public interface RoleService {
      * @return
      */
     List<JSONObject> getPermissionListByRoleId(int roleId);
+
+
+    List<Integer> getPermissionChangeList(int roleId);
 
     /**
      * 权限维护添加

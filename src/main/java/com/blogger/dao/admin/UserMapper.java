@@ -1,6 +1,8 @@
 package com.blogger.dao.admin;
 
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.blogger.entity.admin.Permission;
 import com.blogger.entity.admin.Role;
@@ -33,6 +35,13 @@ public interface UserMapper {
      * @return
      */
     int createUser(@Param("user") User user);
+
+    /**
+     * 获取用户创建ID
+     *
+     * @return
+     */
+    List<User> getUserId();
 
     /**
      * 用户更新
@@ -89,4 +98,31 @@ public interface UserMapper {
      * @return
      */
     List<Permission> getPermissionListByRoleId(@Param("roleId") int roleId);
+
+
+    /**
+     * 删除该用户下所有角色
+     *
+     * @param userId
+     * @return
+     */
+    int deleteRoleByUserId(@Param("userId") int userId);
+
+    /**
+     * 人员维护添加
+     *
+     * @param roleId
+     * @param userId
+     * @return
+     */
+    int addRoleByUserId(@Param("roleId") Integer roleId, @Param("userId") int userId);
+
+
+    /**
+     * 获取用户角色列表
+     *
+     * @param userId
+     * @return
+     */
+    List<JSONObject> getRolesByUserId(@Param("userId") int userId);
 }

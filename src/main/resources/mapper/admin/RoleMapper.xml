@@ -24,6 +24,11 @@
         )
     </insert>
 
+    <!--  获取角色创建ID  -->
+    <select id="getRoleId" resultType="com.blogger.entity.admin.Role">
+        select * from role order by roleId desc
+    </select>
+
     <!--  角色更新  -->
     <update id="updateRole" parameterType="com.blogger.entity.admin.Role">
         update role
@@ -78,11 +83,6 @@
         </where>
     </select>
 
-    <!--  人员维护添加  -->
-    <insert id="addUserByRoleId" parameterType="java.lang.Integer">
-        insert into user_role (roleId, userId) values (#{roleId},#{userId})
-    </insert>
-
 
     <!--  权限维护台账  -->
     <select id="getPermissionListByRoleId" parameterType="java.lang.Integer"
@@ -107,4 +107,14 @@
     <insert id="addPermissionByRoleId" parameterType="java.lang.Integer">
         insert into permission_role (roleId, permissionId) values (#{roleId},#{permissionId})
     </insert>
+
+
+    <select id="getPermissionChangeList" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select permissionId from permission_role where roleId= #{roleId}
+    </select>
+
+    <!--  删除该角色所有权限  -->
+    <delete id="deletePermissionByRoleId" parameterType="java.lang.Integer">
+        delete  from permission_role where roleId = #{roleId}
+    </delete>
 </mapper>

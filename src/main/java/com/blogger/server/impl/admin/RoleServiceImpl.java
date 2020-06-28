@@ -1,5 +1,6 @@
 package com.blogger.server.impl.admin;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.blogger.dao.admin.RoleMapper;
@@ -31,6 +32,7 @@ public class RoleServiceImpl implements RoleService {
 
     /**
      * 角色台账
+     *
      * @return
      */
     @Override
@@ -42,29 +44,43 @@ public class RoleServiceImpl implements RoleService {
 
     /**
      * 角色保存
+     *
      * @param role
      * @return
      */
     @Override
-    public boolean saveRole(Role role) {
+    public boolean saveRole(Role role, JSONArray permissionList) {
         int succ = 0;
+        int roleId;
         if (role.getRoleId() != 0) {
             // ID不为空，更新操作
             succ = roleMapperEx.updateRole(role);
+            roleId = role.getRoleId();
         } else {
             // ID为空，创建操作
             succ = roleMapperEx.createRole(role);
+            roleId = roleMapperEx.getRoleId().get(0).getRoleId();
         }
-
         if (succ != 1) {
             return false;
         }
+
+        // 删除该角色所有权限
+        roleMapperEx.deletePermissionByRoleId(roleId);
+        for (Object id : permissionList) {
+            int count = roleMapperEx.addPermissionByRoleId(roleId, (Integer) id);
+            if (count != 1) {
+                return false;
+            }
+        }
+
         return true;
     }
 
 
     /**
      * 角色删除
+     *
      * @param roleId
      * @return
      */
@@ -85,6 +101,7 @@ public class RoleServiceImpl implements RoleService {
 
     /**
      * 角色详情
+     *
      * @param roleId
      * @return
      */
@@ -95,6 +112,7 @@ public class RoleServiceImpl implements RoleService {
 
     /**
      * 人员维护台账
+     *
      * @param roleId
      * @return
      */
@@ -105,6 +123,7 @@ public class RoleServiceImpl implements RoleService {
 
     /**
      * 人员维护待添加人员台账
+     *
      * @param roleId
      * @return
      */
@@ -122,6 +141,7 @@ public class RoleServiceImpl implements RoleService {
 
     /**
      * 人员维护添加
+     *
      * @param jsonObjectList
      * @param roleId
      * @return
@@ -130,10 +150,10 @@ public class RoleServiceImpl implements RoleService {
     public boolean addUserByRoleId(List<JSONObject> jsonObjectList, int roleId) {
         for (JSONObject obj : jsonObjectList) {
             int userId = obj.getInteger("userId");
-            int count = roleMapperEx.addUserByRoleId(roleId, userId);
-            if (count != 1) {
-                return false;
-            }
+//            int count = roleMapperEx.addUserByRoleId(roleId, userId);
+//            if (count != 1) {
+//                return false;
+//            }
         }
         return true;
     }
@@ -141,6 +161,7 @@ public class RoleServiceImpl implements RoleService {
 
     /**
      * 权限维护已选数据
+     *
      * @param roleId
      * @return
      */
@@ -187,19 +208,31 @@ public class RoleServiceImpl implements RoleService {
         return jsonObjects;
     }
 
+    @Override
+    public List<Integer> getPermissionChangeList(int roleId) {
+        return roleMapperEx.getPermissionChangeList(roleId);
+    }
+
+
     /**
      * 权限维护添加
+     *
      * @param obj
      * @return
      */
     @Override
     public boolean addPermissionByRoleId(JSONObject obj) {
         int roleId = obj.getInteger("roleId");
-        int permissionId = obj.getInteger("permissionId");
+        JSONArray permissionList = (JSONArray) obj.get("permissionList");
 
-        int count = roleMapperEx.addPermissionByRoleId(roleId, permissionId);
-        if (count != 1) {
-            return false;
+        // 删除该角色所有权限
+        roleMapperEx.deletePermissionByRoleId(roleId);
+
+        for (Object id : permissionList) {
+            int count = roleMapperEx.addPermissionByRoleId(roleId, (Integer) id);
+            if (count != 1) {
+                return false;
+            }
         }
         return true;
     }

@@ -1,5 +1,7 @@
 package com.blogger.server.admin;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.blogger.entity.admin.User;
 import com.blogger.entity.article.Article;
@@ -16,19 +18,22 @@ public interface UserService {
 
     /**
      * 用户台账
+     *
      * @return
      */
     Page<User> getUserList(Page<User> page);
 
     /**
      * 用户保存
+     *
      * @param user
      * @return
      */
-    boolean saveUser(User user);
+    boolean saveUser(User user, JSONArray roleList);
 
     /**
      * 用户删除
+     *
      * @param userId
      * @return
      */
@@ -36,12 +41,19 @@ public interface UserService {
 
     /**
      * 用户详情
+     *
      * @param userId
      * @return
      */
     User detailsUser(int userId);
 
-
+    /**
+     * 获取用户角色列表
+     *
+     * @param userId
+     * @return
+     */
+    JSONArray getRolesByUserId(int userId);
 
     User usersLogin(String account);
 

@@ -45,8 +45,8 @@ public class Freemarker {
     private static Template getTemplate(String templateName) {
         logger.debug("Freemarker getTemplate");
         try {
-            Template template = configuration.getTemplate(templateName);
-            template.setEncoding("UTF-8");
+            Template template = configuration.getTemplate(templateName,"GBK");
+//            template.setEncoding("UTF-8");
             return template;
         } catch (IOException e) {
             e.printStackTrace();

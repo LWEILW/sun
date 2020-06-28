@@ -34,6 +34,12 @@ public interface RoleMapper {
     int createRole(@Param("role") Role role);
 
     /**
+     * 获取角色创建ID
+     * @return
+     */
+    List<Role> getRoleId();
+
+    /**
      * 角色更新
      *
      * @param role
@@ -82,14 +88,7 @@ public interface RoleMapper {
      */
     List<User> getUserOthersByRoleId(@Param("List") List<Integer> userIdList);
 
-    /**
-     * 人员维护添加
-     *
-     * @param roleId
-     * @param userId
-     * @return
-     */
-    int addUserByRoleId(@Param("roleId") int roleId, @Param("userId") int userId);
+
 
 
     /**
@@ -109,5 +108,20 @@ public interface RoleMapper {
      * @return
      */
     int addPermissionByRoleId(@Param("roleId") int roleId, @Param("permissionId") int permissionId);
+
+
+    /**
+     * @param roleId
+     * @return
+     */
+    List<Integer> getPermissionChangeList(@Param("roleId") int roleId);
+
+    /**
+     * 删除该角色所有权限
+     *
+     * @param roleId
+     * @return
+     */
+    int deletePermissionByRoleId(@Param("roleId") int roleId);
 
 }

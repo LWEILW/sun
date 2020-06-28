@@ -8,22 +8,40 @@
 
     <!-- 文章 -->
     <article class="main-posts">
-      <div class="main-item" v-for="(item,index) in items" :key="index">
+      <div class="main-item" >
         <h2>
           <a>
             <span class="stick">﹝TOP﹞</span>
-            {{item.articleName}}
+            纵然万劫不复，纵然相思入骨。 我也待你眉眼如初，岁月如故
           </a>
         </h2>
-        <p>{{item.articleContent}}</p>
+        <p>纵然万劫不复，纵然相思入骨。 我也待你眉眼如初，岁月如故</p>
         <div class="main-meta">
           <i class="iconfont iconshijian"></i>
           <time class="date">2019.05.18</time>
           <i class="iconfont iconyuedu" style=" margin-left: 1em;"></i>
-          <router-link :to="'/BloggerPage/' + item.id">阅读全文</router-link>
+          <router-link :to="'/BloggerPage/'">阅读全文</router-link>
         </div>
       </div>
     </article>
+
+<!--    <article class="main-posts">-->
+<!--      <div class="main-item" v-for="(item,index) in items" :key="index">-->
+<!--        <h2>-->
+<!--          <a>-->
+<!--            <span class="stick">﹝TOP﹞</span>-->
+<!--            {{item.articleName}}-->
+<!--          </a>-->
+<!--        </h2>-->
+<!--        <p>{{item.articleContent}}</p>-->
+<!--        <div class="main-meta">-->
+<!--          <i class="iconfont iconshijian"></i>-->
+<!--          <time class="date">2019.05.18</time>-->
+<!--          <i class="iconfont iconyuedu" style=" margin-left: 1em;"></i>-->
+<!--          <router-link :to="'/BloggerPage/' + item.id">阅读全文</router-link>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </article>-->
   </div>
 </template>
 
@@ -44,7 +62,7 @@
     // 初始化加载
     created() {
       console.log(this.$route);
-      this.getArticleList();
+      // this.getArticleList();
     },
     // 方法
     methods: {

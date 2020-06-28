@@ -1,6 +1,7 @@
 package com.blogger.controller.admin;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.blogger.entity.admin.User;
@@ -51,6 +52,22 @@ public class UserController {
     }
 
     /**
+     * 用户详情
+     *
+     * @param userId
+     * @return
+     */
+    @GetMapping("/detailsUser/{userId}")
+    public Result detailsUser(@PathVariable("userId") int userId) {
+        User user = userService.detailsUser(userId);
+        JSONArray roleList = userService.getRolesByUserId(userId);
+        return Result.success("")
+                .data("user", user)
+                .data("roleList", roleList);
+    }
+
+
+    /**
      * 用户保存
      *
      * @param data
@@ -60,14 +77,16 @@ public class UserController {
     public String saveUser(@RequestBody String data) {
         JSONObject obj = JSONObject.parseObject(data);
         User user = JSON.parseObject(data, User.class);
+        JSONArray roleList = (JSONArray) obj.get("roleList");
 
-        boolean succ = userService.saveUser(user);
+        boolean succ = userService.saveUser(user, roleList);
         if (succ) {
             return "保存成功";
         } else {
             return "保存失败";
         }
     }
+
 
     /**
      * 用户删除
@@ -81,19 +100,6 @@ public class UserController {
         return userService.deleteUser(userId);
     }
 
-
-    /**
-     * 用户详情
-     *
-     * @param userId
-     * @return
-     */
-    @GetMapping("/detailsUser/{userId}")
-    public User detailsUser(@PathVariable("userId") int userId) {
-        User user = userService.detailsUser(userId);
-
-        return user;
-    }
 
 //    /**
 //     * 用户注册

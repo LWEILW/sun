@@ -36,6 +36,11 @@
     )
     </insert>
 
+    <!--  获取用户创建ID  -->
+    <select id="getUserId" resultType="com.blogger.entity.admin.User">
+        select * from user order by userId desc
+    </select>
+
     <!--  用户更新  -->
     <update id="updateUser" parameterType="com.blogger.entity.admin.User">
         update user
@@ -103,5 +108,27 @@
         left join permission p on p.permissionId=pr.permissionId
         left join role r on r.roleId=pr.roleId
         where pr.roleId=#{roleId}
+    </select>
+
+
+    <delete id="deleteRoleByUserId" parameterType="java.lang.Integer">
+        delete from user_role where userId = #{userId}
+    </delete>
+
+    <!--  人员维护添加  -->
+    <insert id="addRoleByUserId" parameterType="java.lang.Integer">
+        insert into user_role (
+        roleId,
+        userId
+        ) values (
+        #{roleId},
+        #{userId}
+        )
+    </insert>
+
+
+    <!--  获取用户角色列表  -->
+    <select id="getRolesByUserId" parameterType="java.lang.Integer" resultType="com.alibaba.fastjson.JSONObject">
+        select roleId from user_role where userId = #{userId}
     </select>
 </mapper>

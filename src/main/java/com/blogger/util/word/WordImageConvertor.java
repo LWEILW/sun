@@ -9,6 +9,8 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.math.BigDecimal;
+import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * Created by wesley on 2017-05-10.
@@ -24,6 +26,14 @@ public class WordImageConvertor {
      * @throws IOException
      */
     public static String imageToBase64(String imageSrc) throws IOException{
+
+//        URL url = new URL(imageSrc);
+//        InputStream is=url.openStream();
+//        bitmap=BitmapFactory.decodeStream(is);
+//        myImg.setImageBitmap(bitmap);
+////        URLConnection connection = url.openConnection();
+//        InputStream input = url.getInputStream();
+////        BufferedReader br = new BufferedReader(new InputStreamReader(is,"gb2312"));
         //判断文件是否存在
         File file=new File(imageSrc);
         if(!file.exists()){

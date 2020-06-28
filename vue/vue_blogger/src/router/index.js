@@ -4,7 +4,9 @@ import Router from 'vue-router'
 
 import HomePage from '@/views/Home/homePage'
 import MoodPage from '@/views/Mood/MoodMoudle'
-
+import GamePage from '@/views/GamePackage/GameMoudle'
+import ShowPage from '@/views/TestPackage/ShowContent'
+// import MoodPage from '@/views/Mood/MoodMoudle'
 
 Vue.use(Router)
 
@@ -24,11 +26,11 @@ export default new Router({
       name: 'HomePage',
       component: HomePage
     },
-    // {
-    //   path: '/GamePage',
-    //   name: 'GamePage',
-    //   component: GamePage
-    // },
+    {
+      path: '/GamePage',
+      name: 'GamePage',
+      component: GamePage
+    },
     {
       path: '/MoodPage',
       name: 'MoodPage',
@@ -39,14 +41,14 @@ export default new Router({
     //   name: 'AboutMePage',
     //   component: AboutMePage
     // },
-    // {
-    //   path: '/ShowPage',
-    //   name: 'ShowPage',
-    //   component: ShowPage,
-    //   children: [
-    //     { path: ':id', name: 'id', component: ShowPage }
-    //   ]
-    // },
+    {
+      path: '/ShowPage',
+      name: 'ShowPage',
+      component: ShowPage,
+      children: [
+        { path: ':id', name: 'id', component: ShowPage }
+      ]
+    },
     // {
     //   path: '/BloggerPage',
     //   name: 'BloggerPage',

@@ -1,19 +1,25 @@
 <template>
-  <!--  webkit-box-shadow:边框颜色-->
   <div class="header-container">
     <div class="header_box">
       <!-- logo样式 -->
       <div class="header_logo" @click="changeStatus">
         <i class="el-icon-s-fold"></i>
+        Bókè guǎnlǐ xìtǒng
+        6/5000
+        Blog management system
       </div>
 
-      <!-- 用户名下拉菜单 -->
+      <!-- 用户名下拉菜单
+       command:点击菜单项触发的事件回调
+       trigger:触发下拉的行为
+       divided:显示分割线
+        -->
       <div class="header-user">
         <span>账户:{{account}}</span>
         <span>角色:{{password}}</span>
-        <el-dropdown trigger="click">
+        <el-dropdown trigger="click" @command="handleCommand">
           <!-- 用户头像 -->
-          <el-avatar class="header-avatar" shape="square" :src="url"></el-avatar>
+          <!--          <el-avatar class="header-avatar" shape="square" :src="url"></el-avatar>-->
           <i class="el-icon-caret-bottom"></i>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item command="info">个人资料</el-dropdown-item>
@@ -21,7 +27,6 @@
           </el-dropdown-menu>
         </el-dropdown>
       </div>
-
     </div>
   </div>
 </template>
@@ -29,7 +34,7 @@
 <script>
 
   export default {
-    name: "header-container",
+    name: "Header",
     // 存储数据
     data() {
       return {
@@ -43,15 +48,22 @@
     },
     // 方法
     methods: {
+      // 下拉菜单事件回调
+      handleCommand(command) {
+        if ("loginOut" == command) {
+          //登录成功之后重定向到首页
+          this.$router.push({path: "/Login"});
+        }
+      },
       change() {
-        this.store.commit('changeStatus', true)
+        this.store.commit('changeStatus', true);
         this.isLeftOpen = true;
         // store.commit('ON_HTTP_ERROR', httpError)
         // this.store.state.isCollapse = true
         // console.log(this.store.state.isCollapse)
       },
       changeStatus() {
-        this.store.commit('changeStatus', false)
+        this.store.commit('changeStatus', false);
         this.isLeftOpen = true;
       }
     }
@@ -61,9 +73,11 @@
 
 <style scoped>
   .header-container {
-    height: 50px;
-    line-height: 50px;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+    height: 60px;
+    line-height: 60px;
+    /*margin: 1px;*/
+    border-bottom: 1px solid #d8dce5;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   }
 
   .header_box {
@@ -71,6 +85,8 @@
     display: inline-flex;
     display: -webkit-flex;
     justify-content: space-between;
+    font-size: 18px;
+    color: #eeeeee;
   }
 
   .header_logo {
