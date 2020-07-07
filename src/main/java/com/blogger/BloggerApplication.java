@@ -17,11 +17,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @MapperScan("com.blogger.dao*")
 @EnableCaching
 @EnableSwagger2
-public class SunApplication {
+public class BloggerApplication {
 
     public static void main(String[] args) {
 
-        SpringApplication.run(SunApplication.class, args);
+        SpringApplication.run(BloggerApplication.class, args);
     }
 
 
