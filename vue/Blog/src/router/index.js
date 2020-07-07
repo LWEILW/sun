@@ -12,7 +12,7 @@ export default new Router({
   // history 模式,该模式下没有#前缀
   mode: 'history',
   // build打包添加的地方
-  // base: '/blogger/',
+  base: '/blogger/',
   routes: [
     {
       path: '/',

@@ -5,19 +5,19 @@
     <div class="user-table">
       <!-- 搜索框、按钮 -->
       <div class="user-operation">
-        <div class="user-search">
-          <div class="user-input">
-            <el-input placeholder="请输入检测单号" v-model="input"></el-input>
-          </div>
-          <el-button type="primary" icon="el-icon-search" @click="handleSearch()">搜索</el-button>
-          <el-button type="primary" icon="el-icon-edit" @click="toggleSelection()">取消选择</el-button>
-        </div>
         <div class="user-button">
           <el-button size="primary" icon="el-icon-edit" @click="handleCreate()">模板下载</el-button>
           <el-button size="primary" icon="el-icon-edit" @click="handleCreate()">导入</el-button>
           <el-button size="primary" icon="el-icon-edit" @click="handleCreate()">导出</el-button>
           <el-button size="primary" icon="el-icon-edit" @click="handleDeleteAll()">批量删除</el-button>
           <el-button size="primary" icon="el-icon-edit" @click="handleCreate()">新建用户</el-button>
+        </div>
+        <div class="user-search">
+          <div class="user-input">
+            <el-input placeholder="请输入检测单号" v-model="input"></el-input>
+          </div>
+          <el-button type="primary" icon="el-icon-search" @click="handleSearch()">搜索</el-button>
+          <el-button type="primary" icon="el-icon-edit" @click="toggleSelection()">取消选择</el-button>
         </div>
       </div>
 
@@ -32,7 +32,7 @@
       8.ref:显示元素身份 -->
       <div class="user-list">
         <el-table :data="userList" stripe border @selection-change="handleSelectionChange"
-                  ref="multipleTable" :header-cell-style="{background:'#8799a3',color:'#FFF'}">
+                  ref="multipleTable" :header-cell-style="{background:'#474b4c',color:'#f9f4dc'}">
           <el-table-column type="selection" width="55"></el-table-column>
           <el-table-column prop="userAccount" label="账号" align="center"></el-table-column>
           <el-table-column prop="userName" label="姓名" align="center"></el-table-column>

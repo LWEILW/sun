@@ -9,6 +9,7 @@ html, body, #app {
 /** 导航栏 */
 .el-aside {
   width: 220px !important;
+  height: 100% !important;
 }
 
 /** 导航栏 优化二级目录与一级目录间隙 */
@@ -20,15 +21,17 @@ html, body, #app {
 .el-header {
   /*height: 80px !important;*/
   padding: 0;
-  background: #3d3b4f;
+  /*cdd1d3*/
+  background: #475164;
   border-bottom: 1px solid #d6ecf0;
+  color: white;
 }
 
 
 .el-main {
-  background-color: #FFFFFF;
+  /*background-color: #c0c4c3;*/
   padding: 0px;
-  margin: 20px;
+  margin: 30px;
 }
 
 

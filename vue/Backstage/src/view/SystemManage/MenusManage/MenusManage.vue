@@ -20,12 +20,13 @@
        7.row-click:行点击事件
        8.ref:显示元素身份 -->
       <div class="menus-list">
-        <el-table :data="menusTable" stripe border max-height="800px" ref="MenusTable">
+        <el-table :data="menusTable" stripe border max-height="800px"
+                  ref="MenusTable" :header-cell-style="{background:'#474b4c',color:'#f9f4dc'}">
           <el-table-column fixed label="序号" align="center" width="100">
             <template slot-scope="scope"><span>{{scope.$index + 1}} </span></template>
           </el-table-column>
           <el-table-column prop="permissionId" label="菜单名称" align="center"></el-table-column>
-          <el-table-column prop="modName" label="排序" align="center"></el-table-column>
+          <el-table-column prop="modName" label="排序" align="center" sortable></el-table-column>
           <el-table-column prop="parentId" label="请求地址" align="center"></el-table-column>
           <el-table-column prop="funName" label="类型" align="center"></el-table-column>
           <el-table-column prop="path" label="可见" align="center"></el-table-column>

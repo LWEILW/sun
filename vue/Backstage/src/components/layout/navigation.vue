@@ -1,5 +1,15 @@
 <template>
-  <div class="navigation">
+  <div class="navigation-container">
+    <div class="navigation-box" style="">
+      <div class="navigation-image">
+        <img src="../../assets/image/cat.jpg"/>
+      </div>
+
+      <div class="navigation-font">
+        <h3>BlOgGeR_WW</h3>
+      </div>
+    </div>
+
     <!-- el-menu导航栏
      1.default-active:高亮显示 刷新页面后，对应menu高亮
      2.collapse:侧边栏是否收展
@@ -9,9 +19,10 @@
      6.active-text-color:当前激活菜单的文字颜色
      7.unique-opened:是否只保持一个子菜单的展开
      8.collapse-transition:是否开启折叠动画
+     rgb(191, 203, 217)
      -->
     <el-menu class="el-menu-vertical-demo" :default-active="activeIndex" :collapse="isCollapse" @select="handleSelect"
-             background-color="#161823" text-color="rgb(191, 203, 217)" active-text-color="#1890ff"
+             background-color="#474b4c" text-color="#f9f4dc" active-text-color="#1890ff"
              :unique-opened="true" :collapse-transition="false">
 
       <!-- 首页 -->
@@ -137,6 +148,7 @@
       </el-submenu>
 
     </el-menu>
+
   </div>
 </template>
 
@@ -190,21 +202,56 @@
 
 
 <style scoped>
-  .navigation {
+  .navigation-container {
     height: 100%;
     width: 100%;
+    overflow: hidden;
   }
+
+  .navigation-box {
+    display: flex;
+    justify-content: space-around;
+    background-color: #5B5B5B;
+    height: 60px;
+    width: 220px
+  }
+
+  .navigation-image {
+    border: 1px solid #fffef8;
+    /*圆弧*/
+    border-radius: 50%;
+    padding: 2px;
+    /*阴影*/
+    box-shadow: 0 0 10px #cdd1d3;
+    height: 50px;
+    width: 50px;
+    background-color: #737c7b;
+  }
+
+  .navigation-image img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background-color: #eee;
+  }
+
+  .navigation-font{
+    font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+    font-size:1em;
+    color: #cdd1d3;
+  }
+
 
   /* 导航栏收缩样式 */
   .el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 219px !important;
+    /*width: 219px !important;*/
     min-width: 140px;
     height: 100%;
   }
 
   /* 二级目录背景样式 */
-  .navigation .el-menu-vertical-demo .twoGroup {
-    background-color: #000000 !important;
+  .navigation-container .el-menu-vertical-demo .twoGroup {
+    background-color: #363433 !important;
   }
 
 </style>

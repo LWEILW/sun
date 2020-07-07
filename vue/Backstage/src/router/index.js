@@ -21,6 +21,10 @@ import ArticleManage from '@/view/ArticleManage/ArticleManage.vue'
 Vue.use(Router)
 
 const router = new Router({
+  // history 模式,该模式下没有#前缀
+  mode: 'history',
+  // build打包添加的地方
+  base: '/backstage/',
   routes: [
     {
       path: '/',

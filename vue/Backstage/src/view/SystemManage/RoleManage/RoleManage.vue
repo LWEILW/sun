@@ -30,7 +30,7 @@
      8.ref:显示元素身份 -->
       <div class="role-list">
         <el-table :data="roleTable" stripe border ref="RoleTable"
-                  :header-cell-style="{background:'#8799a3',color:'#FFF'}">
+                  :header-cell-style="{background:'#474b4c',color:'#f9f4dc'}">
           <el-table-column prop="roleName" label="角色名称" align="center"></el-table-column>
           <el-table-column prop="roleDescribe" label="角色描述" align="center"></el-table-column>
           <!--        <el-table-column prop="roleDescribe" label="权限字符"></el-table-column>-->

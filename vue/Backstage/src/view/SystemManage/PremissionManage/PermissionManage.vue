@@ -32,7 +32,7 @@
       11.tree-props:渲染嵌套数据的配置选项-->
       <div class="permission-list">
         <el-table :data="permissionTable" stripe border ref="PermissionTable"
-                  :header-cell-style="{background:'#8799a3',color:'#FFF'}" row-key="permissionId"
+                  :header-cell-style="{background:'#474b4c',color:'#f9f4dc'}" row-key="permissionId"
                   :default-expand-all="false" :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
           <el-table-column prop="permissionName" label="权限名称" ></el-table-column>
           <el-table-column prop="permissionPath" label="权限路径" align="center"></el-table-column>

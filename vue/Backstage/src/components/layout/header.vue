@@ -2,12 +2,16 @@
   <div class="header-container">
     <div class="header_box">
       <!-- logo样式 -->
-      <div class="header_logo" @click="changeStatus">
+      <div class="header_logo" style="margin-left:10px" @click="changeStatus">
         <i class="el-icon-s-fold"></i>
-        Bókè guǎnlǐ xìtǒng
-        6/5000
-        Blog management system
+<!--        Bókè guǎnlǐ xìtǒng 6/5000 Blog management system-->
       </div>
+
+<!--      <div>-->
+<!--&lt;!&ndash;        <el-button @click="drawer = true">12312</el-button>&ndash;&gt;-->
+<!--        <img @click="drawer = true" style="width: 50px; height: 50px" src="../../assets/image/cat.jpg"/>-->
+<!--      </div>-->
+
 
       <!-- 用户名下拉菜单
        command:点击菜单项触发的事件回调
@@ -27,6 +31,12 @@
           </el-dropdown-menu>
         </el-dropdown>
       </div>
+
+      <!-- 右侧抽屉 -->
+      <el-drawer title="我是标题" :visible.sync="drawer" :with-header="false">
+
+        <span>我来啦!</span>
+      </el-drawer>
     </div>
   </div>
 </template>
@@ -40,7 +50,10 @@
       return {
         account: "欧阳锋",
         password: "小龙女",
-        url: '../static/image/tx.jpg'
+        url: '../static/image/tx.jpg',
+        // 右侧抽屉
+        drawer: false,
+        direction: 'rtl',
       };
     },
     // 初始化加载
@@ -85,15 +98,15 @@
     display: inline-flex;
     display: -webkit-flex;
     justify-content: space-between;
-    font-size: 18px;
-    color: #eeeeee;
+    font-size: 16px;
+    /*color: #eeeeee;*/
   }
 
   .header_logo {
-
   }
 
   .header-avatar {
     width: 100px;
   }
+
 </style>

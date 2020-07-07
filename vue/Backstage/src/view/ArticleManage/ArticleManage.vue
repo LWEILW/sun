@@ -43,22 +43,25 @@
       8.ref:显示元素身份 -->
       <div class="article-list">
         <el-table :data="articleTable" stripe border @row-click="handleDetails"
-                  :header-cell-style="{background:'#8799a3',color:'#FFF'}">
-          <el-table-column fixed label="序号" align="center" width="100">
+                  :header-cell-style="{background:'#474b4c',color:'#f9f4dc'}">
+          <el-table-column fixed label="序号" align="center" min-width="5%">
             <template slot-scope="scope"><span>{{scope.$index + 1}} </span></template>
           </el-table-column>
-          <el-table-column prop="articleName" label="文章名称" align="center"></el-table-column>
-          <el-table-column prop="articleTitle" label="文章标题" align="center"></el-table-column>
-          <el-table-column prop="articleStatus" label="文章状态" align="center"></el-table-column>
-          <el-table-column prop="readingAmount" label="阅读数量" align="center"></el-table-column>
-          <el-table-column prop="publisher" label="发布人" align="center"></el-table-column>
-          <el-table-column prop="publisherTime" label="发布时间" sortable align="center"></el-table-column>
-          <el-table-column prop="updateTime" label="更新时间" sortable align="center"></el-table-column>
-          <el-table-column fixed="right" label="操作">
+          <el-table-column prop="articleName" label="文章名称" align="center" min-width="20%"></el-table-column>
+          <el-table-column prop="articleTitle" label="文章标题" align="center" min-width="20%"></el-table-column>
+          <el-table-column prop="articleStatus" label="文章状态" align="center" min-width="5%"></el-table-column>
+          <el-table-column prop="readingAmount" label="阅读数量" align="center" min-width="5%"></el-table-column>
+          <el-table-column prop="publisher" label="发布人" align="center" min-width="10%"></el-table-column>
+          <el-table-column prop="publisherTime" label="发布时间" sortable align="center" min-width="10%"></el-table-column>
+          <el-table-column prop="updateTime" label="更新时间" sortable align="center" min-width="10%"></el-table-column>
+          <el-table-column fixed="right" label="操作" min-width="15%">
             <template slot-scope="scope">
-              <el-button @click.stop="handleEdit( scope.row)" type="primary" size="small">查看</el-button>
-              <el-button @click.stop="handleEdit( scope.row)" type="primary" size="small">发布</el-button>
-              <el-button @click.stop="handleDelete(scope.row)" type="danger" size="small">编辑</el-button>
+              <el-button @click.stop="handleEdit( scope.row)" type="primary" icon="el-icon-edit" size="small"
+                         plain></el-button>
+              <el-button @click.stop="handleEdit( scope.row)" type="primary" icon="el-icon-edit" size="small"
+                         plain></el-button>
+              <el-button @click.stop="handleDelete(scope.row)" type="danger" icon="el-icon-edit" size="small"
+                         plain></el-button>
             </template>
           </el-table-column>
         </el-table>

@@ -9,7 +9,7 @@ export default {
       // 初始选中页码
       currentPage: 1,
       // 显示每页的数据
-      pageSize: 10,
+      pageSize: 5,
       // 显示总共有多少数据
       totalCount: 0,
       // 文章模糊查询
