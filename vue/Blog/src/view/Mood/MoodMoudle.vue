@@ -42,19 +42,18 @@ export default {
   },
   // 初始化加载
   created() {
-    this.getArticleList();
+    this.articleList();
   },
   // 方法
   methods: {
-    getArticleList() {
+    articleList() {
 
       const userParams = {
-        userAccount: '',
-        userName: '',
-        userSex: ''
+        currentPage: 1,
+        pageSize: 10
       }
-      api.getArticleList(userParams).then(res => {
-        this.items = res.data.data;
+      api.articleList(userParams).then(res => {
+        this.items = res.data.articleList;
       });
     }
   }

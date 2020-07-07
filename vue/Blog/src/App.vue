@@ -27,22 +27,22 @@
 <script>
   export default {
     name: 'App',
-    created() {
-      // live2d动画
-      setTimeout(() => {
-        window.L2Dwidget.init({
-          pluginRootPath: 'static/live2dw/',
-          pluginJsPath: 'lib/',
-          pluginModelPath: 'live2d-widget-model-hijiki/assets/',
-          tagMode: false,
-          debug: false,
-          model: {jsonPath: '../static/live2dw/live2d-widget-model-hijiki/assets/hijiki.model.json'},
-          display: {position: 'right', width: 300, height: 500},
-          mobile: {show: true},
-          log: false
-        })
-      }, 1000)
-    }
+    // created() {
+    //   // live2d动画
+    //   setTimeout(() => {
+    //     window.L2Dwidget.init({
+    //       pluginRootPath: 'static/live2dw/',
+    //       pluginJsPath: 'lib/',
+    //       pluginModelPath: 'live2d-widget-model-hijiki/assets/',
+    //       tagMode: false,
+    //       debug: false,
+    //       model: {jsonPath: '../static/live2dw/live2d-widget-model-hijiki/assets/hijiki.model.json'},
+    //       display: {position: 'right', width: 300, height: 500},
+    //       mobile: {show: true},
+    //       log: false
+    //     })
+    //   }, 1000)
+    // }
   }
 </script>
 
@@ -57,12 +57,12 @@
 
   }
 
-  .main_container {
-    /* 外边距属性 */
-    margin: 0 auto;
-    padding: 0 20px;
-    max-width: 1280px;
-  }
+  /*.main_container {*/
+  /*  !* 外边距属性 *!*/
+  /*  margin: 0 auto;*/
+  /*  padding: 0 20px;*/
+  /*  max-width: 1280px;*/
+  /*}*/
 
   .asideNone {
     width: 30%;

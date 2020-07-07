@@ -74,18 +74,18 @@
     // 初始化加载
     created() {
       console.log(this.$route);
-      var that = this;
-      that.news();
+      // var that = this;
+      // that.news();
     },
     // 方法
     methods: {
-      news() {
-        api.newsList().then(res => {
-          var that = this;
-          that.items = res.data;
-          console.log(that.items);
-        });
-      }
+      // news() {
+      //   api.newsList().then(res => {
+      //     var that = this;
+      //     that.items = res.data;
+      //     console.log(that.items);
+      //   });
+      // }
     }
   };
 </script>

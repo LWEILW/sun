@@ -73,6 +73,12 @@
 
     /*margin: 0 auto;*/
     /*max-width: 1280px;*/
+    /* 外边距属性 */
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 1280px;
+
+
   }
 
   .home-title {

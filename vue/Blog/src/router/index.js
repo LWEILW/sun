@@ -4,7 +4,9 @@ import Router from 'vue-router'
 import HomePage from '@/view/Home'
 import ArticleContent from '@/view/Article/ArticleContent'
 import MoodPage from '@/view/Mood/MoodMoudle'
-
+import Product from '@/view/Product/Product'
+import Project from '@/view/Project/Project'
+import AboutMe from '@/view/AboutMe/AboutMe'
 
 Vue.use(Router)
 
@@ -50,22 +52,38 @@ export default new Router({
       component: MoodPage,
       meta: {
         title: '首页',
-        keepAlive: true
+        keepAlive: false
       }
     },
-    // {
-    //   path: '/AboutMePage',
-    //   name: 'AboutMePage',
-    //   component: AboutMePage
-    // },
-    // {
-    //   path: '/ShowPage',
-    //   name: 'ShowPage',
-    //   component: ShowPage,
-    //   children: [
-    //     { path: ':id', name: 'id', component: ShowPage }
-    //   ]
-    // },
+    {
+      path: '/Product',
+      name: 'Product',
+      component: Product,
+      meta: {
+        title: '首页',
+        keepAlive: false
+      }
+    },{
+      path: '/Project',
+      name: 'Project',
+      component: Project,
+      meta: {
+        title: '首页',
+        keepAlive: false
+      }
+    },
+    {
+      path: '/AboutMe',
+      name: 'AboutMe',
+      component: AboutMe,
+      meta: {
+        title: '首页',
+        keepAlive: false
+      }
+      // children: [
+      //   { path: ':id', name: 'id', component: ShowPage }
+      // ]
+    },
     // {
     //   path: '/BloggerPage',
     //   name: 'BloggerPage',

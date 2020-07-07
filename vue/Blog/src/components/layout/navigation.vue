@@ -17,12 +17,13 @@
           background-color="#4C3B4D"
           active-text-color="#ffd04b"
         >
-          <el-menu-item index="1">首页</el-menu-item>
-          <el-menu-item index="2">归档</el-menu-item>
-          <el-menu-item index="2">分类</el-menu-item>
-          <el-menu-item index="2">时光轴</el-menu-item>
-          <el-menu-item index="3">项目介绍</el-menu-item>
-          <el-menu-item index="4">关于我</el-menu-item>
+          <el-menu-item index="HomePage">首页</el-menu-item>
+          <el-menu-item index="MoodPage">归档</el-menu-item>
+          <el-menu-item index="MoodPage">分类</el-menu-item>
+          <el-menu-item index="MoodPage">时光轴</el-menu-item>
+          <el-menu-item index="Product">产品</el-menu-item>
+          <el-menu-item index="Project">项目介绍</el-menu-item>
+          <el-menu-item index="AboutMe">关于我</el-menu-item>
         </el-menu>
       </div>
 
@@ -56,7 +57,7 @@
     name: "navigation",
     data() {
       return {
-        activeIndex: "1",
+        activeIndex: this.$route.name,
         imgUrl: require("../../images/yang.jpg")
       };
     },
@@ -67,17 +68,26 @@
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
         switch (key) {
-          case "1":
+          case "HomePage":
             this.$router.push("/HomePage");
             break;
-          case "2":
+          case "MoodPage":
             this.$router.push("/MoodPage");
             break;
-          case "3":
-            this.$router.push("/GamePage");
+          case "MoodPage":
+            this.$router.push("/MoodPage");
             break;
-          case "4":
-            this.$router.push("/AboutMePage");
+          case "MoodPage":
+            this.$router.push("/MoodPage");
+            break;
+          case "Product":
+            this.$router.push("/Product");
+            break;
+          case "Project":
+            this.$router.push("/Project");
+            break;
+          case "AboutMe":
+            this.$router.push("/AboutMe");
             break;
         }
       }
