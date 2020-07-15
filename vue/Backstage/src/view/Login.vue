@@ -137,8 +137,9 @@
   }
 
   .login_container {
-    /*background-color: #b8e7ff;*/
-    background-image: url("../assets/image/sky.jpg");
+    background-color: #000000;
+    /*background-image: url("../assets/image/bj.jpg");*/
+
     background-repeat:no-repeat;
     height: 100%;
   }

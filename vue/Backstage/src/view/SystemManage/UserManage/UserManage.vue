@@ -84,7 +84,7 @@
           @current-change="handleCurrentChange"
           :total="totalCount"
           :current-page="currentPage"
-          :page-size="pageSize"
+          :page-623188="pageSize"
           :page-sizes="[5, 10, 20, 50]"
           :hide-on-single-page="false"
           layout="total, sizes, prev, pager, next, jumper"

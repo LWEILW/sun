@@ -1,14 +1,14 @@
 <template>
   <div class="navigation-container">
-    <div class="navigation-box" style="">
-      <div class="navigation-image">
-        <img src="../../assets/image/cat.jpg"/>
-      </div>
+<!--    <div class="navigation-box">-->
+<!--      <div class="navigation-image">-->
+<!--        <img src="../../assets/image/cat.jpg"/>-->
+<!--      </div>-->
 
-      <div class="navigation-font">
-        <h3>BlOgGeR_WW</h3>
-      </div>
-    </div>
+<!--      <div class="navigation-font">-->
+<!--        <h3>BlOgGeR_WW</h3>-->
+<!--      </div>-->
+<!--    </div>-->
 
     <!-- el-menu导航栏
      1.default-active:高亮显示 刷新页面后，对应menu高亮

@@ -1,10 +1,14 @@
 <template>
   <div class="header-container">
     <div class="header_box">
+      <div class="header-font">
+        <span>BlOgGeR_WW</span>
+      </div>
+
+
       <!-- logo样式 -->
       <div class="header_logo" style="margin-left:10px" @click="changeStatus">
-        <i class="el-icon-s-fold"></i>
-<!--        Bókè guǎnlǐ xìtǒng 6/5000 Blog management system-->
+        <span>Bókè guǎnlǐ xìtǒng 6/5000 Blog management system</span>
       </div>
 
 <!--      <div>-->
@@ -19,12 +23,18 @@
        divided:显示分割线
         -->
       <div class="header-user">
-        <span>账户:{{account}}</span>
-        <span>角色:{{password}}</span>
+<!--        <span>账户:{{account}}</span>-->
+<!--        <span>角色:{{password}}</span>-->
+
         <el-dropdown trigger="click" @command="handleCommand">
           <!-- 用户头像 -->
           <!--          <el-avatar class="header-avatar" shape="square" :src="url"></el-avatar>-->
+
           <i class="el-icon-caret-bottom"></i>
+          <div class="header-image">
+            <img src="../../assets/image/cat.jpg"/>
+          </div>
+
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item command="info">个人资料</el-dropdown-item>
             <el-dropdown-item command="loginOut" divided>退出登录</el-dropdown-item>
@@ -109,4 +119,28 @@
     width: 100px;
   }
 
+
+  .navigation-box {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .navigation-image {
+    border: 1px solid #fffef8;
+    /*圆弧*/
+    border-radius: 50%;
+    padding: 2px;
+    /*阴影*/
+    box-shadow: 0 0 10px #cdd1d3;
+    height: 50px;
+    width: 50px;
+    background-color: #737c7b;
+  }
+
+  .navigation-image img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background-color: #eee;
+  }
 </style>

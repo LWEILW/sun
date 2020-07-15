@@ -5,11 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.blogger.dao.admin.UserMapper;
 import com.blogger.entity.admin.User;
-import com.blogger.entity.article.Article;
 import com.blogger.server.admin.UserService;
-import org.apache.shiro.crypto.RandomNumberGenerator;
-import org.apache.shiro.crypto.SecureRandomNumberGenerator;
-import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,12 +45,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean saveUser(User user, JSONArray roleList) {
         user.setUserPassword("123");
-        //密码加密
-        RandomNumberGenerator saltGen = new SecureRandomNumberGenerator();
-        String salt = saltGen.nextBytes().toString();
-        Md5Hash md5Hash = new Md5Hash(user.getUserPassword(), salt, 2);
-        user.setUserPassword(md5Hash.toString());
-        user.setSalt(salt);
+
 
         int succ = 0;
         int userId;

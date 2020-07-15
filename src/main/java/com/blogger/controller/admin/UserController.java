@@ -5,15 +5,12 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.blogger.entity.admin.User;
-import com.blogger.entity.article.Article;
 import com.blogger.server.admin.UserService;
 import com.blogger.util.Result;
-import io.swagger.annotations.Api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 /**
  * 用户管理
@@ -21,7 +18,6 @@ import java.util.List;
  * @author Liu wei
  * @date 2020-03-31 16:00
  */
-@Api(value = "[APP-测试接口]-FrontExaminationReportController")
 @RestController
 @RequestMapping("/user")
 public class UserController {

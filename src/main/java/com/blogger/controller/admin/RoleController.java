@@ -6,12 +6,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.blogger.entity.admin.Role;
 import com.blogger.entity.admin.User;
-import com.blogger.entity.article.Article;
 import com.blogger.server.admin.PermissionService;
 import com.blogger.server.admin.RoleService;
 import com.blogger.util.Result;
-import io.swagger.models.auth.In;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
